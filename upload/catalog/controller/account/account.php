@@ -2,7 +2,7 @@
 class ControllerAccountAccount extends Controller {
 	public function index() {
 		if (!$this->customer->isLogged()) {
-			$this->session->data['redirect'] = $this->url->link('account/account', 'token=' . $this->session->data['token'], true);
+			$this->session->data['redirect'] = $this->url->link('account/account', '', true);
 
 			$this->response->redirect($this->url->link('account/login', '', true));
 		}
@@ -66,6 +66,7 @@ class ControllerAccountAccount extends Controller {
     $data['download_form'] = $this->url->link('account/catalog/download',  'token=' . $this->session->data['token'] . $url, true);
     $data['download_add'] = $this->url->link('account/catalog/download/add',  'token=' . $this->session->data['token'] . $url, true);
     $data['orderlist'] = $this->url->link('account/sale/order', 'token=' . $this->session->data['token'], true);
+    $data['seller_transaction'] = $this->url->link('account/catalog/transaction', 'token=' . $this->session->data['token'], true);
     $data['returnlist'] = $this->url->link('account/sale/return', 'token=' . $this->session->data['token'], true);
 
 

@@ -65,6 +65,7 @@ $_['error_permission']          = 'Warning: You do not have permission to modify
 $_['error_exists']              = 'Warning: E-Mail Address is already registered!';
 $_['error_firstname']           = 'First Name must be between 1 and 32 characters!';
 $_['error_lastname']            = 'Last Name must be between 1 and 32 characters!';
+$_['error_sellerdescription']   = 'Description must be not more than 500 characters!';
 $_['error_email']               = 'E-Mail Address does not appear to be valid!';
 $_['error_cheque']              = 'Cheque Payee Name required!';
 $_['error_paypal']              = 'PayPal Email Address does not appear to be valid!';

@@ -28,8 +28,12 @@ class ModelSettingSetting extends Model {
 				}
 			}
 		}
-        		$this->db->query("UPDATE " . DB_PREFIX . "seller SET firstname = '" . $this->db->escape($data['config_name']) . "', lastname = '" . $this->db->escape($data['config_owner']) . "', logo = '" . $this->db->escape($data['config_image']) . "', email = '" . $this->db->escape($data['config_email']) . "', telephone = '" . $this->db->escape($data['config_telephone']) . "', fax = '" . $this->db->escape($data['config_fax']) . "', company = '" . $this->db->escape($data['config_name']) . "', address_1 = '" . $this->db->escape($data['config_address']) . "', country_id = '" . (int)$data['config_country_id'] . "', zone_id = '" . (int)$data['config_zone_id'] . "', commission = '0', status = '1' WHERE seller_id = '0'");
-	}
+            
+            if (empty($data['config_name'])) {
+             } else {
+            $this->db->query("UPDATE " . DB_PREFIX . "seller SET firstname = '" . $this->db->escape($data['config_name']) . "', lastname = '" . $this->db->escape($data['config_owner']) . "', logo = '" . $this->db->escape($data['config_logo']) . "', sellerdescription = '" . $this->db->escape($data['config_meta_description']) . "', email = '" . $this->db->escape($data['config_email']) . "', telephone = '" . $this->db->escape($data['config_telephone']) . "', fax = '" . $this->db->escape($data['config_fax']) . "', company = '" . $this->db->escape($data['config_name']) . "', address_1 = '" . $this->db->escape($data['config_address']) . "', country_id = '" . (int)$data['config_country_id'] . "', zone_id = '" . (int)$data['config_zone_id'] . "', commission = '0', status = '1' WHERE seller_id = '0'");
+             }
+        }
 
 	public function deleteSetting($code, $store_id = 0) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "setting WHERE store_id = '" . (int)$store_id . "' AND `code` = '" . $this->db->escape($code) . "'");

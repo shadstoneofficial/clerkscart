@@ -847,7 +847,7 @@ class ControllerSettingSetting extends Controller {
 			$data['config_affiliate_id'] = $this->config->get('config_affiliate_id');
 		}
 
-    if (isset($this->request->post['config_seller_auto'])) {
+                if (isset($this->request->post['config_seller_auto'])) {
 			$data['config_seller_approval'] = $this->request->post['config_seller_approval'];
 		} elseif ($this->config->has('config_seller_commission')) {
 			$data['config_seller_approval'] = $this->config->get('config_seller_approval');
@@ -855,7 +855,7 @@ class ControllerSettingSetting extends Controller {
 			$data['config_seller_approval'] = '';
 		}
 
-    if (isset($this->request->post['config_seller_auto'])) {
+                if (isset($this->request->post['config_seller_auto'])) {
 			$data['config_seller_auto'] = $this->request->post['config_seller_auto'];
 		} elseif ($this->config->has('config_seller_auto')) {
 			$data['config_seller_auto'] = $this->config->get('config_seller_auto');
@@ -863,7 +863,7 @@ class ControllerSettingSetting extends Controller {
 			$data['config_seller_auto'] = '';
 		}
 
-    if (isset($this->request->post['config_seller_commission'])) {
+                if (isset($this->request->post['config_seller_commission'])) {
 			$data['config_seller_commission'] = $this->request->post['config_seller_commission'];
 		} elseif ($this->config->has('config_seller_commission')) {
 			$data['config_seller_commission'] = $this->config->get('config_seller_commission');
@@ -871,14 +871,20 @@ class ControllerSettingSetting extends Controller {
 			$data['config_seller_commission'] = '5';
 		}
 
-    if (isset($this->request->post['config_seller_mail'])) {
+                if (isset($this->request->post['config_seller_mail'])) {
 			$data['config_seller_mail'] = $this->request->post['config_seller_mail'];
 		} elseif ($this->config->has('config_seller_mail')) {
 			$data['config_seller_mail'] = $this->config->get('config_seller_mail');
 		} else {
 			$data['config_seller_mail'] = '';
 		}
-
+                
+                if (isset($this->request->post['config_seller_id'])) {
+			$data['config_seller_id'] = $this->request->post['config_seller_id'];
+		} else {
+			$data['config_seller_id'] = $this->config->get('config_seller_id');
+		}
+                
 		if (isset($this->request->post['config_return_id'])) {
 			$data['config_return_id'] = $this->request->post['config_return_id'];
 		} else {

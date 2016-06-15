@@ -559,10 +559,20 @@ class ControllerSaleOrder extends Controller {
 				}
 			}
 
+                        $this->load->model('seller/seller');
+
+                        $seller_info =  $this->model_seller_seller->getSeller($order_info['seller_id']);
+
+			if ($order_info['seller_id']) {
+			$data['sellerurl'] = $this->url->link('seller/seller/edit', 'token=' . $this->session->data['token'] . '&seller_id=' . $order_info['seller_id'], true);
+			} else {
+			$data['sellerurl'] = '';
+			}
+
 			$data['order_status_id'] = $order_info['order_status_id'];
 			$data['comment'] = $order_info['comment'];
-      $data['seller_id'] = $order_info['seller_id'];
-			$data['seller'] = $order_info['seller_firstname'] . ' ' . $order_info['seller_lastname'];
+                        $data['seller_id'] = $order_info['seller_id'];
+			$data['seller'] = $seller_info['firstname'] . ' ' . $seller_info['lastname'];
 			$data['affiliate_id'] = $order_info['affiliate_id'];
 			$data['affiliate'] = $order_info['affiliate_firstname'] . ' ' . $order_info['affiliate_lastname'];
 			$data['currency_code'] = $order_info['currency_code'];

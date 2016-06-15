@@ -105,7 +105,13 @@ class ControllerAccountCatalogSeller extends Controller {
 		} else {
 			$data['error_lastname'] = '';
 		}
-
+                
+                if (isset($this->error['sellerdescription'])) {
+			$data['error_sellerdescription'] = $this->error['sellerdescription'];
+		} else {
+			$data['error_sellerdescription'] = '';
+		}
+                
 		if (isset($this->error['email'])) {
 			$data['error_email'] = $this->error['email'];
 		} else {
@@ -236,7 +242,15 @@ class ControllerAccountCatalogSeller extends Controller {
 		}
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-
+                
+                if (isset($this->request->post['sellerdescription'])) {
+			$data['sellerdescription'] = $this->request->post['sellerdescription'];
+		} elseif (!empty($seller_info)) {
+			$data['sellerdescription'] = $seller_info['sellerdescription'];
+		} else {
+			$data['sellerdescription'] = '';
+		}
+                
 		if (isset($this->request->post['email'])) {
 			$data['email'] = $this->request->post['email'];
 		} elseif (!empty($seller_info)) {
@@ -425,7 +439,11 @@ class ControllerAccountCatalogSeller extends Controller {
 		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
-
+                
+                if (utf8_strlen(trim($this->request->post['sellerdescription']))) > 500) {
+			$this->error['sellerdescription'] = $this->language->get('error_sellerdescription');
+		}
+                
 		if ((utf8_strlen($this->request->post['email']) > 96) || (!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL))) {
 			$this->error['email'] = $this->language->get('error_email');
 		}

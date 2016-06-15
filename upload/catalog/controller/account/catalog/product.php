@@ -24,7 +24,7 @@ class ControllerAccountCatalogProduct extends Controller {
 	}
 
 	public function add() {
-    $data['token'] = $this->session->data['token'];
+    //$data['token'] = $this->session->data['token'];
     $seller_id = $this->customer->getId();
     if (!$this->customer->isLogged()) {
 			$this->session->data['redirect'] = $this->url->link('account/catalog/product/add', '', true);
@@ -1438,6 +1438,7 @@ class ControllerAccountCatalogProduct extends Controller {
     if ($this->customer->hasSellerPermission($seller_id) == 0) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
+		return !$this->error;
 	}
 
 	protected function validateCopy() {
@@ -1445,6 +1446,7 @@ class ControllerAccountCatalogProduct extends Controller {
     if ($this->customer->hasSellerPermission($seller_id) == 0) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
+		return !$this->error;
 	}
 
 	public function autocomplete() {

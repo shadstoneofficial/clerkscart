@@ -28,7 +28,7 @@
       </div>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-pencil"></i> <?php echo $text_form; ?></h3>
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> <?php echo $text_seller_detail; ?></h3>
       </div>
       <div class="panel-body">
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-seller" class="form-horizontal">
@@ -67,6 +67,15 @@
                     <?php } ?>
                   </div>
                 </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-sellerdescription"><?php echo $entry_description; ?></label>
+                <div class="col-sm-10">
+                  <textarea name="sellerdescription" rows="5" placeholder="<?php echo $entry_description; ?>" id="input-sellerdescription" class="form-control"><?php echo $sellerdescription; ?></textarea>
+                  <?php if ($error_sellerdescription) { ?>
+                    <div class="text-danger"><?php echo $error_sellerdescription; ?></div>
+                    <?php } ?>
+                </div>
+              </div>
                 <div class="form-group required">
                   <label class="col-sm-2 control-label" for="input-email"><?php echo $entry_email; ?></label>
                   <div class="col-sm-10">

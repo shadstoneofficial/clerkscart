@@ -37,7 +37,9 @@ class ControllerAccountRegister extends Controller {
 
 			$this->model_account_activity->addActivity('register', $activity_data);
 
-			$this->response->redirect($this->url->link('account/success'));
+      $this->session->data['token'] = token(32);
+
+			$this->response->redirect($this->url->link('account/success', 'token=' . $this->session->data['token'], true));
 		}
 
 		$data['breadcrumbs'] = array();

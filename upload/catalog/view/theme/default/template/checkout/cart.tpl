@@ -83,7 +83,7 @@
                     </span></div></td>
                 <td class="text-right"><?php echo $product['price']; ?></td>
                 <td class="text-right"><?php echo $product['total']; ?></td>
-                <td class="text-right"><a class="btn btn-xs" href="<?php echo $product['checkout']; ?>"><?php echo $button_checkout; ?></a></td>
+                <td class="text-right"><a class="btn btn-primary" href="<?php echo $product['checkout']; ?>"><?php echo $button_checkout; ?></a></td>
               </tr>
               <?php } ?>
               <?php foreach ($vouchers as $voucher) { ?>
@@ -128,7 +128,6 @@
       </div>
       <div class="buttons">
         <div class="pull-left"><a href="<?php echo $continue; ?>" class="btn btn-default"><?php echo $button_shopping; ?></a></div>
-        <div class="pull-right"><a href="<?php echo $checkout; ?>" class="btn btn-primary"><?php echo $button_checkout; ?></a></div>
       </div>
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>

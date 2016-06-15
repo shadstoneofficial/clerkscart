@@ -60,6 +60,15 @@
                     <?php } ?>
                   </div>
                 </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-sellerdescription"><?php echo $entry_description; ?></label>
+                <div class="col-sm-10">
+                  <textarea name="sellerdescription" rows="5" placeholder="<?php echo $entry_description; ?>" id="input-sellerdescription" class="form-control"><?php echo $sellerdescription; ?></textarea>
+                  <?php if ($error_sellerdescription) { ?>
+                    <div class="text-danger"><?php echo $error_sellerdescription; ?></div>
+                    <?php } ?>
+                </div>
+              </div>
                 <div class="form-group required">
                   <label class="col-sm-2 control-label" for="input-email"><?php echo $entry_email; ?></label>
                   <div class="col-sm-10">
@@ -88,27 +97,6 @@
                   <label class="col-sm-2 control-label" for="input-code"><span data-toggle="tooltip" title="<?php echo $help_code; ?>"><?php echo $entry_code; ?></span></label>
                   <div class="col-sm-10">
                     <input type="text" name="code" value="<?php echo $code; ?>" placeholder="<?php echo $entry_code; ?>" id="input-code" class="form-control" />
-                    <!-- <?php if ($error_code) { ?>
-                    <div class="text-danger"><?php echo $error_code; ?></div>
-                    <?php } ?> -->
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-password"><?php echo $entry_password; ?></label>
-                  <div class="col-sm-10">
-                    <input type="password" name="password" value="<?php echo $password; ?>" placeholder="<?php echo $entry_password; ?>" autocomplete="off" id="input-password" class="form-control"  />
-                    <?php if ($error_password) { ?>
-                    <div class="text-danger"><?php echo $error_password; ?></div>
-                    <?php  } ?>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-confirm"><?php echo $entry_confirm; ?></label>
-                  <div class="col-sm-10">
-                    <input type="password" name="confirm" value="<?php echo $confirm; ?>" placeholder="<?php echo $entry_confirm; ?>" autocomplete="off" id="input-confirm" class="form-control" />
-                    <?php if ($error_confirm) { ?>
-                    <div class="text-danger"><?php echo $error_confirm; ?></div>
-                    <?php  } ?>
                   </div>
                 </div>
                 <div class="form-group">

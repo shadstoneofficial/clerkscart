@@ -53,6 +53,7 @@
         <li><a href="<?php echo $download_add; ?>"><?php echo $text_download_add; ?></a></li>
         <li><a href="<?php echo $download_form; ?>"><?php echo $text_downloadlist; ?></a></li>
         <li><a href="<?php echo $orderlist; ?>"><?php echo $text_orderlist; ?></a></li>
+        <li><a href="<?php echo $seller_transaction; ?>"><?php echo $text_transaction; ?></a></li>
         <li><a href="<?php echo $returnlist; ?>"><?php echo $text_return; ?></a></li>
       </ul>
       <?php } ?>

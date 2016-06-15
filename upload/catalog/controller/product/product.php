@@ -329,7 +329,11 @@ class ControllerProductProduct extends Controller {
       
       $seller_info = $this->model_account_catalog_seller->getSeller($seller_id);
 
+      if ($seller_info['company']){
+      $data['seller_name'] = $seller_info['company'];
+      } else {
       $data['seller_name'] = $seller_info['firstname'] . '&nbsp;' . $seller_info['lastname'];
+      }
 
 			$discounts = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);
 

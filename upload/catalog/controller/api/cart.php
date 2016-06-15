@@ -9,7 +9,7 @@ class ControllerApiCart extends Controller {
 			$json['error']['warning'] = $this->language->get('error_permission');
 		} else {
 			if (isset($this->request->post['product'])) {
-				$this->cart->clear();
+				$this->cart->allclear();
 
 				foreach ($this->request->post['product'] as $product) {
 					if (isset($product['option'])) {

@@ -624,7 +624,13 @@ class ControllerSellerSeller extends Controller {
 		} else {
 			$data['error_lastname'] = '';
 		}
-
+                
+                if (isset($this->error['sellerdescription'])) {
+			$data['error_sellerdescription'] = $this->error['sellerdescription'];
+		} else {
+			$data['error_sellerdescription'] = '';
+		}
+                
 		if (isset($this->error['email'])) {
 			$data['error_email'] = $this->error['email'];
 		} else {
@@ -661,7 +667,7 @@ class ControllerSellerSeller extends Controller {
 			$data['error_telephone'] = '';
 		}
 
-		if (isset($this->error['password'])) {
+		/*if (isset($this->error['password'])) {
 			$data['error_password'] = $this->error['password'];
 		} else {
 			$data['error_password'] = '';
@@ -671,7 +677,7 @@ class ControllerSellerSeller extends Controller {
 			$data['error_confirm'] = $this->error['confirm'];
 		} else {
 			$data['error_confirm'] = '';
-		}
+		} */
 
 		if (isset($this->error['address_1'])) {
 			$data['error_address_1'] = $this->error['address_1'];
@@ -811,7 +817,15 @@ class ControllerSellerSeller extends Controller {
 		}
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-
+                
+                if (isset($this->request->post['sellerdescription'])) {
+			$data['sellerdescription'] = $this->request->post['sellerdescription'];
+		} elseif (!empty($seller_info)) {
+			$data['sellerdescription'] = $seller_info['sellerdescription'];
+		} else {
+			$data['sellerdescription'] = '';
+		}
+                
 		if (isset($this->request->post['email'])) {
 			$data['email'] = $this->request->post['email'];
 		} elseif (!empty($seller_info)) {
@@ -1000,7 +1014,7 @@ class ControllerSellerSeller extends Controller {
 			$data['status'] = true;
 		}
 
-		if (isset($this->request->post['password'])) {
+		/*if (isset($this->request->post['password'])) {
 			$data['password'] = $this->request->post['password'];
 		} else {
 			$data['password'] = '';
@@ -1010,7 +1024,7 @@ class ControllerSellerSeller extends Controller {
 			$data['confirm'] = $this->request->post['confirm'];
 		} else {
 			$data['confirm'] = '';
-		}
+		} */
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -1031,7 +1045,11 @@ class ControllerSellerSeller extends Controller {
 		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
-
+                
+                if (utf8_strlen(trim($this->request->post['sellerdescription'])) > 500) {
+			$this->error['sellerdescription'] = $this->language->get('error_sellerdescription');
+		}
+                
 		if ((utf8_strlen($this->request->post['email']) > 96) || (!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL))) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
@@ -1070,7 +1088,7 @@ class ControllerSellerSeller extends Controller {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
-		if ($this->request->post['password'] || (!isset($this->request->get['seller_id']))) {
+		/*if ($this->request->post['password'] || (!isset($this->request->get['seller_id']))) {
 			if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 				$this->error['password'] = $this->language->get('error_password');
 			}
@@ -1078,7 +1096,7 @@ class ControllerSellerSeller extends Controller {
 			if ($this->request->post['password'] != $this->request->post['confirm']) {
 				$this->error['confirm'] = $this->language->get('error_confirm');
 			}
-		}
+		} */
 
 		if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
 			$this->error['address_1'] = $this->language->get('error_address_1');
