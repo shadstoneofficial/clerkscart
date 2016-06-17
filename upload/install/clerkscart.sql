@@ -3056,6 +3056,23 @@ CREATE TABLE IF NOT EXISTS `oc_seller_transaction` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `oc_seller_setting`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_seller_setting` (
+  `seller_setting_id` int(11) NOT NULL AUTO_INCREMENT,
+  `store_id` int(11) NOT NULL DEFAULT '0',
+  `seller_id` int(11) NOT NULL DEFAULT '0',  
+  `code` varchar(32) NOT NULL,
+  `key` varchar(64) NOT NULL,
+  `value` text NOT NULL,
+  `serialized` tinyint(1) NOT NULL,
+  PRIMARY KEY (`seller_setting_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=807 ;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `oc_setting`
 --
 
