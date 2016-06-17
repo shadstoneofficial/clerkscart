@@ -14,6 +14,7 @@ $_['text_country']                     = 'Countries';
 $_['text_coupon']                      = 'Coupons';
 $_['text_currency']                    = 'Currencies';
 $_['text_customer']                    = 'Customers';
+$_['text_seller']                      = 'Sellers';
 $_['text_customer_group']              = 'Customer Groups';
 $_['text_custom_field']                = 'Custom Fields';
 $_['text_dashboard']                   = 'Dashboard';
