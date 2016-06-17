@@ -440,7 +440,7 @@ class ControllerAccountCatalogSeller extends Controller {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
                 
-                if (utf8_strlen(trim($this->request->post['sellerdescription']))) > 500) {
+                if (utf8_strlen(trim($this->request->post['sellerdescription'])) > 500) {
 			$this->error['sellerdescription'] = $this->language->get('error_sellerdescription');
 		}
                 
