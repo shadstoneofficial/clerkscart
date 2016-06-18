@@ -13,6 +13,8 @@ $_['thousand_point']        = ',';
 $_['text_home']             = '<i class="fa fa-home"></i>';
 $_['text_yes']              = 'Yes';
 $_['text_no']               = 'No';
+$_['text_enabled']          = 'Enabled';
+$_['text_disabled']         = 'Disabled';
 $_['text_none']             = ' --- None --- ';
 $_['text_select']           = ' --- Please Select --- ';
 $_['text_all_zones']        = 'All Zones';
