@@ -83,7 +83,7 @@ class ControllerAccountCatalogShipping extends Controller {
 					'status'     => $this->config->get($extension . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 					'sort_order' => $this->config->get($extension . '_sort_order'),
 					'installed'  => in_array($extension, $extensions),
-					'edit'       => $this->url->link('shipping/' . $extension, 'token=' . $this->session->data['token'], true)
+					'edit'       => $this->url->link('account/shipping/' . $extension, 'token=' . $this->session->data['token'], true)
 				);
 			}
 		}
