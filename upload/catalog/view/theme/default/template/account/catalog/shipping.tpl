@@ -51,7 +51,7 @@
                   <?php if ($extension['installed']) { ?>
                   <a href="<?php echo $extension['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                   <?php } else { ?>
-                  <button type="button" class="btn btn-primary" disabled="disabled"><i class="fa fa-pencil"></i></button>
+                  <button type="button" class="btn btn-info" disabled="disabled"><i class="fa fa-pencil"></i></button>
                   <?php } ?></td>
               </tr>
               <?php } ?>
