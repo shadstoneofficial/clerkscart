@@ -76,7 +76,7 @@ class ControllerAccountCatalogShipping extends Controller {
 			foreach ($files as $file) {
 				$extension = basename($file, '.php');
 
-				$this->load->language('shipping/' . $extension);
+				$this->load->language('account/shipping/' . $extension);
 
 				$data['extensions'][] = array(
 					'name'       => $this->language->get('heading_title'),
