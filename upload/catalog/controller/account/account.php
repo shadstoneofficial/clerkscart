@@ -48,6 +48,7 @@ class ControllerAccountAccount extends Controller {
 		$data['text_reward'] = $this->language->get('text_reward');
 		$data['text_return'] = $this->language->get('text_return');
 		$data['text_transaction'] = $this->language->get('text_transaction');
+		$data['text_sellershipping'] = $this->language->get('text_sellershipping');
 		$data['text_newsletter'] = $this->language->get('text_newsletter');
 		$data['text_recurring'] = $this->language->get('text_recurring');  
     $data['text_clerkad'] = $this->language->get('text_clerkad');
