@@ -43,17 +43,16 @@
             <tbody>
               <?php if ($extensions) { ?>
               <?php foreach ($extensions as $extension) { ?>
+              <?php if ($extension['installed']) { ?>
               <tr>
                 <td class="text-left"><?php echo $extension['name']; ?></td>
                 <td class="text-left"><?php echo $extension['status'] ?></td>
                 <td class="text-right"><?php echo $extension['sort_order']; ?></td>
                 <td class="text-right">
-                  <?php if ($extension['installed']) { ?>
                   <a href="<?php echo $extension['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                  <?php } else { ?>
-                  <button type="button" class="btn btn-info" disabled="disabled"><i class="fa fa-pencil"></i></button>
-                  <?php } ?></td>
+                 </td>
               </tr>
+              <?php } ?>
               <?php } ?>
               <?php } else { ?>
               <tr>
