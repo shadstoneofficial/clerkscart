@@ -23,6 +23,17 @@ class ControllerAccountCatalogShipping extends Controller {
 	}
 
 	public function getList() {
+   $seller_id = $this->customer->getId();
+    if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('account/catalog/shipping', '', true);
+
+			$this->response->redirect($this->url->link('account/login', '', true));
+		} else if ($this->customer->hasSellerPermission($seller_id) == 0) {
+			$this->session->data['redirect'] = $this->url->link('account/catalog/shipping', 'token=' . $this->session->data['token'], true);
+
+			$this->response->redirect($this->url->link('account/account', 'token=' . $this->session->data['token'], true));
+		}
+    
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -80,8 +91,8 @@ class ControllerAccountCatalogShipping extends Controller {
 
 				$data['extensions'][] = array(
 					'name'       => $this->language->get('heading_title'),
-					'status'     => $this->config->get($extension . '_status') ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-					'sort_order' => $this->config->get($extension . '_sort_order'),
+					'status'     => $this->customer->getSellersetting($extension . '_status', $seller_id) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
+					'sort_order' => $this->customer->getSellersetting($extension . '_sort_order', $seller_id),
 					'installed'  => in_array($extension, $extensions),
 					'edit'       => $this->url->link('account/shipping/' . $extension, 'token=' . $this->session->data['token'], true)
 				);
