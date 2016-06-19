@@ -136,7 +136,17 @@ class Customer {
 
 		return $query->row['total'];
 	}
-
+	
+public function getSellersetting($sellerkey, $seller_id) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "seller_setting` WHERE `key` = '" . $this->db->escape($sellerkey) . "' AND seller_id = '" . (int)$seller_id . "'");
+		
+		if ($query->num_rows) {
+			return $query->row['value'];
+		} else {
+			return null;	
+		}	
+	}
+	
 	public function getRewardPoints() {
 		$query = $this->db->query("SELECT SUM(points) AS total FROM " . DB_PREFIX . "customer_reward WHERE customer_id = '" . (int)$this->customer_id . "'");
 
