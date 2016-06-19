@@ -64,6 +64,7 @@ class ControllerCommonHeader extends Controller {
 		$data['text_login'] = $this->language->get('text_login');
 		$data['text_order'] = $this->language->get('text_order');
 		$data['text_transaction'] = $this->language->get('text_transaction');
+		$data['text_sellershipping'] = $this->language->get('text_sellershipping');
 		$data['text_download'] = $this->language->get('text_download');
 		$data['text_logout'] = $this->language->get('text_logout');
 		$data['text_category'] = $this->language->get('text_category');
