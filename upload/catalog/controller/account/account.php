@@ -67,6 +67,7 @@ class ControllerAccountAccount extends Controller {
     $data['download_add'] = $this->url->link('account/catalog/download/add',  'token=' . $this->session->data['token'] . $url, true);
     $data['orderlist'] = $this->url->link('account/sale/order', 'token=' . $this->session->data['token'], true);
     $data['seller_transaction'] = $this->url->link('account/catalog/transaction', 'token=' . $this->session->data['token'], true);
+    $data['seller_shipping'] = $this->url->link('account/catalog/shipping', 'token=' . $this->session->data['token'], true);
     $data['returnlist'] = $this->url->link('account/sale/return', 'token=' . $this->session->data['token'], true);
 
 
