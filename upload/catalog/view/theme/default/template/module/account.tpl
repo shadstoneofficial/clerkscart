@@ -17,6 +17,7 @@
         <a href="<?php echo $download_form; ?>" class="list-group-item"><?php echo $text_downloadlist; ?></a>
         <a href="<?php echo $orderlist; ?>" class="list-group-item"><?php echo $text_orderlist; ?></a>
         <a href="<?php echo $seller_transaction; ?>" class="list-group-item"><?php echo $text_transaction; ?></a>
+        <a href="<?php echo $seller_shipping; ?>" class="list-group-item"><?php echo $text_sellershipping; ?></a>
         <a href="<?php echo $returnlist; ?>" class="list-group-item"><?php echo $text_return; ?></a>
       <?php } ?>
   <a href="<?php echo $logout; ?>" class="list-group-item"><?php echo $text_logout; ?></a>
