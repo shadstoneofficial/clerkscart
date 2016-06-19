@@ -19,6 +19,7 @@ class ControllerModuleAccount extends Controller {
 		$data['text_reward'] = $this->language->get('text_reward');
 		$data['text_return'] = $this->language->get('text_return');
 		$data['text_transaction'] = $this->language->get('text_transaction');
+		$data['text_sellershipping'] = $this->language->get('text_sellershipping');
 		$data['text_newsletter'] = $this->language->get('text_newsletter');
 		$data['text_recurring'] = $this->language->get('text_recurring');
     $data['text_clerkad'] = $this->language->get('text_clerkad');
@@ -71,6 +72,7 @@ class ControllerModuleAccount extends Controller {
     $data['download_add'] = $this->url->link('account/catalog/download/add',  'token=' . $this->session->data['token'] . $url, true);
     $data['orderlist'] = $this->url->link('account/sale/order', 'token=' . $this->session->data['token'], true);
     $data['seller_transaction'] = $this->url->link('account/catalog/transaction', 'token=' . $this->session->data['token'], true);
+    $data['seller_shipping'] = $this->url->link('account/catalog/shipping', 'token=' . $this->session->data['token'], true);
     $data['returnlist'] = $this->url->link('account/sale/return', 'token=' . $this->session->data['token'], true);
     }
 		return $this->load->view('module/account', $data);
