@@ -3,10 +3,12 @@ class ControllerCheckoutConfirm extends Controller {
 	public function index() {
 		$redirect = '';
 
-    if (($this->request->server['REQUEST_METHOD'] == 'GET')) {
-    
-    $seller_id = $this->request->get['seller_id'];
-    
+    if ($this->request->server['REQUEST_METHOD'] == 'GET') {
+    if (empty($this->request->get['seller_id'])) {
+     $seller_id = 0;
+    } else {
+     $seller_id = $this->request->get['seller_id'];    
+    }
     }
     
 		if ($this->cart->hasSellershipping($seller_id)) {
