@@ -464,7 +464,7 @@ $(document).delegate('#button-shipping-address', 'click', function() {
 				$('.text-danger').parent().parent().addClass('has-error');
             } else {
                 $.ajax({
-                    url: 'index.php?route=checkout/shipping_method',
+                    url: 'index.php?route=checkout/shipping_method&seller_id=<?php echo $seller_id; ?>',
                     dataType: 'html',
                     complete: function() {
                         $('#button-shipping-address').button('reset');
@@ -553,7 +553,7 @@ $(document).delegate('#button-guest', 'click', function() {
 
                 if (shipping_address) {
                     $.ajax({
-                        url: 'index.php?route=checkout/shipping_method',
+                        url: 'index.php?route=checkout/shipping_method&seller_id=<?php echo $seller_id; ?>',
                         dataType: 'html',
                         complete: function() {
                             $('#button-guest').button('reset');
