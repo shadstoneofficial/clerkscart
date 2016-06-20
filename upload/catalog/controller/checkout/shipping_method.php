@@ -2,7 +2,15 @@
 class ControllerCheckoutShippingMethod extends Controller {
 	public function index() {
 		$this->load->language('checkout/checkout');
-
+    
+    if ($this->request->server['REQUEST_METHOD'] == 'GET') {
+    if (empty($this->request->get['seller_id'])) {
+     $seller_id = 0;
+    } else {
+     $seller_id = $this->request->get['seller_id'];    
+    }
+    }
+    
 		if (isset($this->session->data['shipping_address'])) {
 			// Shipping Methods
 			$method_data = array();
@@ -12,16 +20,17 @@ class ControllerCheckoutShippingMethod extends Controller {
 			$results = $this->model_extension_extension->getExtensions('shipping');
 
 			foreach ($results as $result) {
-				if ($this->config->get($result['code'] . '_status')) {
+				if ($this->customer->getSellersetting($result['code'] . '_status', $seller_id)) {
 					$this->load->model('shipping/' . $result['code']);
 
-					$quote = $this->{'model_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
+					$quote = $this->{'model_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address'], $seller_id);
 
 					if ($quote) {
 						$method_data[$result['code']] = array(
 							'title'      => $quote['title'],
 							'quote'      => $quote['quote'],
 							'sort_order' => $quote['sort_order'],
+              'seller_id'  => $seller_id,
 							'error'      => $quote['error']
 						);
 					}
@@ -74,8 +83,8 @@ class ControllerCheckoutShippingMethod extends Controller {
 
 	public function save() {
 		$this->load->language('checkout/checkout');
-
-		$json = array();
+  
+		$json = array();   
 
 		// Validate if shipping is required. If not the customer should not have reached this page.
 		if (!$this->cart->hasShipping()) {
@@ -93,6 +102,7 @@ class ControllerCheckoutShippingMethod extends Controller {
 		}
 
 		// Validate minimum quantity requirements.
+    //$products = $this->cart->getSellerproducts($seller_id);
 		$products = $this->cart->getProducts();
 
 		foreach ($products as $product) {
