@@ -76,13 +76,13 @@ class ControllerAccountShippingFree extends Controller {
 		if (isset($this->request->post['free_total'])) {
 			$data['free_total'] = $this->request->post['free_total'];
 		} else {
-			$data['free_total'] = $this->customer->getSellersetting('free_total');
+			$data['free_total'] = $this->customer->getSellersetting('free_total', $seller_id);
 		}
 
 		if (isset($this->request->post['free_geo_zone_id'])) {
 			$data['free_geo_zone_id'] = $this->request->post['free_geo_zone_id'];
 		} else {
-			$data['free_geo_zone_id'] = $this->customer->getSellersetting('free_geo_zone_id');
+			$data['free_geo_zone_id'] = $this->customer->getSellersetting('free_geo_zone_id', $seller_id);
 		}
 
 		$this->load->model('localisation/geo_zone');
@@ -92,13 +92,13 @@ class ControllerAccountShippingFree extends Controller {
 		if (isset($this->request->post['free_status'])) {
 			$data['free_status'] = $this->request->post['free_status'];
 		} else {
-			$data['free_status'] = $this->customer->getSellersetting('free_status');
+			$data['free_status'] = $this->customer->getSellersetting('free_status', $seller_id);
 		}
 
 		if (isset($this->request->post['free_sort_order'])) {
 			$data['free_sort_order'] = $this->request->post['free_sort_order'];
 		} else {
-			$data['free_sort_order'] = $this->customer->getSellersetting('free_sort_order');
+			$data['free_sort_order'] = $this->customer->getSellersetting('free_sort_order', $seller_id);
 		}
 
 		$data['column_left'] = $this->load->controller('common/column_left');
