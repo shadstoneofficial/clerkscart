@@ -8,8 +8,12 @@ class ControllerShippingFree extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('setting/setting');
+		
+		$this->load->model('setting/sellersetting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			$this->model_setting_setting->editSetting('free', $this->request->post);
+			
 			$this->model_setting_setting->editSetting('free', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
