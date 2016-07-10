@@ -357,26 +357,26 @@ class ControllerSellerSellerGroup extends Controller {
 			$data['sort_order'] = '';
 		}
 
-    if (isset($this->request->post['prodlimit'])) {
+                if (isset($this->request->post['prodlimit'])) {
 			$data['prodlimit'] = $this->request->post['prodlimit'];
-		} elseif (!empty($customer_group_info)) {
-			$data['prodlimit'] = $customer_group_info['prodlimit'];
+		} elseif (!empty($seller_group_info)) {
+			$data['prodlimit'] = $seller_group_info['prodlimit'];
 		} else {
 			$data['prodlimit'] = '';
 		}
     
-    if (isset($this->request->post['imglimit'])) {
+                if (isset($this->request->post['imglimit'])) {
 			$data['imglimit'] = $this->request->post['imglimit'];
-		} elseif (!empty($customer_group_info)) {
-			$data['imglimit'] = $customer_group_info['imglimit'];
+		} elseif (!empty($seller_group_info)) {
+			$data['imglimit'] = $seller_group_info['imglimit'];
 		} else {
 			$data['imglimit'] = '';
 		}
     
-    if (isset($this->request->post['downloadlimit'])) {
+                if (isset($this->request->post['downloadlimit'])) {
 			$data['downloadlimit'] = $this->request->post['downloadlimit'];
-		} elseif (!empty($customer_group_info)) {
-			$data['downloadlimit'] = $customer_group_info['downloadlimit'];
+		} elseif (!empty($seller_group_info)) {
+			$data['downloadlimit'] = $seller_group_info['downloadlimit'];
 		} else {
 			$data['downloadlimit'] = '';
 		}
