@@ -296,7 +296,13 @@ class ControllerSettingSetting extends Controller {
 		} else {
 			$data['error_customer_group_display'] = '';
 		}
-
+                
+                if (isset($this->error['seller_group_display'])) {
+			$data['error_seller_group_display'] = $this->error['seller_group_display'];
+		} else {
+			$data['error_seller_group_display'] = '';
+		}
+                
 		if (isset($this->error['login_attempts'])) {
 			$data['error_login_attempts'] = $this->error['login_attempts'];
 		} else {
@@ -1227,7 +1233,11 @@ class ControllerSettingSetting extends Controller {
 		if (!empty($this->request->post['config_customer_group_display']) && !in_array($this->request->post['config_customer_group_id'], $this->request->post['config_customer_group_display'])) {
 			$this->error['customer_group_display'] = $this->language->get('error_customer_group_display');
 		}
-
+                
+                if (!empty($this->request->post['config_seller_group_display']) && !in_array($this->request->post['config_seller_group_id'], $this->request->post['config_seller_group_display'])) {
+			$this->error['seller_group_display'] = $this->language->get('error_seller_group_display');
+		}
+                
 		if (!$this->request->post['config_limit_admin']) {
 			$this->error['limit_admin'] = $this->language->get('error_limit');
 		}
