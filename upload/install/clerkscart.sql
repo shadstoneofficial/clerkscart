@@ -1151,6 +1151,50 @@ INSERT INTO `oc_customer_group_description` (`customer_group_id`, `language_id`,
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `oc_seller_group`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_seller_group` (
+  `seller_group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `approval` int(1) NOT NULL,
+  `sort_order` int(3) NOT NULL,
+  `prodlimit` int(11) NOT NULL,
+  `imglimit` int(11) NOT NULL,
+  `downloadlimit` int(11) NOT NULL,
+  PRIMARY KEY (`seller_group_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп даних таблиці `oc_seller_group`
+--
+
+INSERT INTO `oc_seller_group` (`seller_group_id`, `approval`, `sort_order`, `prodlimit`, `imglimit`, `downloadlimit`) VALUES
+(1, 0, 1, 10, 100, 100);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `oc_seller_group_description`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_seller_group_description` (
+  `seller_group_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`seller_group_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `oc_seller_group_description`
+--
+
+INSERT INTO `oc_seller_group_description` (`seller_group_id`, `language_id`, `name`, `description`) VALUES
+(1, 1, 'Default', 'test');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `oc_customer_history`
 --
 
