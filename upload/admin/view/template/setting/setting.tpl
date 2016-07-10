@@ -974,6 +974,41 @@
                     </label>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-seller-group"><span data-toggle="tooltip" title="<?php echo $help_seller_group; ?>"><?php echo $entry_seller_group; ?></span></label>
+                  <div class="col-sm-10">
+                    <select name="config_seller_group_id" id="input-seller-group" class="form-control">
+                      <?php foreach ($seller_groups as $seller_group) { ?>
+                      <?php if ($seller_group['seller_group_id'] == $config_seller_group_id) { ?>
+                      <option value="<?php echo $seller_group['seller_group_id']; ?>" selected="selected"><?php echo $seller_group['name']; ?></option>
+                      <?php } else { ?>
+                      <option value="<?php echo $seller_group['seller_group_id']; ?>"><?php echo $seller_group['name']; ?></option>
+                      <?php } ?>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_group_display; ?>"><?php echo $entry_seller_group_display; ?></span></label>
+                  <div class="col-sm-10">
+                    <?php foreach ($seller_groups as $seller_group) { ?>
+                    <div class="checkbox">
+                      <label>
+                        <?php if (in_array($seller_group['seller_group_id'], $config_seller_group_display)) { ?>
+                        <input type="checkbox" name="config_seller_group_display[]" value="<?php echo $seller_group['seller_group_id']; ?>" checked="checked" />
+                        <?php echo $seller_group['name']; ?>
+                        <?php } else { ?>
+                        <input type="checkbox" name="config_seller_group_display[]" value="<?php echo $seller_group['seller_group_id']; ?>" />
+                        <?php echo $seller_group['name']; ?>
+                        <?php } ?>
+                      </label>
+                    </div>
+                    <?php } ?>
+                    <?php if ($error_seller_group_display) { ?>
+                    <div class="text-danger"><?php echo $error_seller_group_display; ?></div>
+                    <?php } ?>
+                  </div>
+                </div>
               </fieldset>
               <fieldset>
                 <legend><?php echo $text_affiliate; ?></legend>
