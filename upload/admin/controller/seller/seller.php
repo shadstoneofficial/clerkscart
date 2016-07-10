@@ -286,7 +286,13 @@ class ControllerSellerSeller extends Controller {
 		} else {
 			$filter_email = null;
 		}
-
+                
+                if (isset($this->request->get['filter_seller_group_id'])) {
+			$filter_seller_group_id = $this->request->get['filter_seller_group_id'];
+		} else {
+			$filter_seller_group_id = null;
+		}
+                
 		if (isset($this->request->get['filter_status'])) {
 			$filter_status = $this->request->get['filter_status'];
 		} else {
@@ -332,7 +338,11 @@ class ControllerSellerSeller extends Controller {
 		if (isset($this->request->get['filter_email'])) {
 			$url .= '&filter_email=' . urlencode(html_entity_decode($this->request->get['filter_email'], ENT_QUOTES, 'UTF-8'));
 		}
-
+                
+                if (isset($this->request->get['filter_seller_group_id'])) {
+			$url .= '&filter_seller_group_id=' . $this->request->get['filter_seller_group_id'];
+		}
+                
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
@@ -378,6 +388,7 @@ class ControllerSellerSeller extends Controller {
 		$filter_data = array(
 			'filter_name'       => $filter_name,
 			'filter_email'      => $filter_email,
+			'filter_seller_group_id' => $filter_seller_group_id,
 			'filter_status'     => $filter_status,
 			'filter_approved'   => 1,
 			'filter_date_added' => $filter_date_added,
@@ -395,6 +406,7 @@ class ControllerSellerSeller extends Controller {
 
 			$data['sellers'][] = array(
 				'seller_id' => $result['seller_id'],
+				'seller_group' => $result['seller_group'],
 				'name'         => $result['name'],
 				'email'        => $result['email'],
 				'balance'      => $this->currency->format($result['balance'], $this->config->get('config_currency')),
