@@ -39,7 +39,7 @@ class ControllerSettingSetting extends Controller {
 		$data['text_account'] = $this->language->get('text_account');
 		$data['text_checkout'] = $this->language->get('text_checkout');
 		$data['text_stock'] = $this->language->get('text_stock');
-    $data['text_seller'] = $this->language->get('text_seller');
+                $data['text_seller'] = $this->language->get('text_seller');
 		$data['text_affiliate'] = $this->language->get('text_affiliate');
 		$data['text_return'] = $this->language->get('text_return');
 		$data['text_captcha'] = $this->language->get('text_captcha');
@@ -89,7 +89,9 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_tax_customer'] = $this->language->get('entry_tax_customer');
 		$data['entry_customer_online'] = $this->language->get('entry_customer_online');
 		$data['entry_customer_group'] = $this->language->get('entry_customer_group');
+		$data['entry_seller_group'] = $this->language->get('entry_seller_group');
 		$data['entry_customer_group_display'] = $this->language->get('entry_customer_group_display');
+		$data['entry_seller_group_display'] = $this->language->get('entry_seller_group_display');
 		$data['entry_customer_price'] = $this->language->get('entry_customer_price');
 		$data['entry_login_attempts'] = $this->language->get('entry_login_attempts');
 		$data['entry_account'] = $this->language->get('entry_account');
@@ -171,6 +173,8 @@ class ControllerSettingSetting extends Controller {
 		$data['help_customer_online'] = $this->language->get('help_customer_online');
 		$data['help_customer_group'] = $this->language->get('help_customer_group');
 		$data['help_customer_group_display'] = $this->language->get('help_customer_group_display');
+		$data['help_seller_group'] = $this->language->get('help_seller_group');
+		$data['help_seller_group_display'] = $this->language->get('help_seller_group_display');
 		$data['help_customer_price'] = $this->language->get('help_customer_price');
 		$data['help_login_attempts'] = $this->language->get('help_login_attempts');
 		$data['help_account'] = $this->language->get('help_account');
@@ -188,9 +192,9 @@ class ControllerSettingSetting extends Controller {
 		$data['help_stock_display'] = $this->language->get('help_stock_display');
 		$data['help_stock_warning'] = $this->language->get('help_stock_warning');
 		$data['help_stock_checkout'] = $this->language->get('help_stock_checkout');
-    $data['help_seller_approval'] = $this->language->get('help_seller_approval');
-    $data['help_seller_auto'] = $this->language->get('help_seller_auto');
-    $data['help_seller_commission'] = $this->language->get('help_seller_commission');
+                $data['help_seller_approval'] = $this->language->get('help_seller_approval');
+                $data['help_seller_auto'] = $this->language->get('help_seller_auto');
+                $data['help_seller_commission'] = $this->language->get('help_seller_commission');
 		$data['help_seller'] = $this->language->get('help_seller');
 		$data['help_seller_mail'] = $this->language->get('help_seller_mail');
 		$data['help_affiliate_approval'] = $this->language->get('help_affiliate_approval');
@@ -883,6 +887,24 @@ class ControllerSettingSetting extends Controller {
 			$data['config_seller_id'] = $this->request->post['config_seller_id'];
 		} else {
 			$data['config_seller_id'] = $this->config->get('config_seller_id');
+		}
+                
+                if (isset($this->request->post['config_seller_group_id'])) {
+			$data['config_seller_group_id'] = $this->request->post['config_seller_group_id'];
+		} else {
+			$data['config_seller_group_id'] = $this->config->get('config_seller_group_id');
+		}
+
+		$this->load->model('seller/seller_group');
+
+		$data['seller_groups'] = $this->model_seller_seller_group->getSellerGroups();
+
+		if (isset($this->request->post['config_seller_group_display'])) {
+			$data['config_seller_group_display'] = $this->request->post['config_seller_group_display'];
+		} elseif ($this->config->get('config_seller_group_display')) {
+			$data['config_seller_group_display'] = $this->config->get('config_seller_group_display');
+		} else {
+			$data['config_seller_group_display'] = array();
 		}
                 
 		if (isset($this->request->post['config_return_id'])) {
