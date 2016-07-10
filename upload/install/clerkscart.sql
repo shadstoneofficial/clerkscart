@@ -3041,6 +3041,7 @@ CREATE TABLE IF NOT EXISTS `oc_review` (
 
 CREATE TABLE IF NOT EXISTS `oc_seller` (
   `seller_id` int(11) NOT NULL,
+  `seller_group_id` int(11) NOT NULL,
   `firstname` varchar(32) NOT NULL,
   `lastname` varchar(32) NOT NULL,
   `logo` varchar(255) DEFAULT NULL,
@@ -3078,8 +3079,8 @@ CREATE TABLE IF NOT EXISTS `oc_seller` (
 -- Дамп даних таблиці `oc_seller`
 --
 
-INSERT INTO `oc_seller` (`seller_id`, `firstname`, `lastname`, `logo`, `sellerdescription`, `email`, `telephone`, `fax`, `company`, `website`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `code`, `commission`, `tax`, `payment`, `cheque`, `paypal`, `bank_name`, `bank_branch_number`, `bank_swift_code`, `bank_account_name`, `bank_account_number`, `ip`, `status`, `approved`, `date_added`) VALUES
-(0, 'Your Store', 'Your Name', '', '', 'ddddddd@ddddddd.com', '123456789', '', 'Your Store', '', 'Address 1', '', 'test4', '565454656', 222, 3563, 'hj68jut', '0.00', '', 'cheque', 'k;l;lk;lk', '', '', '', '', '', '', '', 1, 1, '2016-05-06 20:55:20');
+INSERT INTO `oc_seller` (`seller_id`, `seller_group_id`, `firstname`, `lastname`, `logo`, `sellerdescription`, `email`, `telephone`, `fax`, `company`, `website`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `code`, `commission`, `tax`, `payment`, `cheque`, `paypal`, `bank_name`, `bank_branch_number`, `bank_swift_code`, `bank_account_name`, `bank_account_number`, `ip`, `status`, `approved`, `date_added`) VALUES
+(0, 1, 'Your Store', 'Your Name', '', '', 'ddddddd@ddddddd.com', '123456789', '', 'Your Store', '', 'Address 1', '', 'test4', '565454656', 222, 3563, 'hj68jut', '0.00', '', 'cheque', 'k;l;lk;lk', '', '', '', '', '', '', '', 1, 1, '2016-05-06 20:55:20');
 
 -- --------------------------------------------------------
 
