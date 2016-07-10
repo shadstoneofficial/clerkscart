@@ -36,7 +36,11 @@ class ModelSellerSeller extends Model {
 		if (!empty($data['filter_email'])) {
 			$implode[] = "LCASE(a.email) = '" . $this->db->escape(utf8_strtolower($data['filter_email'])) . "'";
 		}
-
+                
+                if (!empty($data['filter_seller_group_id'])) {
+			$implode[] = "a.seller_group_id = '" . (int)$data['filter_seller_group_id'] . "'";
+		}
+                
 		if (!empty($data['filter_code'])) {
 			$implode[] = "a.code = '" . $this->db->escape($data['filter_code']) . "'";
 		}
@@ -59,6 +63,7 @@ class ModelSellerSeller extends Model {
 
 		$sort_data = array(
 			'name',
+			'seller_group',
 			'a.email',
 			'a.code',
 			'a.status',
