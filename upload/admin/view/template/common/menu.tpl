@@ -111,7 +111,12 @@
       <li><a href="<?php echo $custom_field; ?>"><?php echo $text_custom_field; ?></a></li>
     </ul>
   </li>
-  <li id="seller"><a class="parent" href="<?php echo $seller; ?>"><i class="fa fa-meh-o fa-fw"></i> <span><?php echo $text_seller; ?></span></a>
+  <li id="seller"><a class="parent"><i class="fa fa-meh-o fa-fw"></i> <span><?php echo $text_seller; ?></span></a>
+    <ul>
+     <li><a href="<?php echo $seller; ?>"><?php echo $text_seller; ?></a></li>
+     <li><a href="<?php echo $seller_group; ?>"><?php echo $text_seller_group; ?></a></li>
+    </ul>
+  </li>
   <li><a class="parent"><i class="fa fa-share-alt fa-fw"></i> <span><?php echo $text_marketing; ?></span></a>
     <ul>
       <li><a href="<?php echo $marketing; ?>"><?php echo $text_marketing; ?></a></li>
