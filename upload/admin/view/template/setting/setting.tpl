@@ -35,6 +35,7 @@
             <li><a href="#tab-store" data-toggle="tab"><?php echo $tab_store; ?></a></li>
             <li><a href="#tab-local" data-toggle="tab"><?php echo $tab_local; ?></a></li>
             <li><a href="#tab-option" data-toggle="tab"><?php echo $tab_option; ?></a></li>
+            <li><a href="#tab-seller" data-toggle="tab"><?php echo $tab_seller; ?></a></li>
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
             <li><a href="#tab-ftp" data-toggle="tab"><?php echo $tab_ftp; ?></a></li>
             <li><a href="#tab-mail" data-toggle="tab"><?php echo $tab_mail; ?></a></li>
@@ -883,134 +884,6 @@
                 </div>
               </fieldset>
               <fieldset>
-                <legend><?php echo $text_seller; ?></legend>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_approval; ?>"><?php echo $entry_seller_approval; ?></span></label>
-                  <div class="col-sm-10">
-                    <label class="radio-inline">
-                      <?php if ($config_seller_approval) { ?>
-                      <input type="radio" name="config_seller_approval" value="1" checked="checked" />
-                      <?php echo $text_yes; ?>
-                      <?php } else { ?>
-                      <input type="radio" name="config_seller_approval" value="1" />
-                      <?php echo $text_yes; ?>
-                      <?php } ?>
-                    </label>
-                    <label class="radio-inline">
-                      <?php if (!$config_seller_approval) { ?>
-                      <input type="radio" name="config_seller_approval" value="0" checked="checked" />
-                      <?php echo $text_no; ?>
-                      <?php } else { ?>
-                      <input type="radio" name="config_seller_approval" value="0" />
-                      <?php echo $text_no; ?>
-                      <?php } ?>
-                    </label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_auto; ?>"><?php echo $entry_seller_auto; ?></span></label>
-                  <div class="col-sm-10">
-                    <label class="radio-inline">
-                      <?php if ($config_stock_checkout) { ?>
-                      <input type="radio" name="config_seller_auto" value="1" checked="checked" />
-                      <?php echo $text_yes; ?>
-                      <?php } else { ?>
-                      <input type="radio" name="config_seller_auto" value="1" />
-                      <?php echo $text_yes; ?>
-                      <?php } ?>
-                    </label>
-                    <label class="radio-inline">
-                      <?php if (!$config_stock_checkout) { ?>
-                      <input type="radio" name="config_seller_auto" value="0" checked="checked" />
-                      <?php echo $text_no; ?>
-                      <?php } else { ?>
-                      <input type="radio" name="config_seller_auto" value="0" />
-                      <?php echo $text_no; ?>
-                      <?php } ?>
-                    </label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-seller-commission"><span data-toggle="tooltip" title="<?php echo $help_seller_commission; ?>"><?php echo $entry_seller_commission; ?></span></label>
-                  <div class="col-sm-10">
-                    <input type="text" name="config_seller_commission" value="<?php echo $config_seller_commission; ?>" placeholder="<?php echo $entry_seller_commission; ?>" id="input-seller-commission" class="form-control" />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-seller"><span data-toggle="tooltip" title="<?php echo $help_seller; ?>"><?php echo $entry_seller; ?></span></label>
-                  <div class="col-sm-10">
-                    <select name="config_seller_id" id="input-seller" class="form-control">
-                      <option value="0"><?php echo $text_none; ?></option>
-                      <?php foreach ($informations as $information) { ?>
-                      <?php if ($information['information_id'] == $config_seller_id) { ?>
-                      <option value="<?php echo $information['information_id']; ?>" selected="selected"><?php echo $information['title']; ?></option>
-                      <?php } else { ?>
-                      <option value="<?php echo $information['information_id']; ?>"><?php echo $information['title']; ?></option>
-                      <?php } ?>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_mail; ?>"><?php echo $entry_seller_mail; ?></span></label>
-                  <div class="col-sm-10">
-                    <label class="radio-inline">
-                      <?php if ($config_seller_mail) { ?>
-                      <input type="radio" name="config_seller_mail" value="1" checked="checked" />
-                      <?php echo $text_yes; ?>
-                      <?php } else { ?>
-                      <input type="radio" name="config_seller_mail" value="1" />
-                      <?php echo $text_yes; ?>
-                      <?php } ?>
-                    </label>
-                    <label class="radio-inline">
-                      <?php if (!$config_seller_mail) { ?>
-                      <input type="radio" name="config_seller_mail" value="0" checked="checked" />
-                      <?php echo $text_no; ?>
-                      <?php } else { ?>
-                      <input type="radio" name="config_seller_mail" value="0" />
-                      <?php echo $text_no; ?>
-                      <?php } ?>
-                    </label>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="input-seller-group"><span data-toggle="tooltip" title="<?php echo $help_seller_group; ?>"><?php echo $entry_seller_group; ?></span></label>
-                  <div class="col-sm-10">
-                    <select name="config_seller_group_id" id="input-seller-group" class="form-control">
-                      <?php foreach ($seller_groups as $seller_group) { ?>
-                      <?php if ($seller_group['seller_group_id'] == $config_seller_group_id) { ?>
-                      <option value="<?php echo $seller_group['seller_group_id']; ?>" selected="selected"><?php echo $seller_group['name']; ?></option>
-                      <?php } else { ?>
-                      <option value="<?php echo $seller_group['seller_group_id']; ?>"><?php echo $seller_group['name']; ?></option>
-                      <?php } ?>
-                      <?php } ?>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_group_display; ?>"><?php echo $entry_seller_group_display; ?></span></label>
-                  <div class="col-sm-10">
-                    <?php foreach ($seller_groups as $seller_group) { ?>
-                    <div class="checkbox">
-                      <label>
-                        <?php if (in_array($seller_group['seller_group_id'], $config_seller_group_display)) { ?>
-                        <input type="checkbox" name="config_seller_group_display[]" value="<?php echo $seller_group['seller_group_id']; ?>" checked="checked" />
-                        <?php echo $seller_group['name']; ?>
-                        <?php } else { ?>
-                        <input type="checkbox" name="config_seller_group_display[]" value="<?php echo $seller_group['seller_group_id']; ?>" />
-                        <?php echo $seller_group['name']; ?>
-                        <?php } ?>
-                      </label>
-                    </div>
-                    <?php } ?>
-                    <?php if ($error_seller_group_display) { ?>
-                    <div class="text-danger"><?php echo $error_seller_group_display; ?></div>
-                    <?php } ?>
-                  </div>
-                </div>
-              </fieldset>
-              <fieldset>
                 <legend><?php echo $text_affiliate; ?></legend>
                 <div class="form-group">
                   <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_affiliate_approval; ?>"><?php echo $entry_affiliate_approval; ?></span></label>
@@ -1170,6 +1043,135 @@
                       </div>
                       <?php } ?>
                     </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="tab-pane" id="tab-seller">
+            <fieldset>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_approval; ?>"><?php echo $entry_seller_approval; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($config_seller_approval) { ?>
+                      <input type="radio" name="config_seller_approval" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_seller_approval" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$config_seller_approval) { ?>
+                      <input type="radio" name="config_seller_approval" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_seller_approval" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_auto; ?>"><?php echo $entry_seller_auto; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($config_stock_checkout) { ?>
+                      <input type="radio" name="config_seller_auto" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_seller_auto" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$config_stock_checkout) { ?>
+                      <input type="radio" name="config_seller_auto" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_seller_auto" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-seller-commission"><span data-toggle="tooltip" title="<?php echo $help_seller_commission; ?>"><?php echo $entry_seller_commission; ?></span></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="config_seller_commission" value="<?php echo $config_seller_commission; ?>" placeholder="<?php echo $entry_seller_commission; ?>" id="input-seller-commission" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-seller"><span data-toggle="tooltip" title="<?php echo $help_seller; ?>"><?php echo $entry_seller; ?></span></label>
+                  <div class="col-sm-10">
+                    <select name="config_seller_id" id="input-seller" class="form-control">
+                      <option value="0"><?php echo $text_none; ?></option>
+                      <?php foreach ($informations as $information) { ?>
+                      <?php if ($information['information_id'] == $config_seller_id) { ?>
+                      <option value="<?php echo $information['information_id']; ?>" selected="selected"><?php echo $information['title']; ?></option>
+                      <?php } else { ?>
+                      <option value="<?php echo $information['information_id']; ?>"><?php echo $information['title']; ?></option>
+                      <?php } ?>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_mail; ?>"><?php echo $entry_seller_mail; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($config_seller_mail) { ?>
+                      <input type="radio" name="config_seller_mail" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_seller_mail" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$config_seller_mail) { ?>
+                      <input type="radio" name="config_seller_mail" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_seller_mail" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-seller-group"><span data-toggle="tooltip" title="<?php echo $help_seller_group; ?>"><?php echo $entry_seller_group; ?></span></label>
+                  <div class="col-sm-10">
+                    <select name="config_seller_group_id" id="input-seller-group" class="form-control">
+                      <?php foreach ($seller_groups as $seller_group) { ?>
+                      <?php if ($seller_group['seller_group_id'] == $config_seller_group_id) { ?>
+                      <option value="<?php echo $seller_group['seller_group_id']; ?>" selected="selected"><?php echo $seller_group['name']; ?></option>
+                      <?php } else { ?>
+                      <option value="<?php echo $seller_group['seller_group_id']; ?>"><?php echo $seller_group['name']; ?></option>
+                      <?php } ?>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_seller_group_display; ?>"><?php echo $entry_seller_group_display; ?></span></label>
+                  <div class="col-sm-10">
+                    <?php foreach ($seller_groups as $seller_group) { ?>
+                    <div class="checkbox">
+                      <label>
+                        <?php if (in_array($seller_group['seller_group_id'], $config_seller_group_display)) { ?>
+                        <input type="checkbox" name="config_seller_group_display[]" value="<?php echo $seller_group['seller_group_id']; ?>" checked="checked" />
+                        <?php echo $seller_group['name']; ?>
+                        <?php } else { ?>
+                        <input type="checkbox" name="config_seller_group_display[]" value="<?php echo $seller_group['seller_group_id']; ?>" />
+                        <?php echo $seller_group['name']; ?>
+                        <?php } ?>
+                      </label>
+                    </div>
+                    <?php } ?>
+                    <?php if ($error_seller_group_display) { ?>
+                    <div class="text-danger"><?php echo $error_seller_group_display; ?></div>
+                    <?php } ?>
                   </div>
                 </div>
               </fieldset>
