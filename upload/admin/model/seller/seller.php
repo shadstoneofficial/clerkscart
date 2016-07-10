@@ -154,6 +154,10 @@ class ModelSellerSeller extends Model {
 			$implode[] = "LCASE(email) = '" . $this->db->escape(utf8_strtolower($data['filter_email'])) . "'";
 		}
 
+		if (!empty($data['filter_seller_group_id'])) {
+			$implode[] = "seller_group_id = '" . (int)$data['filter_seller_group_id'] . "'";
+		}
+		
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 			$implode[] = "status = '" . (int)$data['filter_status'] . "'";
 		}
@@ -193,6 +197,12 @@ class ModelSellerSeller extends Model {
 		return $query->row['total'];
 	}
 
+	public function getTotalSellersBySellerGroupId($seller_group_id) {
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "seller WHERE seller_group_id = '" . (int)$seller_group_id . "'");
+
+		return $query->row['total'];
+	}
+	
 	public function addTransaction($seller_id, $description = '', $amount = '', $order_id = 0) {
 		$seller_info = $this->getSeller($seller_id);
 
