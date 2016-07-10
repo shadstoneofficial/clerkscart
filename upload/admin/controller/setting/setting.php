@@ -109,8 +109,8 @@ class ControllerSettingSetting extends Controller {
 		$data['entry_stock_display'] = $this->language->get('entry_stock_display');
 		$data['entry_stock_warning'] = $this->language->get('entry_stock_warning');
 		$data['entry_stock_checkout'] = $this->language->get('entry_stock_checkout');
-    $data['entry_seller_approval'] = $this->language->get('entry_seller_approval');
-    $data['entry_seller_auto'] = $this->language->get('entry_seller_auto');
+                $data['entry_seller_approval'] = $this->language->get('entry_seller_approval');
+                $data['entry_seller_auto'] = $this->language->get('entry_seller_auto');
 		$data['entry_seller_commission'] = $this->language->get('entry_seller_commission');
 		$data['entry_seller'] = $this->language->get('entry_seller');
 		$data['entry_seller_mail'] = $this->language->get('entry_seller_mail');
@@ -232,6 +232,7 @@ class ControllerSettingSetting extends Controller {
 		$data['tab_store'] = $this->language->get('tab_store');
 		$data['tab_local'] = $this->language->get('tab_local');
 		$data['tab_option'] = $this->language->get('tab_option');
+		$data['tab_seller'] = $this->language->get('tab_seller');
 		$data['tab_image'] = $this->language->get('tab_image');
 		$data['tab_ftp'] = $this->language->get('tab_ftp');
 		$data['tab_mail'] = $this->language->get('tab_mail');
