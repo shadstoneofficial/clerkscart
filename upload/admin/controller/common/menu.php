@@ -19,8 +19,9 @@ class ControllerCommonMenu extends Controller {
 		$data['text_coupon'] = $this->language->get('text_coupon');
 		$data['text_currency'] = $this->language->get('text_currency');
 		$data['text_customer'] = $this->language->get('text_customer');
-    $data['text_seller'] = $this->language->get('text_seller');
+                $data['text_seller'] = $this->language->get('text_seller');
 		$data['text_customer_group'] = $this->language->get('text_customer_group');
+		$data['text_seller_group'] = $this->language->get('text_seller_group');
 		$data['text_customer_field'] = $this->language->get('text_customer_field');
 		$data['text_custom_field'] = $this->language->get('text_custom_field');
 		$data['text_sale'] = $this->language->get('text_sale');
@@ -124,8 +125,9 @@ class ControllerCommonMenu extends Controller {
 		$data['coupon'] = $this->url->link('marketing/coupon', 'token=' . $this->session->data['token'], true);
 		$data['currency'] = $this->url->link('localisation/currency', 'token=' . $this->session->data['token'], true);
 		$data['customer'] = $this->url->link('customer/customer', 'token=' . $this->session->data['token'], true);
-    $data['seller'] = $this->url->link('seller/seller', 'token=' . $this->session->data['token'], true);
+                $data['seller'] = $this->url->link('seller/seller', 'token=' . $this->session->data['token'], true);
 		$data['customer_fields'] = $this->url->link('customer/customer_field', 'token=' . $this->session->data['token'], true);
+		$data['seller_group'] = $this->url->link('seller/seller_group', 'token=' . $this->session->data['token'], true);
 		$data['customer_group'] = $this->url->link('customer/customer_group', 'token=' . $this->session->data['token'], true);
 		$data['custom_field'] = $this->url->link('customer/custom_field', 'token=' . $this->session->data['token'], true);
 		$data['download'] = $this->url->link('catalog/download', 'token=' . $this->session->data['token'], true);
