@@ -477,7 +477,11 @@ class ControllerSellerSeller extends Controller {
 		if (isset($this->request->get['filter_email'])) {
 			$url .= '&filter_email=' . urlencode(html_entity_decode($this->request->get['filter_email'], ENT_QUOTES, 'UTF-8'));
 		}
-
+                
+                if (isset($this->request->get['filter_seller_group_id'])) {
+			$url .= '&filter_seller_group_id=' . $this->request->get['filter_seller_group_id'];
+		}
+                
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
@@ -502,6 +506,7 @@ class ControllerSellerSeller extends Controller {
 
 		$data['sort_name'] = $this->url->link('seller/seller', 'token=' . $this->session->data['token'] . '&sort=name' . $url, true);
 		$data['sort_email'] = $this->url->link('seller/seller', 'token=' . $this->session->data['token'] . '&sort=a.email' . $url, true);
+		$data['sort_seller_group'] = $this->url->link('seller/seller', 'token=' . $this->session->data['token'] . '&sort=seller_group' . $url, true);
 		$data['sort_status'] = $this->url->link('seller/seller', 'token=' . $this->session->data['token'] . '&sort=a.status' . $url, true);
 		$data['sort_date_added'] = $this->url->link('seller/seller', 'token=' . $this->session->data['token'] . '&sort=a.date_added' . $url, true);
 
@@ -515,6 +520,10 @@ class ControllerSellerSeller extends Controller {
 			$url .= '&filter_email=' . urlencode(html_entity_decode($this->request->get['filter_email'], ENT_QUOTES, 'UTF-8'));
 		}
 
+		if (isset($this->request->get['filter_seller_group_id'])) {
+			$url .= '&filter_seller_group_id=' . $this->request->get['filter_seller_group_id'];
+		}
+		
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
@@ -547,10 +556,19 @@ class ControllerSellerSeller extends Controller {
 
 		$data['filter_name'] = $filter_name;
 		$data['filter_email'] = $filter_email;
+		$data['filter_seller_group_id'] = $filter_seller_group_id;
 		$data['filter_status'] = $filter_status;
 		$data['filter_approved'] = $filter_approved;
 		$data['filter_date_added'] = $filter_date_added;
 
+		$this->load->model('seller/seller_group');
+
+		$data['seller_groups'] = $this->model_seller_seller_group->getSellerGroups();
+		
+		$this->load->model('setting/store');
+
+		$data['stores'] = $this->model_setting_store->getStores();
+		
 		$data['sort'] = $sort;
 		$data['order'] = $order;
 
