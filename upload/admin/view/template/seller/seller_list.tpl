@@ -85,12 +85,29 @@
                   <span class="input-group-btn">
                   <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
                   </span></div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="form-group">
+                <label class="control-label" for="input-seller-group"><?php echo $entry_seller_group; ?></label>
+                <select name="filter_seller_group_id" id="input-seller-group" class="form-control">
+                  <option value="*"></option>
+                  <?php foreach ($seller_groups as $seller_group) { ?>
+                  <?php if ($seller_group['seller_group_id'] == $filter_seller_group_id) { ?>
+                  <option value="<?php echo $seller_group['seller_group_id']; ?>" selected="selected"><?php echo $seller_group['name']; ?></option>
+                  <?php } else { ?>
+                  <option value="<?php echo $seller_group['seller_group_id']; ?>"><?php echo $seller_group['name']; ?></option>
+                  <?php } ?>
+                  <?php } ?>
+                </select>
               </div>
+              </div>
+              <div class="col-sm-3">
               <div class="form-group">
                 <button type="button" id="button-filter" class="btn btn-primary pull-right"><i class="fa fa-search"></i> <?php echo $button_filter; ?></button>
               </div>
-            </div>
-          </div>
+              </div>
+              </div>
         </div>
         <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-seller">
           <div class="table-responsive">
@@ -108,6 +125,11 @@
                     <?php } else { ?>
                     <a href="<?php echo $sort_email; ?>"><?php echo $column_email; ?></a>
                     <?php } ?></td>
+                   <td class="text-left"><?php if ($sort == 'seller_group') { ?>
+                    <a href="<?php echo $sort_seller_group; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_seller_group; ?></a>
+                    <?php } else { ?>
+                    <a href="<?php echo $sort_seller_group; ?>"><?php echo $column_seller_group; ?></a>
+                    <?php } ?></td> 
                   <td class="text-right"><?php echo $column_balance; ?></td>
                   <td class="text-left"><?php if ($sort == 'c.status') { ?>
                     <a href="<?php echo $sort_status; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_status; ?></a>
@@ -133,6 +155,7 @@
                     <?php } ?></td>
                   <td class="text-left"><?php echo $seller['name']; ?></td>
                   <td class="text-left"><?php echo $seller['email']; ?></td>
+                  <td class="text-left"><?php echo $seller['seller_group']; ?></td>
                   <td class="text-right"><?php echo $seller['balance']; ?></td>
                   <td class="text-left"><?php echo $seller['status']; ?></td>
                   <td class="text-left"><?php echo $seller['date_added']; ?></td>
