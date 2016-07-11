@@ -890,6 +890,12 @@ class ControllerSettingSetting extends Controller {
 			$data['config_seller_mail'] = '';
 		}
                 
+                if (isset($this->request->post['config_sellerorder_mail'])) {
+			$data['config_sellerorder_mail'] = $this->request->post['config_sellerorder_mail'];
+		} else {
+			$data['config_sellerorder_mail'] = $this->config->get('config_sellerorder_mail');
+		}
+                
                 if (isset($this->request->post['config_seller_id'])) {
 			$data['config_seller_id'] = $this->request->post['config_seller_id'];
 		} else {
