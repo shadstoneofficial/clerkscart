@@ -5,7 +5,7 @@ class ModelCustomerCustomer extends Model {
 
 		$customer_id = $this->db->getLastId();
 
-                    $this->db->query("INSERT INTO " . DB_PREFIX . "seller SET seller_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', commission = '" . (float)$this->config->get('config_seller_commission') . "', payment = 'cheque', cheque = '" . $this->db->escape($data['firstname']) . "', approved = '" . (int)$data['seller_approved'] . "', date_added = NOW()");
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "seller SET seller_id = '" . (int)$customer_id . "', seller_group_id = '" . (int)$this->config->get('config_seller_group_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', commission = '" . (float)$this->config->get('config_seller_commission') . "', payment = 'cheque', cheque = '" . $this->db->escape($data['firstname']) . "', approved = '" . (int)$data['seller_approved'] . "', date_added = NOW()");
         
 		if (isset($data['address'])) {
 			foreach ($data['address'] as $address) {
