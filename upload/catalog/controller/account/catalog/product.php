@@ -740,6 +740,12 @@ class ControllerAccountCatalogProduct extends Controller {
 			$data['error_model'] = '';
 		}
 
+		if (isset($this->error['prodlimit'])) {
+			$data['error_prodlimit'] = $this->error['prodlimit'];
+		} else {
+			$data['error_prodlimit'] = '';
+		}
+		
 		if (isset($this->error['keyword'])) {
 			$data['error_keyword'] = $this->error['keyword'];
 		} else {
@@ -1412,6 +1418,14 @@ class ControllerAccountCatalogProduct extends Controller {
 			$this->error['model'] = $this->language->get('error_model');
 		}
 
+		$this->load->model('account/catalog/product');
+                $product_total = $this->model_account_catalog_product->getTotalProducts();
+                $this->load->model('account/catalog/seller_group');
+                $seller_groups = $this->model_account_catalog_seller_group->getSellerGroup($this->customer->getSellergroupid());
+                if ($product_total > $seller_groups['prodlimit']) {
+                $this->error['prodlimit'] = $this->language->get('error_prodlimit');
+                }
+		
 		/*if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('account/catalog/url_alias');
 
