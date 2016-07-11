@@ -1140,6 +1140,29 @@
                   </div>
                 </div>
                 <div class="form-group">
+                <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_order_mail; ?>"> Seller <?php echo $entry_order_mail; ?></span></label>
+                  <div class="col-sm-10">
+                    <label class="radio-inline">
+                      <?php if ($config_sellerorder_mail) { ?>
+                      <input type="radio" name="config_sellerorder_mail" value="1" checked="checked" />
+                      <?php echo $text_yes; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_sellerorder_mail" value="1" />
+                      <?php echo $text_yes; ?>
+                      <?php } ?>
+                    </label>
+                    <label class="radio-inline">
+                      <?php if (!$config_sellerorder_mail) { ?>
+                      <input type="radio" name="config_sellerorder_mail" value="0" checked="checked" />
+                      <?php echo $text_no; ?>
+                      <?php } else { ?>
+                      <input type="radio" name="config_sellerorder_mail" value="0" />
+                      <?php echo $text_no; ?>
+                      <?php } ?>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-seller-group"><span data-toggle="tooltip" title="<?php echo $help_seller_group; ?>"><?php echo $entry_seller_group; ?></span></label>
                   <div class="col-sm-10">
                     <select name="config_seller_group_id" id="input-seller-group" class="form-control">
