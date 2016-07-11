@@ -192,6 +192,26 @@ class ControllerAccountRegister extends Controller {
 			$data['customer_group_id'] = $this->config->get('config_customer_group_id');
 		}
 
+		$data['seller_groups'] = array();
+
+		if (is_array($this->config->get('config_seller_group_display'))) {
+			$this->load->model('account/catalog/seller_group');
+
+			$seller_groups = $this->model_account_catalog_seller_group->getSellerGroups();
+
+			foreach ($seller_groups as $seller_group) {
+				if (in_array($seller_group['seller_group_id'], $this->config->get('config_seller_group_display'))) {
+					$data['seller_groups'][] = $seller_group;
+				}
+			}
+		}
+
+		if (isset($this->request->post['seller_group_id'])) {
+			$data['seller_group_id'] = $this->request->post['seller_group_id'];
+		} else {
+			$data['seller_group_id'] = $this->config->get('config_seller_group_id');
+		}
+		
 		if (isset($this->request->post['firstname'])) {
 			$data['firstname'] = $this->request->post['firstname'];
 		} else {
