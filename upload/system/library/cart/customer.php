@@ -137,6 +137,12 @@ class Customer {
 		return $query->row['total'];
 	}
 	
+	public function getSellergroupid() {
+		$query = $this->db->query("SELECT seller_group_id FROM " . DB_PREFIX . "seller WHERE seller_id = '" . (int)$this->customer_id . "'");
+
+		return $query->row['seller_group_id'];
+	}
+	
 public function getSellersetting($sellerkey, $seller_id) {
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "seller_setting` WHERE `key` = '" . $this->db->escape($sellerkey) . "' AND seller_id = '" . (int)$seller_id . "'");
 		
