@@ -25,7 +25,7 @@ class ModelSellerSeller extends Model {
 	}
 
 	public function getSellers($data = array()) {
-		$sql = "SELECT *, CONCAT(a.firstname, ' ', a.lastname) AS name, (SELECT SUM(at.amount) FROM " . DB_PREFIX . "seller_transaction at WHERE at.seller_id = a.seller_id GROUP BY at.seller_id) AS balance FROM " . DB_PREFIX . "seller a";
+		$sql = "SELECT *, CONCAT(a.firstname, ' ', a.lastname) AS name, (SELECT SUM(at.amount) FROM " . DB_PREFIX . "seller_transaction at WHERE at.seller_id = a.seller_id GROUP BY at.seller_id) AS balance, (SELECT agd.name FROM " . DB_PREFIX . "seller_group_description agd WHERE a.seller_group_id = agd.seller_group_id AND agd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS seller_group FROM " . DB_PREFIX . "seller a";
 
 		$implode = array();
 
