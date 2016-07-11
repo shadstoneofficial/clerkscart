@@ -73,6 +73,7 @@ class ControllerAccountRegister extends Controller {
 		$data['text_loading'] = $this->language->get('text_loading');
 
 		$data['entry_customer_group'] = $this->language->get('entry_customer_group');
+		$data['entry_seller_group'] = $this->language->get('entry_seller_group');
 		$data['entry_firstname'] = $this->language->get('entry_firstname');
 		$data['entry_lastname'] = $this->language->get('entry_lastname');
 		$data['entry_email'] = $this->language->get('entry_email');
