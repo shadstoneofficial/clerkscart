@@ -436,6 +436,7 @@ class ControllerSellerSeller extends Controller {
 
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_email'] = $this->language->get('entry_email');
+		$data['entry_seller_group'] = $this->language->get('entry_seller_group');
 		$data['entry_status'] = $this->language->get('entry_status');
 		$data['entry_approved'] = $this->language->get('entry_approved');
 		$data['entry_date_added'] = $this->language->get('entry_date_added');
