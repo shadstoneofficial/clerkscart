@@ -596,9 +596,10 @@ class ControllerSellerSeller extends Controller {
 		$data['text_paypal'] = $this->language->get('text_paypal');
 		$data['text_bank'] = $this->language->get('text_bank');
 
+		$data['entry_seller_group'] = $this->language->get('entry_seller_group');
 		$data['entry_firstname'] = $this->language->get('entry_firstname');
 		$data['entry_lastname'] = $this->language->get('entry_lastname');
-    $data['entry_logo'] = $this->language->get('entry_logo');
+                $data['entry_logo'] = $this->language->get('entry_logo');
 		$data['entry_email'] = $this->language->get('entry_email');
 		$data['entry_telephone'] = $this->language->get('entry_telephone');
 		$data['entry_fax'] = $this->language->get('entry_fax');
@@ -757,6 +758,10 @@ class ControllerSellerSeller extends Controller {
 			$url .= '&filter_email=' . urlencode(html_entity_decode($this->request->get['filter_email'], ENT_QUOTES, 'UTF-8'));
 		}
 
+		if (isset($this->request->get['filter_seller_group_id'])) {
+			$url .= '&filter_seller_group_id=' . $this->request->get['filter_seller_group_id'];
+		}
+		
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
@@ -813,6 +818,18 @@ class ControllerSellerSeller extends Controller {
 			$data['seller_id'] = 0;
 		}
 
+		$this->load->model('seller/seller_group');
+
+		$data['seller_groups'] = $this->model_seller_seller_group->getSellerGroups();
+
+		if (isset($this->request->post['seller_group_id'])) {
+			$data['seller_group_id'] = $this->request->post['seller_group_id'];
+		} elseif (!empty($seller_info)) {
+			$data['seller_group_id'] = $seller_info['seller_group_id'];
+		} else {
+			$data['seller_group_id'] = $this->config->get('config_seller_group_id');
+		}
+		
 		if (isset($this->request->post['firstname'])) {
 			$data['firstname'] = $this->request->post['firstname'];
 		} elseif (!empty($seller_info)) {
