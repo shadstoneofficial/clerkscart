@@ -195,6 +195,12 @@ $('#button-filter').on('click', function() {
 		url += '&filter_email=' + encodeURIComponent(filter_email);
 	}
 		
+	var filter_seller_group_id = $('select[name=\'filter_seller_group_id\']').val();
+	
+	if (filter_seller_group_id != '*') {
+		url += '&filter_seller_group_id=' + encodeURIComponent(filter_seller_group_id);
+	}
+	
 	var filter_status = $('select[name=\'filter_status\']').val();
 	
 	if (filter_status != '*') {
