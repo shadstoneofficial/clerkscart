@@ -42,6 +42,26 @@
               <?php } ?>
             </div>
           </div>
+          <div class="form-group required" style="display: <?php echo (count($seller_groups) > 1 ? 'block' : 'none'); ?>;">
+            <label class="col-sm-2 control-label"><?php echo $entry_seller_group; ?></label>
+            <div class="col-sm-10">
+              <?php foreach ($seller_groups as $seller_group) { ?>
+              <?php if ($seller_group['seller_group_id'] == $seller_group_id) { ?>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="seller_group_id" value="<?php echo $seller_group['seller_group_id']; ?>" checked="checked" />
+                  <?php echo $seller_group['name']; ?></label>
+              </div>
+              <?php } else { ?>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="seller_group_id" value="<?php echo $seller_group['seller_group_id']; ?>" />
+                  <?php echo $seller_group['name']; ?></label>
+              </div>
+              <?php } ?>
+              <?php } ?>
+            </div>
+          </div>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-firstname"><?php echo $entry_firstname; ?></label>
             <div class="col-sm-10">
