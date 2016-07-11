@@ -429,6 +429,7 @@ class ControllerSellerSeller extends Controller {
 
 		$data['column_name'] = $this->language->get('column_name');
 		$data['column_email'] = $this->language->get('column_email');
+		$data['column_seller_group'] = $this->language->get('column_seller_group');
 		$data['column_balance'] = $this->language->get('column_balance');
 		$data['column_status'] = $this->language->get('column_status');
 		$data['column_date_added'] = $this->language->get('column_date_added');
