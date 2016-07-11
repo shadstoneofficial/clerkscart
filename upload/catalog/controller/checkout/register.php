@@ -12,6 +12,7 @@ class ControllerCheckoutRegister extends Controller {
 		$data['text_loading'] = $this->language->get('text_loading');
 
 		$data['entry_customer_group'] = $this->language->get('entry_customer_group');
+		$data['entry_seller_group'] = $this->language->get('entry_seller_group');
 		$data['entry_firstname'] = $this->language->get('entry_firstname');
 		$data['entry_lastname'] = $this->language->get('entry_lastname');
 		$data['entry_email'] = $this->language->get('entry_email');
@@ -48,6 +49,26 @@ class ControllerCheckoutRegister extends Controller {
 
 		$data['customer_group_id'] = $this->config->get('config_customer_group_id');
 
+		$data['seller_groups'] = array();
+
+		if (is_array($this->config->get('config_seller_group_display'))) {
+			$this->load->model('account/catalog/seller_group');
+
+			$seller_groups = $this->model_account_catalog_seller_group->getSellerGroups();
+
+			foreach ($seller_groups as $seller_group) {
+				if (in_array($seller_group['seller_group_id'], $this->config->get('config_seller_group_display'))) {
+					$data['seller_groups'][] = $seller_group;
+				}
+			}
+		}
+
+		if (isset($this->request->post['seller_group_id'])) {
+			$data['seller_group_id'] = $this->request->post['seller_group_id'];
+		} else {
+			$data['seller_group_id'] = $this->config->get('config_seller_group_id');
+		}
+		
 		if (isset($this->session->data['shipping_address']['postcode'])) {
 			$data['postcode'] = $this->session->data['shipping_address']['postcode'];
 		} else {
