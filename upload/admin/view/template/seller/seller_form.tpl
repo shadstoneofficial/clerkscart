@@ -61,6 +61,20 @@
                   </div>
                 </div>
                 <div class="form-group">
+                   <label class="col-sm-2 control-label" for="input-seller-group"><?php echo $entry_seller_group; ?></label>
+                      <div class="col-sm-10">
+                         <select name="seller_group_id" id="input-seller-group" class="form-control">
+                           <?php foreach ($seller_groups as $seller_group) { ?>
+                           <?php if ($seller_group['seller_group_id'] == $seller_group_id) { ?>
+                           <option value="<?php echo $seller_group['seller_group_id']; ?>" selected="selected"><?php echo $seller_group['name']; ?></option>
+                           <?php } else { ?>
+                           <option value="<?php echo $seller_group['seller_group_id']; ?>"><?php echo $seller_group['name']; ?></option>
+                           <?php } ?>
+                           <?php } ?>
+                         </select>
+                       </div>
+                     </div>
+                <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-sellerdescription"><?php echo $entry_description; ?></label>
                 <div class="col-sm-10">
                   <textarea name="sellerdescription" rows="5" placeholder="<?php echo $entry_description; ?>" id="input-sellerdescription" class="form-control"><?php echo $sellerdescription; ?></textarea>
