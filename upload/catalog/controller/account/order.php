@@ -40,6 +40,7 @@ class ControllerAccountOrder extends Controller {
 
 		$data['column_order_id'] = $this->language->get('column_order_id');
 		$data['column_customer'] = $this->language->get('column_customer');
+	        $data['column_seller'] = $this->language->get('column_seller');
 		$data['column_product'] = $this->language->get('column_product');
 		$data['column_total'] = $this->language->get('column_total');
 		$data['column_status'] = $this->language->get('column_status');
