@@ -65,7 +65,10 @@ class ControllerAccountOrder extends Controller {
 		foreach ($results as $result) {
 			$product_total = $this->model_account_order->getTotalOrderProductsByOrderId($result['order_id']);
 			$voucher_total = $this->model_account_order->getTotalOrderVouchersByOrderId($result['order_id']);
-
+                        $this->load->model('account/catalog/seller');
+                        $seller_info = $this->model_account_catalog_seller->getSeller($result['seller_id']);      
+                        $seller_name = $seller_info['firstname'] . ' ' . $seller_info['lastname'];
+			
 			$data['orders'][] = array(
 				'order_id'   => $result['order_id'],
 				'name'       => $result['firstname'] . ' ' . $result['lastname'],
