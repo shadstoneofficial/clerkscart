@@ -22,6 +22,7 @@
             <tr>
               <td class="text-right"><?php echo $column_order_id; ?></td>
               <td class="text-left"><?php echo $column_customer; ?></td>
+              <td class="text-left"><?php echo $column_seller; ?></td>
               <td class="text-right"><?php echo $column_product; ?></td>
               <td class="text-left"><?php echo $column_status; ?></td>
               <td class="text-right"><?php echo $column_total; ?></td>
@@ -34,6 +35,7 @@
             <tr>
               <td class="text-right">#<?php echo $order['order_id']; ?></td>
               <td class="text-left"><?php echo $order['name']; ?></td>
+              <td class="text-left"><?php echo $order['sellername']; ?></td>
               <td class="text-right"><?php echo $order['products']; ?></td>
               <td class="text-left"><?php echo $order['status']; ?></td>
               <td class="text-right"><?php echo $order['total']; ?></td>
