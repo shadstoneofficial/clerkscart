@@ -7,6 +7,16 @@ class ModelCustomerCustomer extends Model {
 
                     $this->db->query("INSERT INTO " . DB_PREFIX . "seller SET seller_id = '" . (int)$customer_id . "', seller_group_id = '" . (int)$this->config->get('config_seller_group_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', commission = '" . (float)$this->config->get('config_seller_commission') . "', payment = 'cheque', cheque = '" . $this->db->escape($data['firstname']) . "', approved = '" . (int)$data['seller_approved'] . "', date_added = NOW()");
         
+		$path_directory = 'image/catalog';
+                if (!mkdir($path_directory.'/'.$customer_id, 0777, true)) {
+                die('Помилка директорія не створена');
+                }
+
+                $path_download = 'system/storage/download';
+                if (!mkdir($path_download.'/'.$customer_id, 0777, true)) {
+                die('Помилка директорія не створена');
+                }
+		
 		if (isset($data['address'])) {
 			foreach ($data['address'] as $address) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "address SET customer_id = '" . (int)$customer_id . "', firstname = '" . $this->db->escape($address['firstname']) . "', lastname = '" . $this->db->escape($address['lastname']) . "', company = '" . $this->db->escape($address['company']) . "', address_1 = '" . $this->db->escape($address['address_1']) . "', address_2 = '" . $this->db->escape($address['address_2']) . "', city = '" . $this->db->escape($address['city']) . "', postcode = '" . $this->db->escape($address['postcode']) . "', country_id = '" . (int)$address['country_id'] . "', zone_id = '" . (int)$address['zone_id'] . "', custom_field = '" . $this->db->escape(isset($address['custom_field']) ? json_encode($address['custom_field']) : '') . "'");
