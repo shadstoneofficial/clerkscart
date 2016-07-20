@@ -335,6 +335,8 @@ class ControllerProductProduct extends Controller {
       $data['seller_name'] = $seller_info['firstname'] . '&nbsp;' . $seller_info['lastname'];
       }
 
+	$data['seller_status'] = $seller_info['status'];
+	
 			$discounts = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);
 
 			$data['discounts'] = array();
