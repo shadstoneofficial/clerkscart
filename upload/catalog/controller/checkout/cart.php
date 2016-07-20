@@ -353,8 +353,15 @@ class ControllerCheckoutCart extends Controller {
 				}
 			}
       
-      $seller_id = $product_info['seller_id'];
+                         $seller_id = $product_info['seller_id'];
 
+			$this->load->model('account/catalog/seller');
+                        $seller_info = $this->model_account_catalog_seller->getSeller($seller_id);
+      
+                        if ($seller_info['status'] == 0) {
+                        $json['error']['sellerstatus'] = $this->language->get('error_sellerstatus');
+                        }
+			
 			if (!$json) {
 				$this->cart->add($this->request->post['product_id'], $seller_id, $quantity, $option, $recurring_id);
 
