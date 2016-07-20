@@ -42,7 +42,7 @@ class ControllerAccountCatalogProduct extends Controller {
 
 		$this->load->model('account/catalog/product');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm() && $this->validateProdlimit()) {
 			$this->model_account_catalog_product->addProduct($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -1399,6 +1399,17 @@ class ControllerAccountCatalogProduct extends Controller {
 		$this->response->setOutput($this->load->view('account/catalog/product_form', $data));
 	}
 
+	protected function validateProdlimit() {
+                $this->load->model('account/catalog/product');
+                $product_total = $this->model_account_catalog_product->getTotalProducts();
+                $this->load->model('account/catalog/seller_group');
+                $seller_groups = $this->model_account_catalog_seller_group->getSellerGroup($this->customer->getSellergroupid());
+                if ($product_total > $seller_groups['prodlimit']) {
+                $this->error['prodlimit'] = $this->language->get('error_prodlimit');
+                }
+                return !$this->error;
+       }
+	
 	protected function validateForm() {
   $seller_id = $this->customer->getId();
     if ($this->customer->hasSellerPermission($seller_id) == 0) {
@@ -1417,14 +1428,6 @@ class ControllerAccountCatalogProduct extends Controller {
 		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
 		}
-
-		$this->load->model('account/catalog/product');
-                $product_total = $this->model_account_catalog_product->getTotalProducts();
-                $this->load->model('account/catalog/seller_group');
-                $seller_groups = $this->model_account_catalog_seller_group->getSellerGroup($this->customer->getSellergroupid());
-                if ($product_total > $seller_groups['prodlimit']) {
-                $this->error['prodlimit'] = $this->language->get('error_prodlimit');
-                }
 		
 		/*if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('account/catalog/url_alias');
