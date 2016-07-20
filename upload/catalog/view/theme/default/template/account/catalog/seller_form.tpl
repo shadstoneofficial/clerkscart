@@ -44,6 +44,20 @@
               <fieldset>
                 <legend><?php echo $text_seller_detail; ?></legend>
                 <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
+                  <div class="col-sm-10">
+                    <select name="status" id="input-status" class="form-control">
+                      <?php if ($status) { ?>
+                      <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                      <option value="0"><?php echo $text_disabled; ?></option>
+                      <?php } else { ?>
+                      <option value="1"><?php echo $text_enabled; ?></option>
+                      <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-image"><?php echo $entry_logo; ?></label>
                   <div class="col-sm-10">
                     <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a><input type="hidden" name="logo" value="<?php echo $logo; ?>" id="input-image" />
