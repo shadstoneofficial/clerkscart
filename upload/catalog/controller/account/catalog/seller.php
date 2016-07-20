@@ -259,6 +259,14 @@ class ControllerAccountCatalogSeller extends Controller {
 			$data['email'] = '';
 		}
 
+		if (isset($this->request->post['status'])) {
+			$data['status'] = $this->request->post['status'];
+		} elseif (!empty($seller_info)) {
+			$data['status'] = $seller_info['status'];
+		} else {
+			$data['status'] = true;
+		}
+		
 		if (isset($this->request->post['telephone'])) {
 			$data['telephone'] = $this->request->post['telephone'];
 		} elseif (!empty($seller_info)) {
