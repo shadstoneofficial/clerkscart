@@ -3291,6 +3291,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (316, 0, 'config', 'config_seller_commission', '5', 0),
 (317, 0, 'config', 'config_seller_auto', '0', 0),
 (318, 0, 'config', 'config_seller_approval', '0', 0);
+(319, 0, 'config', 'config_seller_group_id', '1', 0);
 
 -- --------------------------------------------------------
 
