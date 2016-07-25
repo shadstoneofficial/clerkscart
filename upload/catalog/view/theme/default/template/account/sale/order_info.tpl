@@ -536,33 +536,33 @@ $(document).delegate('#button-commission-remove', 'click', function() {
 var token = '';
 
 // Login to the API
-$.ajax({
-	url: '<?php echo $store_url; ?>index.php?route=api/login',
-	type: 'post',
-	dataType: 'json',
-	data: 'key=<?php echo $api_key; ?>',
-	crossDomain: true,
-	success: function(json) {
-		$('.alert').remove();
+//$.ajax({
+//	url: '<?php echo $store_url; ?>index.php?route=api/login',
+//	type: 'post',
+//	dataType: 'json',
+//	data: 'key=<?php echo $api_key; ?>',
+//	crossDomain: true,
+//	success: function(json) {
+//		$('.alert').remove();
 
-        if (json['error']) {
-    		if (json['error']['key']) {
-    			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error']['key'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-    		}
+ //       if (json['error']) {
+ //  		if (json['error']['key']) {
+ //   			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error']['key'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+ //   		}
 
-            if (json['error']['ip']) {
-    			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error']['ip'] + ' <button type="button" id="button-ip-add" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-danger btn-xs pull-right"><i class="fa fa-plus"></i> <?php echo $button_ip_add; ?></button></div>');
-    		}
-        }
+ //           if (json['error']['ip']) {
+ //   			$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error']['ip'] + ' <button type="button" id="button-ip-add" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-danger btn-xs pull-right"><i class="fa fa-plus"></i> <?php echo $button_ip_add; ?></button></div>');
+ //   		}
+ //       }
 
-        if (json['token']) {
-			token = json['token'];
-		}
-	},
-	error: function(xhr, ajaxOptions, thrownError) {
-		alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-	}
-});
+//        if (json['token']) {
+//			token = json['token'];
+//		}
+//	},
+//	error: function(xhr, ajaxOptions, thrownError) {
+//		alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+//	}
+//});
 
 $('#history').delegate('.pagination a', 'click', function(e) {
 	e.preventDefault();
@@ -615,30 +615,30 @@ $('#button-history').on('click', function() {
 	});
 });
 
-function changeStatus(){
-	var status_id = $('select[name="order_status_id"]').val();
+//function changeStatus(){
+//	var status_id = $('select[name="order_status_id"]').val();
 
-	$('#openbay-info').remove();
+//	$('#openbay-info').remove();
+//
+//	$.ajax({
+//		url: 'index.php?route=extension/openbay/getorderinfo&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>&status_id=' + status_id,
+//		dataType: 'html',
+//		success: function(html) {
+//			$('#history').after(html);
+//		}
+//	});
+//}
 
-	$.ajax({
-		url: 'index.php?route=extension/openbay/getorderinfo&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>&status_id=' + status_id,
-		dataType: 'html',
-		success: function(html) {
-			$('#history').after(html);
-		}
-	});
-}
+//function addOrderInfo(){
+//	var status_id = $('select[name="order_status_id"]').val();
 
-function addOrderInfo(){
-	var status_id = $('select[name="order_status_id"]').val();
-
-	$.ajax({
-		url: 'index.php?route=extension/openbay/addorderinfo&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>&status_id=' + status_id,
-		type: 'post',
-		dataType: 'html',
-		data: $(".openbay-data").serialize()
-	});
-}
+//	$.ajax({
+//		url: 'index.php?route=extension/openbay/addorderinfo&token=<?php echo $token; ?>&order_id=<?php echo $order_id; ?>&status_id=' + status_id,
+//		type: 'post',
+//		dataType: 'html',
+//		data: $(".openbay-data").serialize()
+//	});
+//}
 
 $(document).ready(function() {
 	changeStatus();
