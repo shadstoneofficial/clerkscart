@@ -116,6 +116,10 @@ $_['button_category_add']           = 'Add Category';
 $_['button_order']                  = 'View Order';
 $_['button_order_recurring']        = 'View Recurring Order';
 
+//Tab
+$_['tab_general']                   = 'General';
+$_['tab_history']                   = 'History';
+
 // Error
 $_['error_exception']       = 'Error Code(%s): %s in %s on line %s';
 $_['error_upload_1']        = 'Warning: The uploaded file exceeds the upload_max_filesize directive in php.ini!';
