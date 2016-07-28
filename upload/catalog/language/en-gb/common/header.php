@@ -24,4 +24,5 @@ $_['text_download_add']  = 'Add Download';
 $_['text_downloadlist']  = 'Download List';
 $_['text_orderlist']     = 'Order List';
 $_['text_sellershipping'] = 'Shipping method';
+$_['text_coupon']        = 'Coupons';
 $_['text_return']        = 'View your return requests';
