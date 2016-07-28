@@ -58,6 +58,7 @@ class ControllerAccountAccount extends Controller {
     $data['text_downloadlist'] = $this->language->get('text_downloadlist');
     $data['text_download_add'] = $this->language->get('text_download_add');
     $data['text_orderlist'] = $this->language->get('text_orderlist');
+    $data['text_coupon'] = $this->language->get('text_coupon');
     $url = '';
     $seller_id = $this->customer->getId();
     $data['seller'] = $this->customer->hasSellerPermission($seller_id);
@@ -70,6 +71,7 @@ class ControllerAccountAccount extends Controller {
     $data['seller_transaction'] = $this->url->link('account/catalog/transaction', 'token=' . $this->session->data['token'], true);
     $data['seller_shipping'] = $this->url->link('account/catalog/shipping', 'token=' . $this->session->data['token'], true);
     $data['returnlist'] = $this->url->link('account/sale/return', 'token=' . $this->session->data['token'], true);
+    $data['seller_coupon'] = $this->url->link('account/catalog/coupon', 'token=' . $this->session->data['token'], true);
 
 
 		$data['edit'] = $this->url->link('account/edit', 'token=' . $this->session->data['token'], true);
