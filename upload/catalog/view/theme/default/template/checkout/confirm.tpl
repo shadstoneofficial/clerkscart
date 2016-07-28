@@ -39,6 +39,9 @@
       <?php } ?>
     </tbody>
     <tfoot>
+      <div class="panel-group">
+        <?php echo $coupons; ?>
+      </div>
       <?php foreach ($totals as $total) { ?>
       <tr>
         <td colspan="4" class="text-right"><strong><?php echo $total['title']; ?>:</strong></td>
