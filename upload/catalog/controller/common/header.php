@@ -78,6 +78,7 @@ class ControllerCommonHeader extends Controller {
     $data['text_download_add'] = $this->language->get('text_download_add');
     $data['text_orderlist'] = $this->language->get('text_orderlist');
     $data['text_return'] = $this->language->get('text_return');
+    $data['text_coupon'] = $this->language->get('text_coupon');
 
 		$data['home'] = $this->url->link('common/home');
     $data['logout'] = $this->url->link('account/logout', '', true);
@@ -113,6 +114,7 @@ class ControllerCommonHeader extends Controller {
     $data['seller_transaction'] = $this->url->link('account/catalog/transaction', 'token=' . $this->session->data['token'], true);
     $data['seller_shipping'] = $this->url->link('account/catalog/shipping', 'token=' . $this->session->data['token'], true);
     $data['returnlist'] = $this->url->link('account/sale/return', 'token=' . $this->session->data['token'], true);
+    $data['seller_coupon'] = $this->url->link('account/catalog/coupon', 'token=' . $this->session->data['token'], true);
     }
 		// Menu
 		$this->load->model('catalog/category');
