@@ -35,7 +35,12 @@ class ControllerTotalCoupon extends Controller {
 			$coupon = '';
 		}
 
-		$coupon_info = $this->model_total_coupon->getCoupon($coupon);
+		if (empty($this->request->get['seller_id'])) {
+                $seller_id = 0;
+                } else {
+                $seller_id = $this->request->get['seller_id'];    
+                }
+		$coupon_info = $this->model_total_coupon->getCoupon($coupon, $seller_id);
 
 		if (empty($this->request->post['coupon'])) {
 			$json['error'] = $this->language->get('error_empty');
