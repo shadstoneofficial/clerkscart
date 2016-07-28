@@ -437,19 +437,7 @@ class ControllerCheckoutConfirm extends Controller {
 			
 			$this->load->model('extension/extension');
 
-			$data['modules'] = array();
-			
-			$files = glob(DIR_APPLICATION . '/controller/total/*.php');
-
-			if ($files) {
-				foreach ($files as $file) {
-					$result = $this->load->controller('total/' . basename($file, '.php'));
-					
-					if ($result) {
-						$data['modules'][] = $result;
-					}
-				}
-			}
+			$data['coupons'] = $this->load->controller('total/coupon');
 
 			$data['payment'] = $this->load->controller('payment/' . $this->session->data['payment_method']['code']);
 		} else {
