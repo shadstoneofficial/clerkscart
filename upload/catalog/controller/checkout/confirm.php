@@ -434,10 +434,6 @@ class ControllerCheckoutConfirm extends Controller {
 					'text'  => $this->currency->format($total['value'], $this->session->data['currency'])
 				);
 			}
-			
-			$this->load->model('extension/extension');
-
-			$data['coupons'] = $this->load->controller('total/coupon');
 
 			$data['payment'] = $this->load->controller('payment/' . $this->session->data['payment_method']['code']);
 		} else {
