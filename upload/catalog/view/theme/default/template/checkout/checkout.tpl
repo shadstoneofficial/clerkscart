@@ -76,6 +76,14 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-heading">
+            <h4 class="panel-title"><?php echo $text_checkout_coupon; ?></h4>
+          </div>
+          <div class="panel-collapse collapse" id="collapse-checkout-coupon">            
+          <div class="panel-body"></div>
+        </div>
+      </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
             <h4 class="panel-title"><?php echo $text_checkout_confirm; ?></h4>
           </div>
           <div class="panel-collapse collapse" id="collapse-checkout-confirm">
@@ -268,6 +276,7 @@ $(document).delegate('#button-register', 'click', function() {
 
 							$('#collapse-shipping-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_shipping_method; ?>');
 							$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
+							$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 							$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -287,6 +296,7 @@ $(document).delegate('#button-register', 'click', function() {
 
 							$('#collapse-shipping-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_shipping_method; ?>');
 							$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
+							$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 							$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -305,6 +315,7 @@ $(document).delegate('#button-register', 'click', function() {
 
 						$('a[href=\'#collapse-payment-method\']').trigger('click');
 
+						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -385,6 +396,7 @@ $(document).delegate('#button-payment-address', 'click', function() {
 
 						$('#collapse-shipping-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_shipping_method; ?>');
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
+						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -402,6 +414,7 @@ $(document).delegate('#button-payment-address', 'click', function() {
 
 						$('a[href=\'#collapse-payment-method\']').trigger('click');
 
+						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -477,6 +490,7 @@ $(document).delegate('#button-shipping-address', 'click', function() {
 						$('a[href=\'#collapse-shipping-method\']').trigger('click');
 
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
+						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
 
                         $.ajax({
@@ -580,6 +594,7 @@ $(document).delegate('#button-guest', 'click', function() {
 							$('a[href=\'#collapse-shipping-method\']').trigger('click');
 
 							$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
+							$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 							$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -602,6 +617,7 @@ $(document).delegate('#button-guest', 'click', function() {
 
 							$('#collapse-shipping-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_shipping_method; ?>');
 							$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
+							$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 							$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -623,6 +639,7 @@ $(document).delegate('#button-guest', 'click', function() {
 
 						$('a[href=\'#collapse-payment-method\']').trigger('click');
 
+						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -687,6 +704,7 @@ $(document).delegate('#button-guest-shipping', 'click', function() {
 						$('a[href=\'#collapse-shipping-method\']').trigger('click');
 
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
+						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -735,6 +753,7 @@ $(document).delegate('#button-shipping-method', 'click', function() {
 
 						$('a[href=\'#collapse-payment-method\']').trigger('click');
 
+						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -771,17 +790,18 @@ $(document).delegate('#button-payment-method', 'click', function() {
                 }
             } else {
                 $.ajax({
-                    url: 'index.php?route=checkout/confirm&seller_id=<?php echo $seller_id; ?>',
+                    url: 'index.php?route=checkout/coupon&seller_id=<?php echo $seller_id; ?>',
                     dataType: 'html',
                     complete: function() {
                         $('#button-payment-method').button('reset');
                     },
                     success: function(html) {
-                        $('#collapse-checkout-confirm .panel-body').html(html);
+                        $('#collapse-checkout-coupon .panel-body').html(html);
+                        
 
-						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<a href="#collapse-checkout-confirm" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle"><?php echo $text_checkout_confirm; ?> <i class="fa fa-caret-down"></i></a>');
+						$('#collapse-checkout-coupon').parent().find('.panel-heading .panel-title').html('<a href="#collapse-checkout-coupon" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle"><?php echo $text_checkout_coupon; ?> <i class="fa fa-caret-down"></i></a>');
 
-						$('a[href=\'#collapse-checkout-confirm\']').trigger('click');
+						$('a[href=\'#collapse-checkout-coupon\']').trigger('click');
 					},
                     error: function(xhr, ajaxOptions, thrownError) {
                         alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -794,5 +814,22 @@ $(document).delegate('#button-payment-method', 'click', function() {
         }
     });
 });
+$(document).delegate('#button-checkout-coupon', 'click', function() {
+$.ajax({
+      url: 'index.php?route=checkout/confirm&seller_id=<?php echo $seller_id; ?>',
+      dataType: 'html',
+      complete: function() {
+      $('#button-payment-method').button('reset');
+            },
+      success: function(html) {
+          $('#collapse-checkout-confirm .panel-body').html(html);
+          $('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<a href="#collapse-checkout-confirm" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle"><?php echo $text_checkout_confirm; ?> <i class="fa fa-caret-down"></i></a>');
+					$('a[href=\'#collapse-checkout-confirm\']').trigger('click');
+					},
+          error: function(xhr, ajaxOptions, thrownError) {
+          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
+    });
+  });
 //--></script>
 <?php echo $footer; ?>
