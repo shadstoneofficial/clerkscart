@@ -10,6 +10,7 @@ $_['text_checkout_payment_address']  = 'Step %s: Billing Details';
 $_['text_checkout_shipping_address'] = 'Step %s: Delivery Details';
 $_['text_checkout_shipping_method']  = 'Step %s: Delivery Method';
 $_['text_checkout_payment_method']   = 'Step %s: Payment Method';
+$_['text_checkout_coupon']           = 'Step %s: Submit Coupon';
 $_['text_checkout_confirm']          = 'Step %s: Confirm Order';
 $_['text_modify']                    = 'Modify &raquo;';
 $_['text_new_customer']              = 'New Customer';
