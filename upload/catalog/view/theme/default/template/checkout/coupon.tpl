@@ -1,4 +1,13 @@
-
+<?php if ($success) { ?>
+  <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+  <?php } ?>
+  <?php if ($error_warning) { ?>
+  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+  <?php } ?>
     <div class="panel-body">
       <label class="col-sm-2 control-label" for="input-coupon"><?php echo $entry_coupon; ?></label>
       <div class="input-group">
