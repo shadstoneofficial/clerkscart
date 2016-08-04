@@ -14,6 +14,21 @@ class ControllerCheckoutCoupon extends Controller {
                         $data['text_loading'] = $this->language->get('text_loading');
 		        $data['button_continue'] = $this->language->get('button_continue');
 
+			if (isset($this->session->data['error'])) {
+			$data['error_warning'] = $this->session->data['error'];
+			unset($this->session->data['error']);
+		        } else {
+			$data['error_warning'] = '';
+		        }
+      
+                        if (isset($this->session->data['success'])) {
+				$data['success'] = $this->session->data['success'];
+
+				unset($this->session->data['success']);
+			} else {
+				$data['success'] = '';
+			}
+			
 			if ($this->request->server['REQUEST_METHOD'] == 'GET') {
                         if (empty($this->request->get['seller_id'])) {
                         $data['seller_id'] = 0;
