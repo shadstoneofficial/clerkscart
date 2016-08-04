@@ -11,9 +11,17 @@ class ControllerCheckoutCoupon extends Controller {
 			$data['entry_coupon'] = $this->language->get('entry_coupon');
 
 			$data['button_coupon'] = $this->language->get('button_coupon');
-      $data['text_loading'] = $this->language->get('text_loading');
-		  $data['button_continue'] = $this->language->get('button_continue');
+                        $data['text_loading'] = $this->language->get('text_loading');
+		        $data['button_continue'] = $this->language->get('button_continue');
 
+			if ($this->request->server['REQUEST_METHOD'] == 'GET') {
+                        if (empty($this->request->get['seller_id'])) {
+                        $data['seller_id'] = 0;
+                        } else {
+                        $data['seller_id'] = $this->request->get['seller_id'];    
+                        }
+                        }
+			
 			if (isset($this->session->data['coupon'])) {
 				$data['coupon'] = $this->session->data['coupon'];
 			} else {
