@@ -74,6 +74,7 @@
             <div class="panel-body"></div>
           </div>
         </div>
+        
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title"><?php echo $text_checkout_coupon; ?></h4>
@@ -82,6 +83,8 @@
           <div class="panel-body"></div>
         </div>
       </div>
+
+        
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title"><?php echo $text_checkout_confirm; ?></h4>
@@ -276,7 +279,9 @@ $(document).delegate('#button-register', 'click', function() {
 
 							$('#collapse-shipping-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_shipping_method; ?>');
 							$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
-							$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+              
+              $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+              
 							$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -296,7 +301,9 @@ $(document).delegate('#button-register', 'click', function() {
 
 							$('#collapse-shipping-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_shipping_method; ?>');
 							$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
-							$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+              
+              $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+              
 							$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -314,8 +321,9 @@ $(document).delegate('#button-register', 'click', function() {
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<a href="#collapse-payment-method" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle"><?php echo $text_checkout_payment_method; ?> <i class="fa fa-caret-down"></i></a>');
 
 						$('a[href=\'#collapse-payment-method\']').trigger('click');
+            
+            $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 
-						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -396,7 +404,9 @@ $(document).delegate('#button-payment-address', 'click', function() {
 
 						$('#collapse-shipping-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_shipping_method; ?>');
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
-						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+            
+            $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+            
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -414,7 +424,6 @@ $(document).delegate('#button-payment-address', 'click', function() {
 
 						$('a[href=\'#collapse-payment-method\']').trigger('click');
 
-						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -490,7 +499,9 @@ $(document).delegate('#button-shipping-address', 'click', function() {
 						$('a[href=\'#collapse-shipping-method\']').trigger('click');
 
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
-						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+            
+            $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+            
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
 
                         $.ajax({
@@ -594,7 +605,9 @@ $(document).delegate('#button-guest', 'click', function() {
 							$('a[href=\'#collapse-shipping-method\']').trigger('click');
 
 							$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
-							$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+              
+              $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+              
 							$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -617,7 +630,9 @@ $(document).delegate('#button-guest', 'click', function() {
 
 							$('#collapse-shipping-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_shipping_method; ?>');
 							$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
-							$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+              
+              $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+              
 							$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                         },
                         error: function(xhr, ajaxOptions, thrownError) {
@@ -638,8 +653,9 @@ $(document).delegate('#button-guest', 'click', function() {
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<a href="#collapse-payment-method" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle"><?php echo $text_checkout_payment_method; ?> <i class="fa fa-caret-down"></i></a>');
 
 						$('a[href=\'#collapse-payment-method\']').trigger('click');
+            
+            $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 
-						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -704,7 +720,9 @@ $(document).delegate('#button-guest-shipping', 'click', function() {
 						$('a[href=\'#collapse-shipping-method\']').trigger('click');
 
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_payment_method; ?>');
-						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+            
+            $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
+            
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -752,8 +770,9 @@ $(document).delegate('#button-shipping-method', 'click', function() {
 						$('#collapse-payment-method').parent().find('.panel-heading .panel-title').html('<a href="#collapse-payment-method" data-toggle="collapse" data-parent="#accordion" class="accordion-toggle"><?php echo $text_checkout_payment_method; ?> <i class="fa fa-caret-down"></i></a>');
 
 						$('a[href=\'#collapse-payment-method\']').trigger('click');
+            
+            $('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 
-						$('#collapse-checkout_coupon').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_checkout_coupon; ?>');
 						$('#collapse-checkout-confirm').parent().find('.panel-heading .panel-title').html('<?php echo $text_checkout_confirm; ?>');
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
