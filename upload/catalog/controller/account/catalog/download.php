@@ -501,7 +501,8 @@ class ControllerAccountCatalogDownload extends Controller {
 	}
 
 	public function upload() {
-  $seller_id = $this->customer->getId();
+                $seller_id = $this->customer->getId();
+                $directory = DIR_DOWNLOAD . $seller_id;
 		$this->load->language('account/catalog/download');
 
 		$json = array();
@@ -521,6 +522,14 @@ class ControllerAccountCatalogDownload extends Controller {
 					$json['error'] = $this->language->get('error_filename');
 				}
 
+				//максимальний розмір каталога
+				$this->load->model('account/catalog/seller_group');
+                                $seller_groups = $this->model_account_catalog_seller_group->getSellerGroup($this->customer->getSellergroupid());
+                                $dirsize = ($this->customer->getDirsize($directory)/ 1048576);
+       
+                                if($dirsize >= $seller_groups['downloadlimit']) {
+                                $json['error'] = sprintf($this->language->get('error_maxspice'), $seller_groups['downloadlimit'].'Mb');
+                                }
 				// Allowed file extension types
 				$allowed = array();
 
@@ -569,8 +578,6 @@ class ControllerAccountCatalogDownload extends Controller {
 
 		if (!$json) {
 			$file = $filename . '.' . token(32);
-      $customer_id = $this->customer->getId();
-      $directory = DIR_DOWNLOAD . $customer_id;
 			move_uploaded_file($this->request->files['file']['tmp_name'], $directory . '/' . $file);
 
 			$json['filename'] = $file;
