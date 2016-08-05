@@ -528,7 +528,7 @@ class ControllerAccountCatalogDownload extends Controller {
                                 $dirsize = ($this->customer->getDirsize($directory)/ 1048576);
        
                                 if($dirsize >= $seller_groups['downloadlimit']) {
-                                $json['error'] = sprintf($this->language->get('error_maxspice'), $seller_groups['downloadlimit'].'Mb');
+                                $json['error'] = sprintf($this->language->get('error_maxspice'), $seller_groups['downloadlimit']);
                                 }
 				// Allowed file extension types
 				$allowed = array();
