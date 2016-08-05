@@ -246,7 +246,7 @@ class ControllerAccountCatalogFileManager extends Controller {
                                 $dirsize = ($this->customer->getDirsize($directory)/ 1048576);
        
                                 if($dirsize >= $seller_groups['imglimit']) {
-                                   $json['error'] = sprintf($this->language->get('error_maxspice'), $seller_groups['imglimit'].'Mb');
+                                   $json['error'] = sprintf($this->language->get('error_maxspice'), $seller_groups['imglimit']);
                                 }
 				// Allowed file extension types
 				$allowed = array(
