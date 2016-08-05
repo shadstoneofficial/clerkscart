@@ -91,6 +91,7 @@ class ControllerAccountCatalogFileManager extends Controller {
 
 		$data['text_no_results'] = $this->language->get('text_no_results');
 		$data['text_confirm'] = $this->language->get('text_confirm');
+		$data['text_freespace'] = $this->language->get('text_freespace');
 
 		$data['entry_search'] = $this->language->get('entry_search');
 		$data['entry_folder'] = $this->language->get('entry_folder');
@@ -101,15 +102,20 @@ class ControllerAccountCatalogFileManager extends Controller {
 		$data['button_folder'] = $this->language->get('button_folder');
 		$data['button_delete'] = $this->language->get('button_delete');
 		$data['button_search'] = $this->language->get('button_search');
-    
-    ob_start();
-    system('du -s '. DIR_IMAGE . 'catalog/' . $customer_id);
-    $du = ob_get_contents();
-    ob_end_clean();
-    $data['size'] = (preg_replace('/[^0-9]/', '',$du) / 1048576);
+    //Тільки для Linux//
+    //ob_start();
+    //system('du -s '. DIR_IMAGE . 'catalog/' . $customer_id);
+    //$du = ob_get_contents();
+    //ob_end_clean();
+    //$data['size'] = (preg_replace('/[^0-9]/', '',$du) / 1048576);
     //$data['size'] = (preg_replace('/[^0-9]/', '',system('du -s '. DIR_IMAGE . 'catalog/' . $customer_id)) / 1048576);
     
-             
+                $this->load->model('account/catalog/product');
+                $product_total = $this->model_account_catalog_product->getTotalProducts();
+                $this->load->model('account/catalog/seller_group');
+                $seller_groups = $this->model_account_catalog_seller_group->getSellerGroup($this->customer->getSellergroupid());
+                $data['dirsize'] = $seller_groups['imglimit'] - ($this->customer->getDirsize($directory)/ 1048576);
+                
 		$data['token'] = $this->session->data['token'];
 
 		if (isset($this->request->get['directory'])) {
@@ -236,16 +242,16 @@ class ControllerAccountCatalogFileManager extends Controller {
 				if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 255)) {
 					$json['error'] = $this->language->get('error_filename');
 				}
-        //максимальний розмір каталога Linux
-        /*
-        ob_start();
-    system('du -s '. DIR_IMAGE . 'catalog/' . $customer_id);
-    $du = ob_get_contents();
-    ob_end_clean();
-    $datasize = (preg_replace('/[^0-9]/', '',$du) / 1048576);
-     if($datasize >= $this->config->get('config_clerk_dirlimit')) {
-       $json['error'] = sprintf($this->language->get('error_maxspice'), $this->config->get('config_clerk_dirlimit').'Mb');
-       } */ 
+                                 //максимальний розмір каталога 
+				$this->load->model('account/catalog/product');
+                                $product_total = $this->model_account_catalog_product->getTotalProducts();
+                                $this->load->model('account/catalog/seller_group');
+                                $seller_groups = $this->model_account_catalog_seller_group->getSellerGroup($this->customer->getSellergroupid());
+                                $dirsize = ($this->customer->getDirsize($directory)/ 1048576);
+       
+                                if($dirsize >= $seller_groups['imglimit']) {
+                                   $json['error'] = sprintf($this->language->get('error_maxspice'), $seller_groups['imglimit'].'Mb');
+                                }
 				// Allowed file extension types
 				$allowed = array(
 					'jpg',
