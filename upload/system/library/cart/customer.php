@@ -137,13 +137,30 @@ class Customer {
 		return $query->row['total'];
 	}
 	
+	public function getDirsize($directory){
+             $directory = (strlen($directory) < 1)?"./":$directory."/";
+             $d = dir($directory);
+//            $N = 0;
+             $size = 0;
+             while($dir=$d->read()){
+             if($dir != "." && $dir != ".."){
+             if(filetype($directory.$dir) == "file"){
+ //           $N++;
+                $size += filesize($directory.$dir);
+                }
+               }
+              }
+              $d->close();
+               return $size;
+       }
+	
 	public function getSellergroupid() {
 		$query = $this->db->query("SELECT seller_group_id FROM " . DB_PREFIX . "seller WHERE seller_id = '" . (int)$this->customer_id . "'");
 
 		return $query->row['seller_group_id'];
 	}
 	
-public function getSellersetting($sellerkey, $seller_id) {
+        public function getSellersetting($sellerkey, $seller_id) {
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "seller_setting` WHERE `key` = '" . $this->db->escape($sellerkey) . "' AND seller_id = '" . (int)$seller_id . "'");
 		
 		if ($query->num_rows) {
