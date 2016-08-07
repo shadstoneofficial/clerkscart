@@ -99,7 +99,7 @@ class ModelTotalCoupon extends Model {
 		if (isset($this->session->data['coupon'])) {
 			$this->load->language('total/coupon');
 
-			$coupon_info = $this->getCoupon($this->session->data['coupon']);
+			$coupon_info = $this->getCoupon($this->session->data['coupon'], $total['seller_id']);
 
 			if ($coupon_info) {
 				$discount_total = 0;
@@ -191,7 +191,7 @@ class ModelTotalCoupon extends Model {
 		if (isset($this->session->data['coupon'])) {
 			$this->load->language('total/coupon');
 
-			$coupon_info = $this->getCoupon($this->session->data['coupon']);
+			$coupon_info = $this->getCoupon($this->session->data['coupon'], $total['seller_id']);
 
 			if ($coupon_info) {
 				$discount_total = 0;
