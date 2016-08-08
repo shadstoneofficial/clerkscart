@@ -14,7 +14,7 @@ class ControllerShippingFlat extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('flat', $this->request->post);
 			
-			$this->model_setting_setting->editSetting('flat', $this->request->post);
+			$this->model_setting_sellersetting->editSellersetting('flat', $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
