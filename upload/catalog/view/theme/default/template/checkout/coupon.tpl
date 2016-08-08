@@ -8,6 +8,7 @@
     <button type="button" class="close" data-dismiss="alert">&times;</button>
   </div>
   <?php } ?>
+    <div class="couponalert"></div>
     <div class="panel-body">
       <label class="col-sm-2 control-label" for="input-coupon"><?php echo $entry_coupon; ?></label>
       <div class="input-group">
@@ -35,11 +36,11 @@ $('#button-coupon').on('click', function() {
 		},
 		success: function(json) {
 			$('.alert').remove();
-
-			if (json['error']) {
-				$('.breadcrumb').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
+                     if (json['success']) {
+                        $('.couponalert').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                        } 
+                     if (json['error']) {
+				$('.couponalert').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 			}
 		}
 	});
