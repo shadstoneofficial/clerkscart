@@ -1,7 +1,7 @@
 <div id="cart" class="btn-group btn-block">
   <button type="button" data-toggle="dropdown" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-inverse btn-block btn-lg dropdown-toggle"><i class="fa fa-shopping-cart"></i> <span id="cart-total"><?php echo $text_items; ?></span></button>
   <ul class="dropdown-menu pull-right">
-    <?php if ($products || $vouchers) { ?>
+    <?php if ($products) { ?>
     <li>
       <table class="table table-striped">
         <?php foreach ($products as $product) { ?>
@@ -24,15 +24,6 @@
           <td class="text-right"><?php echo $product['total']; ?></td>
           <td class="text-right"><a class="btn btn-xs" href="<?php echo $product['checkout']; ?>"><?php echo $text_checkout; ?></a></td>
           <td class="text-center"><button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');" title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
-        </tr>
-        <?php } ?>
-        <?php foreach ($vouchers as $voucher) { ?>
-        <tr>
-          <td class="text-center"></td>
-          <td class="text-left"><?php echo $voucher['description']; ?></td>
-          <td class="text-right">x&nbsp;1</td>
-          <td class="text-right"><?php echo $voucher['amount']; ?></td>
-          <td class="text-center text-danger"><button type="button" onclick="voucher.remove('<?php echo $voucher['key']; ?>');" title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
         </tr>
         <?php } ?>
       </table>
