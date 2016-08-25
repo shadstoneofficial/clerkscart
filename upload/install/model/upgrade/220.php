@@ -1,0 +1,105 @@
+<?php
+class ModelUpgrade220 extends Model {
+	public function upgrade() {
+    $this->db->query("ALTER TABLE `" . DB_PREFIX . "cart` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `product_id`");
+    $this->db->query("ALTER TABLE `" . DB_PREFIX . "customer` ADD COLUMN `sellerapprove` tinyint(1) NOT NULL AFTER `approved`");
+    $this->db->query("ALTER TABLE `" . DB_PREFIX . "order` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `commission`");
+    $this->db->query("ALTER TABLE `" . DB_PREFIX . "order` ADD COLUMN `seller_commission` decimal(15,4) NOT NULL AFTER `seller_id`");
+    $this->db->query("ALTER TABLE `" . DB_PREFIX . "product` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `product_id`");
+    $this->db->query("ALTER TABLE `" . DB_PREFIX . "product` ADD COLUMN `date_ende` datetime NOT NULL AFTER `date_added`");
+    $this->db->query("ALTER TABLE `" . DB_PREFIX . "return` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `order_id`");
+		// Coupon
+		$this->db->query("ALTER TABLE `" . DB_PREFIX . "coupon` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `coupon_id`");		
+			
+	  // Setting
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` SET `code` = 'config', `key` = 'config_seller_group_id', `value` = '1'");
+    
+    // Seller group
+		$sql = "CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "seller` ( ";
+	  $sql .= "`seller_id` int(11) NOT NULL, ";
+    $sql .= "`seller_group_id` int(11) NOT NULL, ";
+    $sql .= "`firstname` varchar(32) NOT NULL, ";
+    $sql .= "`lastname` varchar(32) NOT NULL, ";
+    $sql .= "`logo` varchar(255) DEFAULT NULL, ";
+    $sql .= "`sellerdescription` text NOT NULL, ";
+    $sql .= "`email` varchar(96) NOT NULL, ";
+    $sql .= "`telephone` varchar(32) NOT NULL, ";
+    $sql .= "`fax` varchar(32) NOT NULL, ";
+    $sql .= "`company` varchar(40) NOT NULL, ";
+    $sql .= "`website` varchar(255) NOT NULL, ";
+    $sql .= "`address_1` varchar(128) NOT NULL, ";
+    $sql .= "`address_2` varchar(128) NOT NULL, ";
+    $sql .= "`city` varchar(128) NOT NULL, ";
+    $sql .= "`postcode` varchar(10) NOT NULL, ";
+    $sql .= "`country_id` int(11) NOT NULL, ";
+    $sql .= "`zone_id` int(11) NOT NULL, ";
+    $sql .= "`code` varchar(64) NOT NULL, ";
+    $sql .= "`commission` decimal(4,2) NOT NULL DEFAULT '0.00', ";
+    $sql .= "`tax` varchar(64) NOT NULL, ";
+    $sql .= "`payment` varchar(6) NOT NULL, ";
+    $sql .= "`cheque` varchar(100) NOT NULL, ";
+    $sql .= "`paypal` varchar(64) NOT NULL, ";
+    $sql .= "`bank_name` varchar(64) NOT NULL, ";
+    $sql .= "`bank_branch_number` varchar(64) NOT NULL, ";
+    $sql .= "`bank_swift_code` varchar(64) NOT NULL, ";
+    $sql .= "`bank_account_name` varchar(64) NOT NULL, ";
+    $sql .= "`bank_account_number` varchar(64) NOT NULL, ";
+    $sql .= "`ip` varchar(40) NOT NULL, ";
+    $sql .= "`status` tinyint(1) NOT NULL, ";
+    $sql .= "`approved` tinyint(1) NOT NULL, ";
+    $sql .= "`date_added` datetime NOT NULL, ";
+    $sql .= "PRIMARY KEY (`seller_id`) ";
+    $sql .= ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 ; ";
+	  $this->db->query($sql);
+    
+    $sql = "CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "seller_group` ( ";
+	  $sql .= "`seller_group_id` int(11) NOT NULL AUTO_INCREMENT, ";
+	  $sql .= "`approval` int(1) NOT NULL, ";
+	  $sql .= "`sort_order` int(3) NOT NULL, ";
+	  $sql .= "`prodlimit` int(11) NOT NULL, ";
+	  $sql .= "`imglimit` int(11) NOT NULL, ";
+	  $sql .= "`downloadlimit` int(11) NOT NULL, ";
+	  $sql .= "PRIMARY KEY (`seller_group_id`) ";
+	  $sql .= ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ; ";
+	  $this->db->query($sql);
+    
+    $sql = "CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "seller_group_description` ( ";
+	  $sql .= "`seller_group_id` int(11) NOT NULL, ";
+	  $sql .= "`language_id` int(11) NOT NULL, ";
+	  $sql .= "`name` varchar(32) NOT NULL, ";
+	  $sql .= "`description` text NOT NULL, ";
+	  $sql .= "PRIMARY KEY (`seller_group_id`,`language_id`) ";
+	  $sql .= ") ENGINE=MyISAM DEFAULT CHARSET=utf8 ; ";
+	  $this->db->query($sql);
+    
+    $sql = "CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "seller_setting` ( ";
+	  $sql .= "`seller_setting_id` int(11) NOT NULL AUTO_INCREMENT, ";
+    $sql .= "`store_id` int(11) NOT NULL DEFAULT '0', ";
+    $sql .= "`seller_id` int(11) NOT NULL DEFAULT '0', ";  
+    $sql .= "`code` varchar(32) NOT NULL, ";
+    $sql .= "`key` varchar(64) NOT NULL, ";
+    $sql .= "`value` text NOT NULL, ";
+    $sql .= "`serialized` tinyint(1) NOT NULL, ";
+    $sql .= "PRIMARY KEY (`seller_setting_id`) ";
+    $sql .= ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=807 ; ";
+	  $this->db->query($sql);
+    
+    $sql = "CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "seller_transaction` ( ";
+	  $sql .= "`seller_transaction_id` int(11) NOT NULL AUTO_INCREMENT, ";
+    $sql .= "`seller_id` int(11) NOT NULL, ";
+    $sql .= "`order_id` int(11) NOT NULL, ";
+    $sql .= "`description` text NOT NULL, ";
+    $sql .= "`amount` decimal(15,4) NOT NULL, ";
+    $sql .= "`date_added` datetime NOT NULL, ";
+    $sql .= "PRIMARY KEY (`seller_transaction_id`) ";
+    $sql .= ") ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ; ";
+	  $this->db->query($sql);
+    
+    $this->db->query("INSERT INTO `" . DB_PREFIX . "seller` SET `seller_id` = '0', `firstname` = 'Your Store', `lastname` = 'Default'");
+    
+    $this->db->query("INSERT INTO `" . DB_PREFIX . "seller_group` SET `seller_group_id` = '1', `approval` = '0', `sort_order` = '1', `prodlimit` = '10', `imglimit` = '100', `downloadlimit` = '100'");
+    
+    $this->db->query("INSERT INTO `" . DB_PREFIX . "seller_group_description` SET `seller_group_id` = '1', `language_id` = '1', `name` = 'Default', `description` = 'test'");
+	
+	}
+}
