@@ -25,10 +25,10 @@ class ModelSellerSellerGroup extends Model {
 	public function deleteSellerGroup($seller_group_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "seller_group WHERE seller_group_id = '" . (int)$seller_group_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "seller_group_description WHERE seller_group_id = '" . (int)$seller_group_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE seller_group_id = '" . (int)$seller_group_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE seller_group_id = '" . (int)$seller_group_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_reward WHERE seller_group_id = '" . (int)$seller_group_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "tax_rate_to_seller_group WHERE seller_group_id = '" . (int)$seller_group_id . "'");
+		//$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE seller_group_id = '" . (int)$seller_group_id . "'");
+		//$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE seller_group_id = '" . (int)$seller_group_id . "'");
+		//$this->db->query("DELETE FROM " . DB_PREFIX . "product_reward WHERE seller_group_id = '" . (int)$seller_group_id . "'");
+		//$this->db->query("DELETE FROM " . DB_PREFIX . "tax_rate_to_seller_group WHERE seller_group_id = '" . (int)$seller_group_id . "'");
 	}
 
 	public function getSellerGroup($seller_group_id) {
