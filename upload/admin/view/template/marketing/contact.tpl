@@ -191,7 +191,7 @@ $('#input-product').parent().find('.well').delegate('.fa-minus-circle', 'click',
 
 function send(url) {
 	// Summer not fix
-	$('textarea[name=\'message\']').val($('#input-message').code());
+	//$('textarea[name=\'message\']').val($('#input-message').code());
 
 	$.ajax({
 		url: url,
