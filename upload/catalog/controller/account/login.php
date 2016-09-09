@@ -4,11 +4,12 @@ class ControllerAccountLogin extends Controller {
 
 	public function index() {
 		$this->load->model('account/customer');
+		$this->cart->updatecartcustomer();
 
 		// Login override for admin users
 		if (!empty($this->request->get['token'])) {
 			$this->customer->logout();
-			$this->cart->allclear();
+			$this->cart->updatecartcustomer();
 
 			unset($this->session->data['order_id']);
 			unset($this->session->data['payment_address']);
