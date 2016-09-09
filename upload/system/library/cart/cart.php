@@ -298,6 +298,10 @@ public function allclear() {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "cart WHERE customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "' AND seller_id = '" . $seller_id . "'");
 	}
 
+	public function updatecartcustomer() {
+		$this->db->query("UPDATE " . DB_PREFIX . "cart SET customer_id = '" . (int)$this->customer->getId() . "' WHERE session_id = '" . $this->db->escape($this->session->getId()) . "'");
+	}
+	
 	public function getRecurringProducts() {
 		$product_data = array();
 
