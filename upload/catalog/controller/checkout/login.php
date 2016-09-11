@@ -36,6 +36,7 @@ class ControllerCheckoutLogin extends Controller {
 
 	public function save() {
 		$this->load->language('checkout/checkout');
+		$this->cart->updatecartcustomer();
 
 		$json = array();
 
