@@ -283,6 +283,7 @@ class ControllerCheckoutRegister extends Controller {
 			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']);
+			$this->cart->updatecartcustomer();
 
 			// Add to activity log
 			$this->load->model('account/activity');
@@ -293,6 +294,7 @@ class ControllerCheckoutRegister extends Controller {
 			);
 
 			$this->model_account_activity->addActivity('register', $activity_data);
+			$this->session->data['token'] = token(32);
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
