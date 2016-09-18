@@ -290,7 +290,7 @@ class ModelTotalCoupon extends Model {
 		}
 
 		if ($code) {
-			$coupon_info = $this->getCoupon($code);
+			$coupon_info = $this->getCoupon($code, $order_info['seller_id']);
 
 			if ($coupon_info) {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "coupon_history` SET coupon_id = '" . (int)$coupon_info['coupon_id'] . "', order_id = '" . (int)$order_info['order_id'] . "', customer_id = '" . (int)$order_info['customer_id'] . "', amount = '" . (float)$order_total['value'] . "', date_added = NOW()");
