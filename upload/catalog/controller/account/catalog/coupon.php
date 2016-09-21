@@ -612,7 +612,8 @@ class ControllerAccountCatalogCoupon extends Controller {
 	}
 
 	protected function validateDelete() {
-		if (!$this->user->hasPermission('modify', 'account/catalog/coupon')) {
+		$seller_id = $this->customer->getId();
+                if ($this->customer->hasSellerPermission($seller_id) == 0) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
