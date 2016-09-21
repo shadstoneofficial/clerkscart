@@ -329,7 +329,7 @@ class ControllerAccountOrder extends Controller {
 				$product_info = $this->model_catalog_product->getProduct($product['product_id']);
 
 				if ($product_info) {
-					$reorder = $this->url->link('account/order/reorder', 'order_id=' . $order_id . '&order_product_id=' . $product['order_product_id'], true);
+					$reorder = $this->url->link('product/product', 'product_id=' . $product['product_id'], true);
 				} else {
 					$reorder = '';
 				}
