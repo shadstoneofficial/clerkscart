@@ -60,6 +60,7 @@ $_['entry_fax']                      = 'Fax';
 $_['entry_address']                  = 'Choose Address';
 $_['entry_company']                  = 'Company';
 $_['entry_customer_group']           = 'Customer Group';
+$_['entry_seller_group']             = 'Seller Group';
 $_['entry_address_1']                = 'Address 1';
 $_['entry_address_2']                = 'Address 2';
 $_['entry_postcode']                 = 'Post Code';
