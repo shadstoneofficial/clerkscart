@@ -36,7 +36,6 @@ class ControllerCheckoutLogin extends Controller {
 
 	public function save() {
 		$this->load->language('checkout/checkout');
-		$this->cart->updatecartcustomer();
 		$this->session->data['token'] = token(32);
 
 		$json = array();
@@ -79,7 +78,8 @@ class ControllerCheckoutLogin extends Controller {
 
 		if (!$json) {
 			// Unset guest
-			unset($this->session->data['guest']);
+			$this->cart->updatecartcustomer();
+			//unset($this->session->data['guest']);
 
 			// Default Shipping Address
 			$this->load->model('account/address');
