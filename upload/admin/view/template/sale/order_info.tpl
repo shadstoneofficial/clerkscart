@@ -505,7 +505,7 @@ $(document).delegate('#button-sellercommission-add', 'click', function() {
 			if (json['success']) {
                 $('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
 
-				$('#button-commission-add').replaceWith('<button id="button-sellercommission-remove" data-toggle="tooltip" title="<?php echo $button_sellercommission_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i></button>');
+				$('#button-sellercommission-add').replaceWith('<button id="button-sellercommission-remove" data-toggle="tooltip" title="<?php echo $button_sellercommission_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-minus-circle"></i></button>');
 			}
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
