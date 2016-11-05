@@ -49,6 +49,7 @@ class ModelCatalogProduct extends Model {
 				'sort_order'       => $query->row['sort_order'],
 				'status'           => $query->row['status'],
 				'date_added'       => $query->row['date_added'],
+				'date_ende'        => $query->row['date_ende'],
 				'date_modified'    => $query->row['date_modified'],
 				'viewed'           => $query->row['viewed']
 			);
