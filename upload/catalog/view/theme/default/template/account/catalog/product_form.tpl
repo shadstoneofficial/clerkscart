@@ -260,7 +260,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-date-dateende"><?php echo $entry_date_end; ?></label>
                 <div class="col-sm-3">
-                  <div class="input-group enddate">
+                  <div class="input-group date">
                     <input type="text" name="date_ende" value="<?php echo $date_ende; ?>" placeholder="<?php echo $date_ende; ?>" data-date-format="YYYY-MM-DD HH" id="input-date-dateende" class="form-control" />
                     <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
@@ -1415,11 +1415,6 @@ function addRecurring() {
   <script type="text/javascript"><!--
 $('.date').datetimepicker({
 	pickTime: false
-});
-
-$('.enddate').datetimepicker({
-	pickDate: true,
-	pickTime: true
 });
 
 $('.time').datetimepicker({
