@@ -959,7 +959,7 @@ class ControllerAccountCatalogProduct extends Controller {
     if (isset($this->request->post['date_ende'])) {
 			$data['date_ende'] = $this->request->post['date_ende'];
 		} elseif (!empty($product_info)) {
-			$data['date_ende'] = ($product_info['date_ende'] != '0000-00-00') ? $product_info['date_ende'] : '';
+			$data['date_ende'] = ($product_info['date_ende'] != '0000-00-00 00:00:00') ? $product_info['date_ende'] : '';
 		} else {
 			$data['date_ende'] = date('Y-m-d');
 		}
