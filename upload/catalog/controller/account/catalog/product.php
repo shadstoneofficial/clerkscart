@@ -751,6 +751,12 @@ class ControllerAccountCatalogProduct extends Controller {
 		} else {
 			$data['error_keyword'] = '';
 		}
+		
+		if (isset($this->error['enddate'])) {
+			$data['error_enddate'] = $this->error['enddate'];
+		} else {
+			$data['error_enddate'] = '';
+		}
 
 		$url = '';
 
@@ -1429,6 +1435,13 @@ class ControllerAccountCatalogProduct extends Controller {
 			$this->error['model'] = $this->language->get('error_model');
 		}
 		
+		$enddate = date('Ymd', strtotime($this->request->post['date_ende']));
+                $datenow = date('Y-m-d');
+                $currentdate = date('Ymd', strtotime($datenow));
+                $minstart = $currentdate + 1;
+                if ($enddate < $minstart) {
+                $this->error['enddate'] = $this->language->get('error_enddate');
+                }
 		/*if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('account/catalog/url_alias');
 
