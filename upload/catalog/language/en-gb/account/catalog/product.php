@@ -107,6 +107,7 @@ $_['error_meta_title']       = 'Meta Title must be greater than 3 and less than 
 $_['error_model']            = 'Product Model must be greater than 1 and less than 64 characters!';
 $_['error_prodlimit']        = 'You have exceeded the limit of products for your seller group!';
 $_['error_keyword']          = 'SEO URL already in use!';
+$_['error_enddate']          = 'Уnd date must be greater than Date Available!';
 
 // Text
 $_['text_yes']                      = 'Yes';
