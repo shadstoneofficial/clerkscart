@@ -265,6 +265,9 @@
                     <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
                     </span></div>
+		    <?php if ($error_enddate) { ?>
+                  <div class="text-danger"><?php echo $error_enddate; ?></div>
+                  <?php } ?>
                 </div>
               </div>
               <div class="form-group">
