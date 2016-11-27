@@ -4,7 +4,6 @@ class ControllerAccountLogin extends Controller {
 
 	public function index() {
 		$this->load->model('account/customer');
-		$this->cart->updatecartcustomer();
 
 		// Login override for admin users
 		if (!empty($this->request->get['token'])) {
@@ -58,6 +57,7 @@ class ControllerAccountLogin extends Controller {
       $this->session->data['token'] = token(32);
 			// Unset guest
 			unset($this->session->data['guest']);
+			$this->cart->updatecartcustomer();
 
 			// Default Shipping Address
 			$this->load->model('account/address');
