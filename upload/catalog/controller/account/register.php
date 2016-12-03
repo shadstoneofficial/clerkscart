@@ -24,7 +24,7 @@ class ControllerAccountRegister extends Controller {
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
 
 			$this->customer->login($this->request->post['email'], $this->request->post['password']);
-
+                        $this->cart->updatecartcustomer();
 			unset($this->session->data['guest']);
 
 			// Add to activity log
