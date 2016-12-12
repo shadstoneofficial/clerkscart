@@ -3,8 +3,7 @@ class ControllerCheckoutCart extends Controller {
 	public function index() {
 		$this->load->language('checkout/cart');
 
-		$this->document->setTitle($this->language->get('heading_title'));
-
+		$this->document->setTitle($this->language->get('heading_title'));   
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -36,7 +35,7 @@ class ControllerCheckoutCart extends Controller {
 			$data['button_remove'] = $this->language->get('button_remove');
 			$data['button_shopping'] = $this->language->get('button_shopping');
 			$data['button_checkout'] = $this->language->get('button_checkout');
-
+      
 			if (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
 				$data['error_warning'] = $this->language->get('error_stock');
 			} elseif (isset($this->session->data['error'])) {
@@ -61,24 +60,32 @@ class ControllerCheckoutCart extends Controller {
 				$data['success'] = '';
 			}
 
-			$data['action'] = $this->url->link('checkout/cart/edit', '', true);
-
-			if ($this->config->get('config_cart_weight')) {
-				$data['weight'] = $this->weight->format($this->cart->getWeight(), $this->config->get('config_weight_class_id'), $this->language->get('decimal_point'), $this->language->get('thousand_point'));
-			} else {
-				$data['weight'] = '';
-			}
-
-			$this->load->model('tool/image');
+      $this->load->model('tool/image');
 			$this->load->model('tool/upload');
 
-			$data['products'] = array();
+			$data['action'] = $this->url->link('checkout/cart/edit', '', true);
+      
+      $carts = $this->cart->getSellercarts();
 
-			$products = $this->cart->getProducts();
-			foreach ($products as $product) {
+      $data['carts'] = array();
+      
+      foreach ($carts as $cart) {
+
+      $seller_id = $cart['seller_id'];
+
+			if ($this->config->get('config_cart_weight')) {
+				$weight = $this->weight->format($this->cart->getSellerweight($seller_id), $this->config->get('config_weight_class_id'), $this->language->get('decimal_point'), $this->language->get('thousand_point'));
+			} else {
+				$weight = '';
+			}
+
+			$products = array();
+
+			$cartproducts = $this->cart->getSellerproducts($seller_id);
+			foreach ($cartproducts as $product) {
 				$product_total = 0;
 
-				foreach ($products as $product_2) {
+				foreach ($cartproducts as $product_2) {
 					if ($product_2['product_id'] == $product['product_id']) {
 						$product_total += $product_2['quantity'];
 					}
@@ -129,14 +136,6 @@ class ControllerCheckoutCart extends Controller {
 					$total = false;
 				}
 
-        $seller_id = $product['seller_id'];
-      
-      $this->load->model('account/catalog/seller');
-      
-      $seller_info = $this->model_account_catalog_seller->getSeller($seller_id);
-
-      $seller_name = $seller_info['firstname'] . '&nbsp;' . $seller_info['lastname'];
-
 				$recurring = '';
 
 				if ($product['recurring']) {
@@ -161,10 +160,8 @@ class ControllerCheckoutCart extends Controller {
         
         $url = '';
         
-				$data['products'][] = array(
+				$products[] = array(
 					'cart_id'   => $product['cart_id'],
-          'seller_id' => $product['seller_id'],
-          'seller_name' => $seller_name,
 					'thumb'     => $image,
 					'name'      => $product['name'],
 					'model'     => $product['model'],
@@ -175,17 +172,16 @@ class ControllerCheckoutCart extends Controller {
 					'reward'    => ($product['reward'] ? sprintf($this->language->get('text_points'), $product['reward']) : ''),
 					'price'     => $price,
 					'total'     => $total,
-          'checkout'  => $this->url->link('checkout/checkout', '&seller_id=' . $product['seller_id'] . $url, true),
 					'href'      => $this->url->link('product/product', 'product_id=' . $product['product_id'])
 				);
 			}
 
 			// Gift Voucher
-			$data['vouchers'] = array();
+			$vouchers = array();
 
 			if (!empty($this->session->data['vouchers'])) {
 				foreach ($this->session->data['vouchers'] as $key => $voucher) {
-					$data['vouchers'][] = array(
+					$vouchers[] = array(
 						'key'         => $key,
 						'description' => $voucher['description'],
 						'amount'      => $this->currency->format($voucher['amount'], $this->session->data['currency']),
@@ -198,13 +194,14 @@ class ControllerCheckoutCart extends Controller {
 			$this->load->model('extension/extension');
 
 			$totals = array();
-			$taxes = $this->cart->getTaxes();
+			$taxes = $this->cart->getSellertaxes($seller_id);
 			$total = 0;
 			
 			// Because __call can not keep var references so we put them into an array. 			
 			$total_data = array(
 				'totals' => &$totals,
 				'taxes'  => &$taxes,
+        'seller_id'  => &$seller_id,
 				'total'  => &$total
 			);
 			
@@ -225,7 +222,7 @@ class ControllerCheckoutCart extends Controller {
 						$this->load->model('total/' . $result['code']);
 						
 						// We have to put the totals in an array so that they pass by reference.
-						$this->{'model_total_' . $result['code']}->getTotal($total_data);
+						$this->{'model_total_' . $result['code']}->getSellertotal($total_data);
 					}
 				}
 
@@ -237,23 +234,17 @@ class ControllerCheckoutCart extends Controller {
 
 				array_multisort($sort_order, SORT_ASC, $totals);
 			}
-
-			$data['totals'] = array();
-
-			foreach ($totals as $total) {
-				$data['totals'][] = array(
+      $carttotals = array();
+      foreach ($totals as $total) {
+				$carttotals[] = array(
 					'title' => $total['title'],
 					'text'  => $this->currency->format($total['value'], $this->session->data['currency'])
 				);
 			}
 
-			$data['continue'] = $this->url->link('common/home');
-
-			$data['checkout'] = $this->url->link('checkout/checkout', '', true);
-
 			$this->load->model('extension/extension');
 
-			$data['modules'] = array();
+			$modules = array();
 			
 			$files = glob(DIR_APPLICATION . '/controller/total/*.php');
 
@@ -262,11 +253,27 @@ class ControllerCheckoutCart extends Controller {
 					$result = $this->load->controller('total/' . basename($file, '.php'));
 					
 					if ($result) {
-						$data['modules'][] = $result;
+						$modules[] = $result;
 					}
 				}
 			}
+      $this->load->model('account/catalog/seller');
+      
+      $seller_info = $this->model_account_catalog_seller->getSeller($seller_id);
 
+      $seller_name = $seller_info['firstname'] . '&nbsp;' . $seller_info['lastname'];
+      $data['carts'][] = array(
+          'weight'     => $weight,
+          'products'   => $products,
+          'seller_name' => $seller_name,
+					'carttotals'     => $carttotals,
+          'checkout'   => $this->url->link('checkout/checkout', '&seller_id=' . $seller_id . $url, true)
+				);
+
+      }
+      
+      $data['continue'] = $this->url->link('common/home');
+			$data['checkout'] = $this->url->link('checkout/checkout', '', true);
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');
