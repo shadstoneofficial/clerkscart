@@ -29,33 +29,32 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $heading_title; ?>
-        <?php if ($weight) { ?>
-        &nbsp;(<?php echo $weight; ?>)
+      <h1><?php echo $heading_title; ?></h1>
+      
+       <?php foreach ($carts as $cart) { ?>
+        <div class="col-sm-12">
+        <?php if ($cart['weight']) { ?>
+        <?php echo $seller_name; ?> : <?php echo $cart['seller_name']; ?>&nbsp;(<?php echo $cart['weight']; ?>)
         <?php } ?>
-      </h1>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
         <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
               <tr>
                 <td class="text-center"><?php echo $column_image; ?></td>
-                <td class="text-left"><?php echo $seller_name; ?></td>
                 <td class="text-left"><?php echo $column_name; ?></td>
                 <td class="text-left"><?php echo $column_model; ?></td>
                 <td class="text-left"><?php echo $column_quantity; ?></td>
                 <td class="text-right"><?php echo $column_price; ?></td>
                 <td class="text-right"><?php echo $column_total; ?></td>
-                <td class="text-right"></td>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($products as $product) { ?>
+              <?php foreach ($cart['products'] as $product) { ?>
               <tr>
                 <td class="text-center"><?php if ($product['thumb']) { ?>
                   <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-thumbnail" /></a>
-                  <?php } ?></td>
-                <td class="text-left"><?php echo $product['seller_name']; ?></td>  
+                  <?php } ?></td>  
                 <td class="text-left"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
                   <?php if (!$product['stock']) { ?>
                   <span class="text-danger">***</span>
@@ -83,21 +82,6 @@
                     </span></div></td>
                 <td class="text-right"><?php echo $product['price']; ?></td>
                 <td class="text-right"><?php echo $product['total']; ?></td>
-                <td class="text-right"><a class="btn btn-primary" href="<?php echo $product['checkout']; ?>"><?php echo $button_checkout; ?></a></td>
-              </tr>
-              <?php } ?>
-              <?php foreach ($vouchers as $voucher) { ?>
-              <tr>
-                <td></td>
-                <td class="text-left"><?php echo $voucher['description']; ?></td>
-                <td class="text-left"></td>
-                <td class="text-left"><div class="input-group btn-block" style="max-width: 200px;">
-                    <input type="text" name="" value="1" size="1" disabled="disabled" class="form-control" />
-                    <span class="input-group-btn">
-                    <button type="button" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger" onclick="voucher.remove('<?php echo $voucher['key']; ?>');"><i class="fa fa-times-circle"></i></button>
-                    </span></div></td>
-                <td class="text-right"><?php echo $voucher['amount']; ?></td>
-                <td class="text-right"><?php echo $voucher['amount']; ?></td>
               </tr>
               <?php } ?>
             </tbody>
@@ -107,15 +91,21 @@
       <div class="row">
         <div class="col-sm-4 col-sm-offset-8">
           <table class="table table-bordered">
-            <?php foreach ($totals as $total) { ?>
+            <?php foreach ($cart['carttotals'] as $total) { ?>
             <tr>
               <td class="text-right"><strong><?php echo $total['title']; ?>:</strong></td>
               <td class="text-right"><?php echo $total['text']; ?></td>
-            </tr>
+            </tr> 
             <?php } ?>
           </table>
         </div>
       </div>
+      
+      <div class="buttons">
+        <div class="pull-right"><a class="btn btn-primary" href="<?php echo $cart['checkout']; ?>"><?php echo $button_checkout; ?></a></div>
+      </div>
+      </div>
+      <?php } ?>
       <div class="buttons">
         <div class="pull-left"><a href="<?php echo $continue; ?>" class="btn btn-default"><?php echo $button_shopping; ?></a></div>
       </div>
