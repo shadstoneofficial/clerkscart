@@ -416,7 +416,11 @@ public function allclear() {
 		return false;
 	}
   
-   //For seller 
+   //For seller
+public function getSellercarts() {
+		$cart_query = $this->db->query("SELECT DISTINCT seller_id FROM " . DB_PREFIX . "cart");
+    return $cart_query->rows;
+	}	
   public function getSellerproducts($seller_id) {
 		$product_data = array();
 
