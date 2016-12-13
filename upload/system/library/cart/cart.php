@@ -418,7 +418,7 @@ public function allclear() {
   
    //For seller
 public function getSellercarts() {
-		$cart_query = $this->db->query("SELECT DISTINCT seller_id FROM " . DB_PREFIX . "cart WHERE session_id = '" . $this->db->escape($this->session->getId()) . "'");
+		$cart_query = $this->db->query("SELECT DISTINCT seller_id FROM " . DB_PREFIX . "cart WHERE customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "'");
     return $cart_query->rows;
 	}	
   public function getSellerproducts($seller_id) {
