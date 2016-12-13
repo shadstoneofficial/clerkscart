@@ -262,6 +262,7 @@ class ControllerCheckoutCart extends Controller {
       $seller_info = $this->model_account_catalog_seller->getSeller($seller_id);
 
       $seller_name = $seller_info['firstname'] . '&nbsp;' . $seller_info['lastname'];
+      $url = '';
       $data['carts'][] = array(
           'weight'     => $weight,
           'products'   => $products,
