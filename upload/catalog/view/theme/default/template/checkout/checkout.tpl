@@ -216,7 +216,7 @@ $(document).delegate('#button-login', 'click', function() {
 // Register
 $(document).delegate('#button-register', 'click', function() {
     $.ajax({
-        url: 'index.php?route=checkout/register/save',
+        url: 'index.php?route=checkout/register/save&seller_id=<?php echo $seller_id; ?>',
         type: 'post',
         data: $('#collapse-payment-address input[type=\'text\'], #collapse-payment-address input[type=\'date\'], #collapse-payment-address input[type=\'datetime-local\'], #collapse-payment-address input[type=\'time\'], #collapse-payment-address input[type=\'password\'], #collapse-payment-address input[type=\'hidden\'], #collapse-payment-address input[type=\'checkbox\']:checked, #collapse-payment-address input[type=\'radio\']:checked, #collapse-payment-address textarea, #collapse-payment-address select'),
         dataType: 'json',
