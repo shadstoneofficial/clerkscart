@@ -1,11 +1,6 @@
 <?php
 class ControllerCheckoutCheckout extends Controller {
 	public function index() {
-		// Validate cart has products and has stock.
-		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
-			$this->response->redirect($this->url->link('checkout/cart'));
-		}
-
 		// Validate minimum quantity requirements.
     
     if (empty($this->request->get['seller_id'])) {
@@ -16,6 +11,10 @@ class ControllerCheckoutCheckout extends Controller {
      $data['seller_id'] = $seller_id;
     }
     
+		// Validate Seller cart has products and has stock.
+		if ((!$this->cart->hasSellerproducts($seller_id) && empty($this->session->data['vouchers'])) || (!$this->cart->hasSellerstock($seller_id) && !$this->config->get('config_stock_checkout'))) {
+			$this->response->redirect($this->url->link('checkout/cart'));
+		}
 		$products = $this->cart->getSellerproducts($seller_id);
     
     
