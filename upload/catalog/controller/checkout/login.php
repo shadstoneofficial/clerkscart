@@ -78,6 +78,7 @@ class ControllerCheckoutLogin extends Controller {
 
 		if (!$json) {
 			// Unset guest
+			$this->session->data['token'] = token(32);
 			$this->cart->updatecartcustomer();
 			//unset($this->session->data['guest']);
 
