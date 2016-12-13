@@ -124,21 +124,22 @@ class ControllerCheckoutRegister extends Controller {
 
 	public function save() {
 		$this->load->language('checkout/checkout');
-
+                $seller_id = $this->request->get['seller_id'];
 		$json = array();
 
 		// Validate if customer is already logged out.
+		$url = '';
 		if ($this->customer->isLogged()) {
-			$json['redirect'] = $this->url->link('checkout/checkout', '', true);
+			$json['redirect'] = $this->url->link('checkout/checkout', '&seller_id=' . $seller_id . $url, true);
 		}
 
 		// Validate cart has products and has stock.
-		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+		if ((!$this->cart->hasSellerproducts($seller_id) && empty($this->session->data['vouchers'])) || (!$this->cart->hasSellerstock($seller_id) && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
 		// Validate minimum quantity requirements.
-		$products = $this->cart->getProducts();
+		$products = $this->cart->getSellerproducts($seller_id);
 
 		foreach ($products as $product) {
 			$product_total = 0;
