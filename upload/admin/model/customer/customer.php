@@ -7,12 +7,12 @@ class ModelCustomerCustomer extends Model {
 
                     $this->db->query("INSERT INTO " . DB_PREFIX . "seller SET seller_id = '" . (int)$customer_id . "', seller_group_id = '" . (int)$this->config->get('config_seller_group_id') . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', commission = '" . (float)$this->config->get('config_seller_commission') . "', payment = 'cheque', cheque = '" . $this->db->escape($data['firstname']) . "', approved = '" . (int)$data['seller_approved'] . "', date_added = NOW()");
         
-		$path_directory = 'image/catalog';
+		$path_directory = DIR_IMAGE . 'catalog';
                 if (!mkdir($path_directory.'/'.$customer_id, 0777, true)) {
                 die('Помилка директорія не створена');
                 }
 
-                $path_download = 'system/storage/download';
+                $path_download = DIR_SYSTEM . 'storage/download';
                 if (!mkdir($path_download.'/'.$customer_id, 0777, true)) {
                 die('Помилка директорія не створена');
                 }
