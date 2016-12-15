@@ -27,12 +27,12 @@ class ModelAccountCustomer extends Model {
 
     $this->db->query("INSERT INTO " . DB_PREFIX . "seller SET seller_id = '" . (int)$customer_id . "', seller_group_id = '" . (int)$seller_group_id . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', company = '" . $this->db->escape($data['company']) . "', address_1 = '" . $this->db->escape($data['address_1']) . "', address_2 = '" . $this->db->escape($data['address_2']) . "', city = '" . $this->db->escape($data['city']) . "', postcode = '" . $this->db->escape($data['postcode']) . "', country_id = '" . (int)$data['country_id'] . "', zone_id = '" . (int)$data['zone_id'] . "', commission = '" . (float)$this->config->get('config_seller_commission') . "', payment = 'cheque', cheque = '" . $this->db->escape($data['firstname']) . "', approved = '" . (int)!$seller_group_info['approval'] . "', date_added = NOW()");
     
-    $path_directory = 'image/catalog';
+    $path_directory = DIR_IMAGE . 'catalog';
     if (!mkdir($path_directory.'/'.$customer_id, 0777, true)) {
     die('Помилка директорія не створена');
     }
 
-    $path_download = 'system/storage/download';
+    $path_download = DIR_SYSTEM . 'storage/download';
     if (!mkdir($path_download.'/'.$customer_id, 0777, true)) {
     die('Помилка директорія не створена');
     }
