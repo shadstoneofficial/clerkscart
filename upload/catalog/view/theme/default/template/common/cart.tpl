@@ -2,9 +2,11 @@
   <button type="button" data-toggle="dropdown" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-inverse btn-block btn-lg dropdown-toggle"><i class="fa fa-shopping-cart"></i> <span id="cart-total"><?php echo $text_items; ?></span></button>
   <ul class="dropdown-menu pull-right">
     <?php if ($products) { ?>
-    <li>
+    <?php foreach ($carts as $cart) { ?>
+    <li style="margin-bottom: 10px;border-bottom: 1px solid #000;background: #fff;">
       <table class="table table-striped">
-        <?php foreach ($products as $product) { ?>
+      <p><?php echo $seller_name; ?> : <?php echo $cart['seller_name']; ?></p>
+        <?php foreach ($cart['products'] as $product) { ?>
         <tr>
           <td class="text-center"><?php if ($product['thumb']) { ?>
             <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-thumbnail" /></a>
@@ -22,25 +24,26 @@
             <?php } ?></td>
           <td class="text-right">x <?php echo $product['quantity']; ?></td>
           <td class="text-right"><?php echo $product['total']; ?></td>
-          <td class="text-right"><a class="btn btn-xs" href="<?php echo $product['checkout']; ?>"><?php echo $text_checkout; ?></a></td>
           <td class="text-center"><button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');" title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
         </tr>
         <?php } ?>
       </table>
-    </li>
-    <li>
       <div>
         <table class="table table-bordered">
-          <?php foreach ($totals as $total) { ?>
+          <?php foreach ($cart['carttotals'] as $total) { ?>
           <tr>
             <td class="text-right"><strong><?php echo $total['title']; ?></strong></td>
             <td class="text-right"><?php echo $total['text']; ?></td>
           </tr>
           <?php } ?>
         </table>
-        <p class="text-right"><a href="<?php echo $cart; ?>"><strong><i class="fa fa-shopping-cart"></i> <?php echo $text_cart; ?></strong></a></p>
+        <div class="buttons">
+        <div class="text-left"><a href="<?php echo $cart['checkout']; ?>" class="btn btn-default"><strong> <?php echo $text_checkout; ?></strong></a></div>
+      </div>
       </div>
     </li>
+    <?php } ?>
+    <div class="text-right"><a href="<?php echo $shopping_cart; ?>" class="btn btn-default"><strong><i class="fa fa-shopping-cart"></i> <?php echo $text_cart; ?></strong></a></div>
     <?php } else { ?>
     <li>
       <p class="text-center"><?php echo $text_empty; ?></p>
