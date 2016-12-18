@@ -43,7 +43,7 @@
       </div>
     </li>
     <?php } ?>
-    <div class="text-right"><a href="<?php echo $shopping_cart; ?>" class="btn btn-default"><strong><i class="fa fa-shopping-cart"></i> <?php echo $text_cart; ?></strong></a></div>
+    <li><div class="text-right"><a href="<?php echo $shopping_cart; ?>" class="btn btn-default"><strong><i class="fa fa-shopping-cart"></i> <?php echo $text_cart; ?></strong></a></div></li>
     <?php } else { ?>
     <li>
       <p class="text-center"><?php echo $text_empty; ?></p>
