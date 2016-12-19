@@ -14,12 +14,12 @@ class ControllerCheckoutConfirm extends Controller {
 		if ($this->cart->hasSellershipping($seller_id)) {
 			// Validate if shipping address has been set.
 			if (!isset($this->session->data['shipping_address'])) {
-				$redirect = $this->url->link('checkout/checkout', '', true);
+				$redirect = $this->url->link('checkout/checkout&seller_id=' . $seller_id, '', true);
 			}
 
 			// Validate if shipping method has been set.
 			if (!isset($this->session->data['shipping_method'])) {
-				$redirect = $this->url->link('checkout/checkout', '', true);
+				$redirect = $this->url->link('checkout/checkout&seller_id=' . $seller_id, '', true);
 			}
 		} else {
 			unset($this->session->data['shipping_address']);
@@ -29,12 +29,12 @@ class ControllerCheckoutConfirm extends Controller {
 
 		// Validate if payment address has been set.
 		if (!isset($this->session->data['payment_address'])) {
-			$redirect = $this->url->link('checkout/checkout', '', true);
+			$redirect = $this->url->link('checkout/checkout&seller_id=' . $seller_id, '', true);
 		}
 
 		// Validate if payment method has been set.
 		if (!isset($this->session->data['payment_method'])) {
-			$redirect = $this->url->link('checkout/checkout', '', true);
+			$redirect = $this->url->link('checkout/checkout&seller_id=' . $seller_id, '', true);
 		}
 
 		// Validate cart has products and has stock.
