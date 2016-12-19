@@ -183,7 +183,7 @@ $(document).delegate('#button-account', 'click', function() {
 // Login
 $(document).delegate('#button-login', 'click', function() {
     $.ajax({
-        url: 'index.php?route=checkout/login/save',
+        url: 'index.php?route=checkout/login/save&seller_id=<?php echo $seller_id; ?>',
         type: 'post',
         data: $('#collapse-checkout-option :input'),
         dataType: 'json',
