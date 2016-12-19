@@ -42,7 +42,7 @@ class ControllerCheckoutLogin extends Controller {
 		$json = array();
 
 		if ($this->customer->isLogged()) {
-			$json['redirect'] = $this->url->link('checkout/checkout&seller_id=' . $seller_id);
+			$json['redirect'] = $this->url->link('checkout/checkout&seller_id=' . $seller_id, '', true);
 		}
 
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
@@ -80,8 +80,8 @@ class ControllerCheckoutLogin extends Controller {
 		if (!$json) {
 			// Unset guest
 			$this->session->data['token'] = token(32);
-			$this->cart->updatecartcustomer();
-			//unset($this->session->data['guest']);
+                        $this->cart->updatecartcustomer();
+			unset($this->session->data['guest']);
 
 			// Default Shipping Address
 			$this->load->model('account/address');
@@ -115,7 +115,7 @@ class ControllerCheckoutLogin extends Controller {
 
 			$this->model_account_activity->addActivity('login', $activity_data);
 
-			$json['redirect'] = $this->url->link('checkout/checkout&seller_id=' . $seller_id);
+			$json['redirect'] = $this->url->link('checkout/checkout&seller_id=' . $seller_id, '', true);
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
