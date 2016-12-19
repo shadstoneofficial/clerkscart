@@ -37,11 +37,12 @@ class ControllerCheckoutLogin extends Controller {
 	public function save() {
 		$this->load->language('checkout/checkout');
 		$this->session->data['token'] = token(32);
+		$seller_id = $this->request->get['seller_id'];
 
 		$json = array();
 
 		if ($this->customer->isLogged()) {
-			$json['redirect'] = $this->url->link('checkout/checkout', '', true);
+			$json['redirect'] = $this->url->link('checkout/checkout&seller_id=' . $seller_id);
 		}
 
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
@@ -114,7 +115,7 @@ class ControllerCheckoutLogin extends Controller {
 
 			$this->model_account_activity->addActivity('login', $activity_data);
 
-			$json['redirect'] = $this->url->link('checkout/checkout', '', true);
+			$json['redirect'] = $this->url->link('checkout/checkout&seller_id=' . $seller_id);
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
