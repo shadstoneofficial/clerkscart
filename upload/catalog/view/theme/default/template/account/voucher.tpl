@@ -20,6 +20,13 @@
       <h1><?php echo $heading_title; ?></h1>
       <p><?php echo $text_description; ?></p>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+      <div class="form-required">
+                <label class="col-sm-2 control-label" for="input-seller"><?php echo $entry_seller; ?></span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="seller" value="" placeholder="<?php echo $entry_seller; ?>" id="input-seller" class="form-control" />
+                  <input type="hidden" name="seller_id" value="" />
+                </div>
+              </div>
         <div class="form-group required">
           <label class="col-sm-2 control-label" for="input-to-name"><?php echo $entry_to_name; ?></label>
           <div class="col-sm-10">
@@ -109,4 +116,28 @@
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
+<script type="text/javascript"><!--
+// Seller
+$('input[name=\'seller\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=account/catalog/seller/autocomplete&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['seller_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'seller\']').val(item['label']);
+		$('input[name=\'seller_id\']').val(item['value']);
+	}
+});
+//--></script>
 <?php echo $footer; ?>
