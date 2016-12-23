@@ -121,7 +121,7 @@
 $('input[name=\'seller\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=account/voucher/sellerautocomplete&filter_name=' +  encodeURIComponent(request),
+			url: 'index.php?route=account/voucher/sellerautocomplete&filter_company=' +  encodeURIComponent(request),
 			dataType: 'json',
 			success: function(json) {
 
