@@ -173,19 +173,19 @@ class Customer {
 	public function getSellers($data = array()) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "seller";
 
-		if (!empty($data['filter_name'])) {
-			$sql .= " WHERE company LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+		if (!empty($data['filter_company'])) {
+			$sql .= " WHERE company LIKE '" . $this->db->escape($data['filter_company']) . "%'";
 		}
 
 		$sort_data = array(
-			'name',
+			'company',
 			'sort_order'
 		);
 
 		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 			$sql .= " ORDER BY " . $data['sort'];
 		} else {
-			$sql .= " ORDER BY name";
+			$sql .= " ORDER BY company";
 		}
 
 		if (isset($data['order']) && ($data['order'] == 'DESC')) {
