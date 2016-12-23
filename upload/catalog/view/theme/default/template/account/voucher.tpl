@@ -20,7 +20,7 @@
       <h1><?php echo $heading_title; ?></h1>
       <p><?php echo $text_description; ?></p>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-      <div class="form-required">
+      <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-seller"><?php echo $entry_seller; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="seller" value="" placeholder="<?php echo $entry_seller; ?>" id="input-seller" class="form-control" />
