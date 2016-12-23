@@ -127,7 +127,7 @@ $('input[name=\'seller\']').autocomplete({
 
 				response($.map(json, function(item) {
 					return {
-						label: item['name'],
+						label: item['company'],
 						value: item['seller_id']
 					}
 				}));
