@@ -48,7 +48,8 @@ class ControllerAccountVoucher extends Controller {
 
 		$data['text_description'] = $this->language->get('text_description');
 		$data['text_agree'] = $this->language->get('text_agree');
-
+                
+		$data['entry_seller'] = $this->language->get('entry_seller');
 		$data['entry_to_name'] = $this->language->get('entry_to_name');
 		$data['entry_to_email'] = $this->language->get('entry_to_email');
 		$data['entry_from_name'] = $this->language->get('entry_from_name');
@@ -172,6 +173,39 @@ class ControllerAccountVoucher extends Controller {
 		$this->response->setOutput($this->load->view('account/voucher', $data));
 	}
 
+	public function sellerautocomplete() {
+		$json = array();
+
+		if (isset($this->request->get['filter_company'])) {
+
+			$filter_data = array(
+				'filter_company' => $this->request->get['filter_company'],
+				'start'       => 0,
+				'limit'       => 5
+			);
+
+			$results = $this->customer->getSellers($filter_data);
+
+			foreach ($results as $result) {
+				$json[] = array(
+					'seller_id' => $result['seller_id'],
+					'company'            => strip_tags(html_entity_decode($result['company'], ENT_QUOTES, 'UTF-8'))
+				);
+			}
+		}
+
+		$sort_order = array();
+
+		foreach ($json as $key => $value) {
+			$sort_order[$key] = $value['company'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $json);
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+	
 	public function success() {
 		$this->load->language('account/voucher');
 
