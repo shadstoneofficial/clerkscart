@@ -9,8 +9,8 @@ class ControllerCommonCart extends Controller {
 		$data['text_recurring'] = $this->language->get('text_recurring');
 		$data['text_items'] = sprintf($this->language->get('text_items'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($this->cart->getTotal(), $this->session->data['currency']));
 		$data['text_loading'] = $this->language->get('text_loading');
-    $data['seller_name'] = $this->language->get('seller_name');
-    $data['shopping_cart'] = $this->url->link('checkout/cart');
+                $data['seller_name'] = $this->language->get('seller_name');
+                $data['shopping_cart'] = $this->url->link('checkout/cart');
 
 		$data['button_remove'] = $this->language->get('button_remove');
 
@@ -225,7 +225,8 @@ class ControllerCommonCart extends Controller {
           'weight'     => $weight,
           'products'   => $products,
           'seller_name' => $seller_name,
-					'carttotals'     => $carttotals,
+	  'carttotals'     => $carttotals,
+	  'vouchers'     => $vouchers,
           'checkout'   => $this->url->link('checkout/checkout', '&seller_id=' . $seller_id . $url, true)
 				);
 
