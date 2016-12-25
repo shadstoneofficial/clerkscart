@@ -250,6 +250,7 @@ class ControllerCheckoutConfirm extends Controller {
 
 			if (!empty($this->session->data['vouchers'])) {
 				foreach ($this->session->data['vouchers'] as $voucher) {
+					if ($voucher['seller_id'] == $seller_id) {
 					$order_data['vouchers'][] = array(
 						'description'      => $voucher['description'],
 						'code'             => token(10),
@@ -259,9 +260,11 @@ class ControllerCheckoutConfirm extends Controller {
 						'from_email'       => $voucher['from_email'],
 						'voucher_theme_id' => $voucher['voucher_theme_id'],
 						'message'          => $voucher['message'],
+						'seller_id'        => $voucher['seller_id'],
 						'amount'           => $voucher['amount']
 					);
 				}
+			    }
 			}
 
 			$order_data['comment'] = $this->session->data['comment'];
