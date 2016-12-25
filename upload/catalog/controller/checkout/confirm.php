@@ -422,11 +422,13 @@ class ControllerCheckoutConfirm extends Controller {
 
 			if (!empty($this->session->data['vouchers'])) {
 				foreach ($this->session->data['vouchers'] as $voucher) {
+					if ($voucher['seller_id'] == $seller_id) {
 					$data['vouchers'][] = array(
 						'description' => $voucher['description'],
 						'amount'      => $this->currency->format($voucher['amount'], $this->session->data['currency'])
 					);
 				}
+			    }
 			}
 
 			$data['totals'] = array();
