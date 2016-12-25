@@ -176,18 +176,21 @@ class ControllerCheckoutCart extends Controller {
 				);
 			}
 
-			// Gift Voucher
+			 // Gift Voucher
 			$vouchers = array();
 
 			if (!empty($this->session->data['vouchers'])) {
 				foreach ($this->session->data['vouchers'] as $key => $voucher) {
+                                       if ($voucher['seller_id'] == $cart['seller_id']) {
 					$vouchers[] = array(
 						'key'         => $key,
 						'description' => $voucher['description'],
+                                                'seller_id'   => $voucher['seller_id'],
 						'amount'      => $this->currency->format($voucher['amount'], $this->session->data['currency']),
 						'remove'      => $this->url->link('checkout/cart', 'remove=' . $key)
 					);
-				}
+				} 
+                            }
 			}
 
 			// Totals
@@ -267,7 +270,8 @@ class ControllerCheckoutCart extends Controller {
           'weight'     => $weight,
           'products'   => $products,
           'seller_name' => $seller_name,
-					'carttotals'     => $carttotals,
+	  'carttotals'     => $carttotals,
+	  'vouchers'     => $vouchers,
           'checkout'   => $this->url->link('checkout/checkout', '&seller_id=' . $seller_id . $url, true)
 				);
 
