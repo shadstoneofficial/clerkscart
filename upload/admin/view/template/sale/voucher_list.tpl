@@ -37,7 +37,8 @@
               <thead>
                 <tr>
                   <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
-                  <td class="text-left"><?php if ($sort == 'v.code') { ?>
+                  <td class="text-left"><?php echo $column_seller; ?></td>
+		  <td class="text-left"><?php if ($sort == 'v.code') { ?>
                     <a href="<?php echo $sort_code; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_code; ?></a>
                     <?php } else { ?>
                     <a href="<?php echo $sort_code; ?>"><?php echo $column_code; ?></a>
@@ -84,6 +85,7 @@
                     <?php } else { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $voucher['voucher_id']; ?>" />
                     <?php } ?></td>
+		  <td class="text-left"><a href="<?php echo $voucher['seller_href']; ?>"><?php echo $voucher['seller_name']; ?></a></td> 
                   <td class="text-left"><?php echo $voucher['code']; ?></td>
                   <td class="text-left"><?php echo $voucher['from']; ?></td>
                   <td class="text-left"><?php echo $voucher['to']; ?></td>
