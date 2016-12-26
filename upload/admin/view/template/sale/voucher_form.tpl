@@ -36,6 +36,12 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
+	    <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-seller"><?php echo $entry_seller_id; ?></span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="seller_id" value="<?php echo $seller_id; ?>" placeholder="<?php echo $entry_seller_id; ?>" id="input-seller" class="form-control" />
+                </div>
+              </div>
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-code"><span data-toggle="tooltip" title="<?php echo $help_code; ?>"><?php echo $entry_code; ?></span></label>
                 <div class="col-sm-10">
