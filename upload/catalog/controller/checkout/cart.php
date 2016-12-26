@@ -2,6 +2,8 @@
 class ControllerCheckoutCart extends Controller {
 	public function index() {
 		$this->load->language('checkout/cart');
+		unset($this->session->data['shipping_method']);
+		unset($this->session->data['shipping_methods']);
 
 		$this->document->setTitle($this->language->get('heading_title'));   
 		$data['breadcrumbs'] = array();
