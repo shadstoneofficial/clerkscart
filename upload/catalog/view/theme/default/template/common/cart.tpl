@@ -1,7 +1,7 @@
 <div id="cart" class="btn-group btn-block">
   <button type="button" data-toggle="dropdown" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-inverse btn-block btn-lg dropdown-toggle"><i class="fa fa-shopping-cart"></i> <span id="cart-total"><?php echo $text_items; ?></span></button>
   <ul class="dropdown-menu pull-right">
-    <?php if ($products) { ?>
+    <?php if ($carts) { ?>
     <?php foreach ($carts as $cart) { ?>
     <li style="margin-bottom: 10px;border-bottom: 1px solid #000;background: #fff;">
       <table class="table table-striped">
