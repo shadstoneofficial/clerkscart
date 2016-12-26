@@ -178,8 +178,20 @@ class ControllerSaleVoucher extends Controller {
 				$order = '';
 			}
 			
+			$this->load->model('seller/seller');
+      
+      $seller_info = $this->model_seller_seller->getSeller($result['seller_id']);
+
+      if ($seller_info['company']){
+      $seller_name = $seller_info['company'];
+      } else {
+      $seller_name = $seller_info['firstname'] . '&nbsp;' . $seller_info['lastname'];
+      }
+			
 			$data['vouchers'][] = array(
 				'voucher_id' => $result['voucher_id'],
+				'seller_name' => $seller_name,
+                                'seller_href' => $this->url->link('seller/seller/edit', 'token=' . $this->session->data['token'] . '&seller_id=' . $result['seller_id'] . $url, true),
 				'code'       => $result['code'],
 				'from'       => $result['from_name'],
 				'to'         => $result['to_name'],
@@ -206,6 +218,7 @@ class ControllerSaleVoucher extends Controller {
 		$data['column_status'] = $this->language->get('column_status');
 		$data['column_date_added'] = $this->language->get('column_date_added');
 		$data['column_action'] = $this->language->get('column_action');
+		$data['column_seller'] = $this->language->get('column_seller');
 
 		$data['button_add'] = $this->language->get('button_add');
 		$data['button_edit'] = $this->language->get('button_edit');
