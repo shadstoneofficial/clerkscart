@@ -305,6 +305,7 @@ class ControllerSaleVoucher extends Controller {
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
 
+		$data['entry_seller_id'] = $this->language->get('entry_seller_id');
 		$data['entry_code'] = $this->language->get('entry_code');
 		$data['entry_from_name'] = $this->language->get('entry_from_name');
 		$data['entry_from_email'] = $this->language->get('entry_from_email');
@@ -412,6 +413,14 @@ class ControllerSaleVoucher extends Controller {
 
 		$data['token'] = $this->session->data['token'];
 
+		if (isset($this->request->post['seller_id'])) {
+			$data['seller_id'] = $this->request->post['seller_id'];
+		} elseif (!empty($voucher_info)) {
+			$data['seller_id'] = $voucher_info['seller_id'];
+		} else {
+			$data['seller_id'] = '';
+		}
+		
 		if (isset($this->request->post['code'])) {
 			$data['code'] = $this->request->post['code'];
 		} elseif (!empty($voucher_info)) {
