@@ -54,6 +54,7 @@ class ModelTotalVoucher extends Model {
 		if ($status) {
 			return array(
 				'voucher_id'       => $voucher_query->row['voucher_id'],
+				'seller_id'        => $voucher_query->row['seller_id'],
 				'code'             => $voucher_query->row['code'],
 				'from_name'        => $voucher_query->row['from_name'],
 				'from_email'       => $voucher_query->row['from_email'],
@@ -74,7 +75,23 @@ class ModelTotalVoucher extends Model {
 		if (isset($this->session->data['voucher'])) {
 			$this->load->language('total/voucher');
 
-			$voucher_info = $this->getVoucher($this->session->data['voucher']);
+			$vouchers = array();
+
+			if (!empty($this->session->data['voucher'])) {
+				foreach ($this->session->data['voucher'] as $key => $voucher) {
+                                   if ($voucher['seller_id'] == $total['seller_id']) {
+					$vouchers[] = array(
+						'key'         => $key,
+						'description' => $voucher['description'],
+                                                'seller_id'   => $voucher['seller_id'],
+						'amount'      => $this->currency->format($voucher['amount'], $this->session->data['currency']),
+						'remove'      => $this->url->link('checkout/cart', 'remove=' . $key)
+					);
+				} 
+                            }
+			}
+
+			$voucher_info = $this->getVoucher($vouchers);
 
 			if ($voucher_info) {
 				$amount = min($voucher_info['amount'], $total['total']);
