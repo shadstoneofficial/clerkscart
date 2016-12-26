@@ -3579,6 +3579,7 @@ INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
 
 CREATE TABLE IF NOT EXISTS `oc_voucher` (
   `voucher_id` int(11) NOT NULL AUTO_INCREMENT,
+  `seller_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `code` varchar(10) NOT NULL,
   `from_name` varchar(64) NOT NULL,
