@@ -10,6 +10,7 @@ $_['text_edit']         = 'Edit Gift Voucher';
 $_['text_sent']         = 'Success: Gift Voucher e-mail has been sent!';
 
 // Column
+$_['column_seller']     = 'Seller';
 $_['column_name']       = 'Voucher Name';
 $_['column_code']       = 'Code';
 $_['column_from']       = 'From';
@@ -23,6 +24,7 @@ $_['column_date_added'] = 'Date Added';
 $_['column_action']     = 'Action';
 
 // Entry
+$_['entry_seller_id']   = 'Seller id';
 $_['entry_code']        = 'Code';
 $_['entry_from_name']   = 'From Name';
 $_['entry_from_email']  = 'From E-Mail';
