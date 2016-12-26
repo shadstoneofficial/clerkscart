@@ -27,7 +27,9 @@ class ModelTotalSubTotal extends Model {
 
 		if (!empty($this->session->data['vouchers'])) {
 			foreach ($this->session->data['vouchers'] as $voucher) {
+				if ($voucher['seller_id'] == $total['seller_id']) {
 				$sub_total += $voucher['amount'];
+				}
 			}
 		}
 
