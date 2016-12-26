@@ -23,7 +23,30 @@ class ControllerCommonCart extends Controller {
        $data['products'] = false;
       }
 
-		$carts = $this->cart->getSellercarts();
+   $vouchers = array();
+
+      if (!empty($this->session->data['vouchers'])) {
+	 foreach ($this->session->data['vouchers'] as $voucher) {
+	     $vouchers[] = array(
+            'seller_id'   => $voucher['seller_id']
+		);
+	     } 
+	}
+   
+   $seller_carts = $this->cart->getSellercarts();
+
+   $carts_merge = array_merge($seller_carts, $vouchers);
+    
+   foreach ($carts_merge as $key => $seller) {
+     $carts_merge[$key] = serialize($seller);
+   } 
+   
+   $carts_unigue = array_unique($carts_merge);
+   
+   foreach ($carts_unigue as $key => $unigue) {
+     $carts_unigue[$key] = unserialize($unigue);
+   }  
+    $carts = $carts_unigue;
 
       $data['carts'] = array();
       
