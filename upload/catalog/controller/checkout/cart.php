@@ -25,7 +25,7 @@ class ControllerCheckoutCart extends Controller {
 
 			$data['column_image'] = $this->language->get('column_image');
 			$data['column_name'] = $this->language->get('column_name');
-      $data['seller_name'] = $this->language->get('seller_name');
+                        $data['seller_name'] = $this->language->get('seller_name');
 			$data['column_model'] = $this->language->get('column_model');
 			$data['column_quantity'] = $this->language->get('column_quantity');
 			$data['column_price'] = $this->language->get('column_price');
@@ -65,7 +65,30 @@ class ControllerCheckoutCart extends Controller {
 
 			$data['action'] = $this->url->link('checkout/cart/edit', '', true);
       
-      $carts = $this->cart->getSellercarts();
+      $vouchers = array();
+
+      if (!empty($this->session->data['vouchers'])) {
+	 foreach ($this->session->data['vouchers'] as $voucher) {
+	     $vouchers[] = array(
+            'seller_id'   => $voucher['seller_id']
+		);
+	     } 
+	}
+   
+   $seller_carts = $this->cart->getSellercarts();
+
+   $carts_merge = array_merge($seller_carts, $vouchers);
+    
+   foreach ($carts_merge as $key => $seller) {
+     $carts_merge[$key] = serialize($seller);
+   } 
+   
+   $carts_unigue = array_unique($carts_merge);
+   
+   foreach ($carts_unigue as $key => $unigue) {
+     $carts_unigue[$key] = unserialize($unigue);
+   }  
+    $carts = $carts_unigue;
 
       $data['carts'] = array();
       
