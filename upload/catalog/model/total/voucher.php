@@ -118,7 +118,7 @@ class ModelTotalVoucher extends Model {
 		if (isset($this->session->data['voucher'])) {
 			$this->load->language('total/voucher');
 
-			$voucher_info = $this->getVoucher($this->session->data['voucher']);
+			$voucher_info = $this->getVoucher($this->session->data['voucher'], $total['seller_id']);
 
 			if ($voucher_info) {
 				$amount = min($voucher_info['amount'], $total['total']);
