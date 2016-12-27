@@ -9,8 +9,10 @@ class ControllerCheckoutCoupon extends Controller {
 			$data['text_loading'] = $this->language->get('text_loading');
 
 			$data['entry_coupon'] = $this->language->get('entry_coupon');
+			$data['entry_voucher'] = $this->language->get('entry_voucher');
 
 			$data['button_coupon'] = $this->language->get('button_coupon');
+			$data['button_voucher'] = $this->language->get('button_voucher');
                         $data['text_loading'] = $this->language->get('text_loading');
 		        $data['button_continue'] = $this->language->get('button_continue');
 
@@ -87,4 +89,41 @@ class ControllerCheckoutCoupon extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+	
+public function voucher() {
+		$this->load->language('total/voucher');
+
+    if (empty($this->request->get['seller_id'])) {
+     $seller_id = 0;
+    } else {
+     $seller_id = $this->request->get['seller_id'];    
+    }
+
+		$json = array();
+
+		$this->load->model('total/voucher');
+
+		if (isset($this->request->post['voucher'])) {
+			$voucher = $this->request->post['voucher'];
+		} else {
+			$voucher = '';
+		}
+
+		$voucher_info = $this->model_total_voucher->getVoucher($voucher, $seller_id);
+
+		if (empty($this->request->post['voucher'])) {
+			$json['error'] = $this->language->get('error_empty');
+		} elseif ($voucher_info) {
+			$this->session->data['voucher'] = $this->request->post['voucher'];
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$json['redirect'] = $this->url->link('checkout/cart');
+		} else {
+			$json['error'] = $this->language->get('error_voucher');
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}	
 }
