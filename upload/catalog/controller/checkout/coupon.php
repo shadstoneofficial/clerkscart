@@ -44,6 +44,12 @@ class ControllerCheckoutCoupon extends Controller {
 			} else {
 				$data['coupon'] = '';
 			}
+			
+			if (isset($this->session->data['voucher'])) {
+				$data['voucher'] = $this->session->data['voucher'];
+			} else {
+				$data['voucher'] = '';
+			}
 
       $this->response->setOutput($this->load->view('checkout/coupon', $data));
 		}
