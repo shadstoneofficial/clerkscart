@@ -8,6 +8,7 @@ $_['text_success']  = 'Success: Your coupon discount has been applied!';
 
 // Entry
 $_['entry_coupon']  = 'Enter your coupon here';
+$_['entry_voucher'] = 'Enter your Gift Certificates here';
 
 // Error
 $_['error_coupon']  = 'Warning: Coupon is either invalid, expired or reached its usage limit!';
