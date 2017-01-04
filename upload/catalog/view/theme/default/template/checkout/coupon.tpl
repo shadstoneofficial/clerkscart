@@ -10,20 +10,24 @@
   <?php } ?>
     <div class="panel-body">
     <div class="couponalert"></div>
+    <div class="form-group">
       <label class="col-sm-2 control-label" for="input-coupon"><?php echo $entry_coupon; ?></label>
       <div class="input-group">
         <input type="text" name="coupon" value="<?php echo $coupon; ?>" placeholder="<?php echo $entry_coupon; ?>" id="input-coupon" class="form-control" />
         <span class="input-group-btn">
         <input type="button" value="<?php echo $button_coupon; ?>" id="button-coupon" data-loading-text="<?php echo $text_loading; ?>"  class="btn btn-primary" />
         </span></div>
+	</div>
       
-      <div class="voucheralert"></div>  
+      <div class="voucheralert"></div>
+      <div class="form-group">
         <label class="col-sm-2 control-label" for="input-voucher"><?php echo $entry_voucher; ?></label>
       <div class="input-group">
         <input type="text" name="voucher" value="<?php echo $voucher; ?>" placeholder="<?php echo $entry_voucher; ?>" id="input-voucher" class="form-control" />
         <span class="input-group-btn">
         <input type="button" value="<?php echo $button_voucher; ?>" id="button-voucher" data-loading-text="<?php echo $text_loading; ?>"  class="btn btn-primary" />
         </span></div>
+	</div>
         
         <div class="buttons">
   <div class="pull-right">
