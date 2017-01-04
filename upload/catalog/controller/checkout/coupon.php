@@ -122,9 +122,7 @@ public function voucher() {
 		} elseif ($voucher_info) {
 			$this->session->data['voucher'] = $this->request->post['voucher'];
 
-			$this->session->data['success'] = $this->language->get('text_success');
-
-			$json['redirect'] = $this->url->link('checkout/cart');
+			$json['success'] = $this->language->get('text_success');
 		} else {
 			$json['error'] = $this->language->get('error_voucher');
 		}
