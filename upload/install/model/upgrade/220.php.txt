@@ -10,7 +10,8 @@ class ModelUpgrade220 extends Model {
     $this->db->query("ALTER TABLE `" . DB_PREFIX . "return` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `order_id`");
     $this->db->query("ALTER TABLE `" . DB_PREFIX . "download` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `filename`");
 		// Coupon
-		$this->db->query("ALTER TABLE `" . DB_PREFIX . "coupon` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `coupon_id`");		
+		$this->db->query("ALTER TABLE `" . DB_PREFIX . "coupon` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `coupon_id`");		    //Voucher
+		$this->db->query("ALTER TABLE `" . DB_PREFIX . "voucher` ADD COLUMN `seller_id` int(11) NOT NULL AFTER `voucher_id`");
 			
 	  // Setting
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "setting` SET `code` = 'config', `key` = 'config_seller_group_id', `value` = '1'");
