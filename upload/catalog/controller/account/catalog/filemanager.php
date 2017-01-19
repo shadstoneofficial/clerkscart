@@ -242,7 +242,7 @@ class ControllerAccountCatalogFileManager extends Controller {
 				}
                                  //максимальний розмір каталога 
                                 $this->load->model('account/catalog/seller_group');
-                                $seller_groups = $this->model_account_catalog_seller_group->getSellerGroup($this->customer->getSellergroupid());
+                                $seller_groups = $this->model_account_catalog_seller_group->getSellerLimits($this->customer->getSellergroupid());
                                 $dirsize = ($this->customer->getDirsize($directory)/ 1048576);
        
                                 if($dirsize >= $seller_groups['imglimit']) {
