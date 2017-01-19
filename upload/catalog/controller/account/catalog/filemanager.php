@@ -111,7 +111,7 @@ class ControllerAccountCatalogFileManager extends Controller {
     //$data['size'] = (preg_replace('/[^0-9]/', '',system('du -s '. DIR_IMAGE . 'catalog/' . $customer_id)) / 1048576);
     
                 $this->load->model('account/catalog/seller_group');
-                $seller_groups = $this->model_account_catalog_seller_group->getSellerGroup($this->customer->getSellergroupid());
+                $seller_groups = $this->model_account_catalog_seller_group->getSellerLimits($this->customer->getSellergroupid());
                 $data['dirsize'] = $seller_groups['imglimit'] - ($this->customer->getDirsize($directory)/ 1048576);
                 
 		$data['token'] = $this->session->data['token'];
