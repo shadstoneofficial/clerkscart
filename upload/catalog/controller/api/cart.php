@@ -18,7 +18,13 @@ class ControllerApiCart extends Controller {
 						$option = array();
 					}
 
-					$this->cart->add($product['product_id'], $product['quantity'], $option);
+					 if (isset($product['recurring_id'])) {
+				$recurring_id = $product['recurring_id'];
+			} else {
+				$recurring_id = 0;
+			}
+
+					$this->cart->add($product['product_id'], $product['seller_id'], $product['quantity'], $option, $recurring_id);
 				}
 
 				$json['success'] = $this->language->get('text_success');
@@ -52,9 +58,15 @@ class ControllerApiCart extends Controller {
 							$json['error']['option'][$product_option['product_option_id']] = sprintf($this->language->get('error_required'), $product_option['name']);
 						}
 					}
-
+                                        
+					if (isset($this->request->post['recurring_id'])) {
+				$recurring_id = $this->request->post['recurring_id'];
+			} else {
+				$recurring_id = 0;
+			}
+					
 					if (!isset($json['error']['option'])) {
-						$this->cart->add($this->request->post['product_id'], $quantity, $option);
+						$this->cart->add($this->request->post['product_id'], $this->request->post['seller_id'], $quantity, $option, $recurring_id);
 
 						$json['success'] = $this->language->get('text_success');
 
