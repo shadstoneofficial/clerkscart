@@ -62,6 +62,12 @@
                   <input type="hidden" name="customer_id" value="<?php echo $customer_id; ?>" />
                 </div>
               </div>
+	      <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-seller">Seller ID</label>
+                <div class="col-sm-10">
+                  <input type="text" name="seller_id" value="<?php echo $seller_id; ?>" id="input-seller" class="form-control" />
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-customer-group"><?php echo $entry_customer_group; ?></label>
                 <div class="col-sm-10">
@@ -256,7 +262,8 @@
                     <tr>
                       <td class="text-left"><?php echo $order_product['name']; ?><br />
                         <input type="hidden" name="product[<?php echo $product_row; ?>][product_id]" value="<?php echo $order_product['product_id']; ?>" />
-                        <?php foreach ($order_product['option'] as $option) { ?>
+                        <input type="hidden" name="product[<?php echo $product_row; ?>][seller_id]" value="<?php echo $seller_id; ?>" />
+			<?php foreach ($order_product['option'] as $option) { ?>
                         - <small><?php echo $option['name']; ?>: <?php echo $option['value']; ?></small><br />
                         <?php if ($option['type'] == 'select' || $option['type'] == 'radio' || $option['type'] == 'image') { ?>
                         <input type="hidden" name="product[<?php echo $product_row; ?>][option][<?php echo $option['product_option_id']; ?>]" value="<?php echo $option['product_option_value_id']; ?>" />
