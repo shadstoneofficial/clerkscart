@@ -362,6 +362,13 @@ class ModelCheckoutOrder extends Model {
 
 					$this->model_affiliate_affiliate->deleteTransaction($order_id);
 				}
+				
+				// Remove sellercommission.
+				if ($order_info['seller_id']) {
+					$this->load->model('account/catalog/seller');
+
+					$this->model_account_catalog_seller->deleteTransaction($order_id);
+				}
 			}
 
 			$this->cache->delete('product');
