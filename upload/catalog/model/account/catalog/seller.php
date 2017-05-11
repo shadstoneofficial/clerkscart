@@ -74,7 +74,11 @@ class ModelAccountCatalogSeller extends Model {
 
 		return $query->row['total'];
 	}
-
+        
+	public function deleteTransaction($order_id) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "seller_transaction WHERE order_id = '" . (int)$order_id . "'");
+	}
+	
 	public function getTotalTransactionsByOrderId($order_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "seller_transaction WHERE order_id = '" . (int)$order_id . "'");
 
