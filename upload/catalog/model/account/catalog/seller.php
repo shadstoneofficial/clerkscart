@@ -19,7 +19,7 @@ class ModelAccountCatalogSeller extends Model {
   public function addTransaction($seller_id, $amount = '', $order_id = 0) {
 		$seller_info = $this->getSeller($seller_id);
 
-		if ($affiliate_info) {
+		if ($seller_info) {
 			$this->load->language('mail/seller');
 
 			$this->db->query("INSERT INTO " . DB_PREFIX . "seller_transaction SET seller_id = '" . (int)$seller_id . "', order_id = '" . (float)$order_id . "', description = '" . $this->db->escape($this->language->get('text_order_id') . ' #' . $order_id) . "', amount = '" . (float)$amount . "', date_added = NOW()");
@@ -38,7 +38,7 @@ class ModelAccountCatalogSeller extends Model {
 			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
 			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 
-			$mail->setTo($affiliate_info['email']);
+			$mail->setTo($seller_info['email']);
 			$mail->setFrom($this->config->get('config_email'));
 			$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(sprintf($this->language->get('text_transaction_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')));
