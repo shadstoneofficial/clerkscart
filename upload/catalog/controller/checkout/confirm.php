@@ -275,8 +275,9 @@ class ControllerCheckoutConfirm extends Controller {
 				$this->load->model('checkout/seller');
 				$seller_info = $this->model_checkout_seller->getSeller($seller_id);
 				if ($seller_info) {
-					$order_data['seller_id'] = $seller_info['seller_id'];
-					$order_data['seller_commission'] = $subtotal - (($subtotal / 100 ) * $seller_info['commission']);
+					$seller_commission = $subtotal - (($subtotal / 100 ) * $seller_info['commission']);
+                                        $shipping_cost = $total_data['total'] - $subtotal;
+                                        $order_data['seller_commission'] = $seller_commission + $shipping_cost;
 				} else {
 					$order_data['seller_id'] = 0;
 					$order_data['seller_commission'] = 0;
