@@ -2,7 +2,13 @@
 class ControllerCheckoutGuest extends Controller {
 	public function index() {
 		$this->load->language('checkout/checkout');
-
+if (empty($this->request->get['seller_id'])) {
+     $seller_id = 0;
+     $data['seller_id'] = $seller_id;
+    } else {
+     $seller_id = $this->request->get['seller_id'];    
+     $data['seller_id'] = $seller_id;
+    }
 		$data['text_select'] = $this->language->get('text_select');
 		$data['text_none'] = $this->language->get('text_none');
 		$data['text_your_details'] = $this->language->get('text_your_details');
@@ -153,7 +159,7 @@ class ControllerCheckoutGuest extends Controller {
 			$data['guest_custom_field'] = array();
 		}
 
-		$data['shipping_required'] = $this->cart->hasShipping();
+		$data['shipping_required'] = $this->cart->hasSellershipping($seller_id);
 
 		if (isset($this->session->data['guest']['shipping_address'])) {
 			$data['shipping_address'] = $this->session->data['guest']['shipping_address'];
