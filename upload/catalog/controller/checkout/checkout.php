@@ -71,7 +71,7 @@ class ControllerCheckoutCheckout extends Controller {
 		$data['text_checkout_shipping_address'] = sprintf($this->language->get('text_checkout_shipping_address'), 3);
 		$data['text_checkout_shipping_method'] = sprintf($this->language->get('text_checkout_shipping_method'), 4);
 		
-		if ($this->cart->hasShipping()) {
+		if ($this->cart->hasSellershipping($seller_id)) {
 			$data['text_checkout_payment_method'] = sprintf($this->language->get('text_checkout_payment_method'), 5);
 			$data['text_checkout_coupon'] = sprintf($this->language->get('text_checkout_coupon'), 6);
 			$data['text_checkout_confirm'] = sprintf($this->language->get('text_checkout_confirm'), 7);
