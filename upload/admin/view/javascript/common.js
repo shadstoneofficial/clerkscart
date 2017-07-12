@@ -149,7 +149,7 @@ $(document).ready(function() {
 									
 									$('#modal-image').modal('show');
 									
-									$('#modal-image a.thumbnail').on('click', function(e) {
+									$('#modal-image').on('click', 'a.thumbnail', function(e) {
 										e.preventDefault();
 										
 										$(element).summernote('insertImage', $(this).attr('href'));
