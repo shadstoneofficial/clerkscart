@@ -278,6 +278,7 @@ class ControllerCheckoutConfirm extends Controller {
 					$seller_commission = $subtotal - (($subtotal / 100 ) * $seller_info['commission']);
                                         $shipping_cost = $total_data['total'] - $subtotal;
                                         $order_data['seller_commission'] = $seller_commission + $shipping_cost;
+					$order_data['seller_id'] = $seller_id;
 				} else {
 					$order_data['seller_id'] = 0;
 					$order_data['seller_commission'] = 0;
