@@ -52,7 +52,11 @@
         <li class="dropdown-header"><?php echo $text_customer; ?></li>
         <li><a href="<?php echo $online; ?>"><span class="label label-success pull-right"><?php echo $online_total; ?></span><?php echo $text_online; ?></a></li>
         <li><a href="<?php echo $customer_approval; ?>"><span class="label label-danger pull-right"><?php echo $customer_total; ?></span><?php echo $text_approval; ?></a></li>
-        <li class="divider"></li>
+       <li class="divider"></li>
+        <li class="dropdown-header"><?php echo $text_seller; ?></li>
+        <li><a><span class="label label-success pull-right"><?php echo $seller_online_total; ?></span><?php echo $text_selleronline; ?></a></li>
+        <li><a href="<?php echo $seller_approval; ?>"><span class="label label-danger pull-right"><?php echo $seller_total; ?></span><?php echo $text_sellerapproval; ?></a></li>
+       <li class="divider"></li>
         <li class="dropdown-header"><?php echo $text_product; ?></li>
         <li><a href="<?php echo $product; ?>"><span class="label label-danger pull-right"><?php echo $product_total; ?></span><?php echo $text_stock; ?></a></li>
         <li><a href="<?php echo $review; ?>"><span class="label label-danger pull-right"><?php echo $review_total; ?></span><?php echo $text_review; ?></a></li>
