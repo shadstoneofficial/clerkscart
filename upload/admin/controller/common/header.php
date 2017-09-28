@@ -28,6 +28,9 @@ class ControllerCommonHeader extends Controller {
 		$data['text_customer'] = $this->language->get('text_customer');
 		$data['text_online'] = $this->language->get('text_online');
 		$data['text_approval'] = $this->language->get('text_approval');
+		$data['text_seller'] = $this->language->get('text_seller');
+                $data['text_selleronline'] = $this->language->get('text_selleronline');
+                $data['text_sellerapproval'] = $this->language->get('text_sellerapproval');
 		$data['text_product'] = $this->language->get('text_product');
 		$data['text_stock'] = $this->language->get('text_stock');
 		$data['text_review'] = $this->language->get('text_review');
@@ -84,7 +87,12 @@ class ControllerCommonHeader extends Controller {
 
 			$data['customer_total'] = $customer_total;
 			$data['customer_approval'] = $this->url->link('customer/customer', 'token=' . $this->session->data['token'] . '&filter_approved=0', true);
-
+                        
+			$data['seller_online_total'] = $this->model_report_customer->getTotalSellersOnline();
+                        $this->load->model('seller/seller');
+                        $data['seller_total'] = $this->model_seller_seller->getTotalSellers(array('filter_approved' => false));;
+			$data['seller_approval'] = $this->url->link('customer/customer', 'token=' . $this->session->data['token'] . '&filter_sellerapprove=0', true);
+			
 			// Products
 			$this->load->model('catalog/product');
 
