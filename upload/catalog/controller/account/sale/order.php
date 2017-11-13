@@ -1191,7 +1191,7 @@ class ControllerAccountSaleOrder extends Controller {
 		$data['column_total'] = $this->language->get('column_total');
 
 		$this->load->model('account/sale/order');
-
+                $this->load->model('account/catalog/seller');
 		$this->load->model('setting/setting');
 
 		$data['orders'] = array();
@@ -1206,15 +1206,15 @@ class ControllerAccountSaleOrder extends Controller {
 
 		foreach ($orders as $order_id) {
 			$order_info = $this-> model_account_sale_order->getOrder($order_id);
-
 			if ($order_info) {
 				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
 
-				if ($store_info) {
-					$store_address = $store_info['config_address'];
-					$store_email = $store_info['config_email'];
-					$store_telephone = $store_info['config_telephone'];
-					$store_fax = $store_info['config_fax'];
+			        $seller_info = $this->model_account_catalog_seller->getSeller($order_info['seller_id']);
+				if ($seller_info) {
+					$store_address = $seller_info['address_1'];
+					$store_email = $seller_info['email'];
+					$store_telephone = $seller_info['telephone'];
+					$store_fax = $seller_info['fax'];
 				} else {
 					$store_address = $this->config->get('config_address');
 					$store_email = $this->config->get('config_email');
@@ -1429,7 +1429,7 @@ class ControllerAccountSaleOrder extends Controller {
 		$data['column_quantity'] = $this->language->get('column_quantity');
 
 		$this->load->model('account/sale/order');
-
+                $this->load->model('account/catalog/seller');
 		$this->load->model('catalog/product');
 
 		$this->load->model('setting/setting');
@@ -1451,11 +1451,12 @@ class ControllerAccountSaleOrder extends Controller {
 			if ($order_info && $order_info['shipping_code']) {
 				$store_info = $this->model_setting_setting->getSetting('config', $order_info['store_id']);
 
-				if ($store_info) {
-					$store_address = $store_info['config_address'];
-					$store_email = $store_info['config_email'];
-					$store_telephone = $store_info['config_telephone'];
-					$store_fax = $store_info['config_fax'];
+				$seller_info = $this->model_account_catalog_seller->getSeller($order_info['seller_id']);
+				if ($seller_info) {
+					$store_address = $seller_info['address_1'];
+					$store_email = $seller_info['email'];
+					$store_telephone = $seller_info['telephone'];
+					$store_fax = $seller_info['fax'];
 				} else {
 					$store_address = $this->config->get('config_address');
 					$store_email = $this->config->get('config_email');
