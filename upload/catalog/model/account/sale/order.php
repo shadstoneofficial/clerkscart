@@ -138,6 +138,7 @@ class ModelAccountSaleOrder extends Model {
 				'affiliate_firstname'     => $affiliate_firstname,
 				'affiliate_lastname'      => $affiliate_lastname,
 				'commission'              => $order_query->row['commission'],
+				'seller_id'               => $order_query->row['seller_id'],
 				'language_id'             => $order_query->row['language_id'],
 				'language_code'           => $language_code,
 				'currency_id'             => $order_query->row['currency_id'],
