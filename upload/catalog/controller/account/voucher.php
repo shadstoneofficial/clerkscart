@@ -187,9 +187,14 @@ class ControllerAccountVoucher extends Controller {
 			$results = $this->customer->getSellers($filter_data);
 
 			foreach ($results as $result) {
+				if ($result['company']){
+                                $seller_name = $result['company'];
+                                } else {
+                                $seller_name = $result['firstname'] . '&nbsp;' . $result['lastname'];
+                                }
 				$json[] = array(
 					'seller_id' => $result['seller_id'],
-					'company'            => strip_tags(html_entity_decode($result['company'], ENT_QUOTES, 'UTF-8'))
+					'company'            => strip_tags(html_entity_decode($seller_name, ENT_QUOTES, 'UTF-8'))
 				);
 			}
 		}
