@@ -132,7 +132,13 @@ class ControllerCheckoutPaymentMethod extends Controller {
 
 	public function save() {
 		$this->load->language('checkout/checkout');
-
+        if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+    if (empty($this->request->post['seller_id'])) {
+     $seller_id = 0;
+    } else {
+     $seller_id = $this->request->post['seller_id'];    
+    }
+    }
 		$json = array();
 
 		// Validate if payment address has been set.
@@ -141,7 +147,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		}
 
 		// Validate cart has products and has stock.
-		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+		if ((!$this->cart->hasSellerproducts($seller_id) && empty($this->session->data['vouchers'])) || (!$this->cart->hasSellerstock($seller_id) && !$this->config->get('config_stock_checkout'))) {
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 
