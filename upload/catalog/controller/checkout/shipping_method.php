@@ -82,8 +82,14 @@ class ControllerCheckoutShippingMethod extends Controller {
 	}
 
 	public function save() {
-		$this->load->language('checkout/checkout');
-  
+	      $this->load->language('checkout/checkout');
+               if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+               if (empty($this->request->post['seller_id'])) {
+               $seller_id = 0;
+               } else {
+               $seller_id = $this->request->post['seller_id'];    
+               }
+               }
 		$json = array();   
 
 		// Validate if shipping is required. If not the customer should not have reached this page.
