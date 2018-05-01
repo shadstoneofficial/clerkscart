@@ -3,5 +3,5 @@ ClerksCart - Multi Vendor Marketplace
 
 WebSite - <a href="http://clerkscart.com/"> clerkscart.com </a>
 
-More info - <a href="http://forum.clerkscart.com/"> ClerksCart Forum </a>
+ <a href="https://secure.wayforpay.com/payment/sdbb18abeee95"> Make a small donation to improve ClerksCart </a>
 
